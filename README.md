@@ -19,3 +19,9 @@ Proyecto control de inventario y venta de servicios
     - Modulo de empresa
 - Se agrego el campo __saldo__ en tabla __compra__
 - Archigo gitignore
+
+2021.05.17
+- Base de datos mapeada
+- Capa de persistencia
+- Patron DAO para persistencia
+- CRUD Marcas
