@@ -25,3 +25,4 @@ Proyecto control de inventario y venta de servicios
 - Capa de persistencia
 - Patron DAO para persistencia
 - CRUD Marcas
+- CRUD Categorias

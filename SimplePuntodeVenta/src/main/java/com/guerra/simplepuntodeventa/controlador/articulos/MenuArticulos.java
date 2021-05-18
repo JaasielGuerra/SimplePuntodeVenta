@@ -24,6 +24,7 @@ public class MenuArticulos {
 
     ////////////controladores///////////
     private final ControladorMarcas marcasAction = new ControladorMarcas(panMarcas);
+    private final ControladorCategorias controladorCategorias = new ControladorCategorias(panCategorias);
 
     public MenuArticulos(IfrmMenuArticulos panMenuArticulos) {
         this.panMenuArticulos = panMenuArticulos;
@@ -59,6 +60,9 @@ public class MenuArticulos {
     }
 
     private void categorias() {
+        controladorCategorias.resetFormulario();
+        controladorCategorias.consultarCategorias();
+        PanelUtil.cambiarPanel(IfrmMenuArticulos.PANEL_CAMBIANTE, panCategorias);
     }
 
 }
