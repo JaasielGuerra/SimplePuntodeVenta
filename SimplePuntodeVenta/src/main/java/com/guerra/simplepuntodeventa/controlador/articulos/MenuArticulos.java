@@ -7,6 +7,7 @@ import com.guerra.simplepuntodeventa.vista.articulos.PanListArticulos;
 import com.guerra.simplepuntodeventa.vista.articulos.PanNuevoArticulo;
 import com.guerra.simplepuntodeventa.vista.articulos.caracteristicas.PanCategorias;
 import com.guerra.simplepuntodeventa.vista.articulos.caracteristicas.PanMarcas;
+import com.guerra.simplepuntodeventa.vista.articulos.caracteristicas.PanUbicaciones;
 
 /**
  *
@@ -21,10 +22,12 @@ public class MenuArticulos {
     private final PanListArticulos panListArticulos = new PanListArticulos();
     private final PanMarcas panMarcas = new PanMarcas();
     private final PanCategorias panCategorias = new PanCategorias();
+    private final PanUbicaciones panUbicaciones = new PanUbicaciones();
 
     ////////////controladores///////////
     private final ControladorMarcas marcasAction = new ControladorMarcas(panMarcas);
     private final ControladorCategorias controladorCategorias = new ControladorCategorias(panCategorias);
+    private final ControladorUbicaciones controladorUbicaciones = new ControladorUbicaciones(panUbicaciones);
 
     public MenuArticulos(IfrmMenuArticulos panMenuArticulos) {
         this.panMenuArticulos = panMenuArticulos;
@@ -43,6 +46,9 @@ public class MenuArticulos {
         });
         panMenuArticulos.btnCategorias.addActionListener((e) -> {
             categorias();
+        });
+        panMenuArticulos.btnUbicaciones.addActionListener((ae) -> {
+            ubicaciones();
         });
     }
 
@@ -63,6 +69,12 @@ public class MenuArticulos {
         controladorCategorias.resetFormulario();
         controladorCategorias.consultarCategorias();
         PanelUtil.cambiarPanel(IfrmMenuArticulos.PANEL_CAMBIANTE, panCategorias);
+    }
+
+    private void ubicaciones() {
+        controladorUbicaciones.resetFormulario();
+        controladorUbicaciones.consultarUbicaciones();
+        PanelUtil.cambiarPanel(IfrmMenuArticulos.PANEL_CAMBIANTE, panUbicaciones);
     }
 
 }
