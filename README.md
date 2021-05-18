@@ -26,3 +26,4 @@ Proyecto control de inventario y venta de servicios
 - Patron DAO para persistencia
 - CRUD Marcas
 - CRUD Categorias
+- CRUD Ubicaciones

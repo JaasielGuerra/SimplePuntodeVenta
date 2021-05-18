@@ -18,7 +18,7 @@ public class PanUbicaciones extends javax.swing.JPanel {
      */
     public PanUbicaciones() {
         initComponents();
-        TablaUtil.ocultarCol(tblMarcas, 0);
+        TablaUtil.ocultarCol(tblUbicaciones, 0);
     }
 
     /**
@@ -45,7 +45,7 @@ public class PanUbicaciones extends javax.swing.JPanel {
         btnDesactivar = new javax.swing.JButton();
         btnActivar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblMarcas = new javax.swing.JTable();
+        tblUbicaciones = new javax.swing.JTable();
         cbxEstado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
@@ -133,7 +133,7 @@ public class PanUbicaciones extends javax.swing.JPanel {
         btnActivar.setFocusPainted(false);
         jPanel3.add(btnActivar);
 
-        tblMarcas.setModel(new javax.swing.table.DefaultTableModel(
+        tblUbicaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -159,8 +159,8 @@ public class PanUbicaciones extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblMarcas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(tblMarcas);
+        tblUbicaciones.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tblUbicaciones);
 
         cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -238,7 +238,7 @@ public class PanUbicaciones extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tblMarcas;
+    public javax.swing.JTable tblUbicaciones;
     public javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

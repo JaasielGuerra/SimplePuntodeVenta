@@ -16,6 +16,7 @@ import com.guerra.simplepuntodeventa.modelo.dao.MarcaDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.CuentaClienteDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.EmpresaDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.ProveedorDAOImpl;
+import com.guerra.simplepuntodeventa.modelo.dao.UbicacionDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.UsuarioDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.VentaDAOImpl;
 import javax.persistence.EntityManagerFactory;
@@ -44,6 +45,7 @@ public class DAOManager {
     private final KardexDAOImpl kardexDAO;
     private final MarcaDAOImpl marcaDAO;
     private final EmpresaDAOImpl empresaDAO;
+    private final UbicacionDAOImpl ubicacionDAO;
 
     //evitar instancias con new
     private DAOManager() {
@@ -61,6 +63,7 @@ public class DAOManager {
         kardexDAO = new KardexDAOImpl(emf);
         marcaDAO = new MarcaDAOImpl(emf);
         empresaDAO = new EmpresaDAOImpl(emf);
+        ubicacionDAO = new UbicacionDAOImpl(emf);
     }
 
     public static DAOManager getInstancia() {
@@ -125,4 +128,9 @@ public class DAOManager {
     public EmpresaDAOImpl getEmpresaDAO() {
         return empresaDAO;
     }
+
+    public UbicacionDAOImpl getUbicacionDAO() {
+        return ubicacionDAO;
+    }
+
 }
