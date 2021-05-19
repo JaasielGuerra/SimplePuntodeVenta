@@ -175,7 +175,7 @@ public class Marca implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.Marca[ idMarca=" + idMarca + " ]";
+        return this.nombre;
     }
-    
+
 }

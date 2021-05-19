@@ -27,3 +27,7 @@ Proyecto control de inventario y venta de servicios
 - CRUD Marcas
 - CRUD Categorias
 - CRUD Ubicaciones
+
+2021.05.18
+- CRUD Articulos completo
+- Trigger para inventario inicial
