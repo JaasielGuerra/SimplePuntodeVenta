@@ -538,6 +538,21 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Triggers
+-- -----------------------------------------------------
+CREATE TRIGGER inventario_inicial
+AFTER INSERT
+ON articulo FOR EACH ROW
+BEGIN 
+	IF NEW.cantidad > 0 THEN
+	
+		INSERT INTO db_spv.kardex (fecha, concepto, existencia_anterior, tipo, cantidad, existencia_posterior, id_usuario, id_articulo, hora_commit, fecha_commit)
+		VALUES(current_date(), 'Inventario inicial', 0, 1, NEW.cantidad, NEW.cantidad, new.id_usuario, NEW.id_articulo, current_date(), current_time());
+	
+	END IF; 
+END
+
+-- -----------------------------------------------------
 -- Datos de prueba
 -- -----------------------------------------------------
 INSERT INTO `db_spv`.`privilegio` VALUES (1, 'ADMINISTRADOR', '1', '2021/05/17', '09:48', '1', '1', '1', '1', '1', '1', '1', '1', '1');

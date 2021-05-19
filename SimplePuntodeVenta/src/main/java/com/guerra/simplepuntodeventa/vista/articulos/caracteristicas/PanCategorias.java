@@ -5,6 +5,7 @@
  */
 package com.guerra.simplepuntodeventa.vista.articulos.caracteristicas;
 
+import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
 
 /**
  *
@@ -17,8 +18,8 @@ public class PanCategorias extends javax.swing.JPanel {
      */
     public PanCategorias() {
         initComponents();
+        TablaUtil.ocultarCol(tblCate, 0);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -67,7 +67,7 @@
         <Component class="javax.swing.JTable" name="tblArticulos">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="10" rowCount="20">
+              <Table columnCount="11" rowCount="20">
                 <Column editable="false" title="entity" type="java.lang.Object"/>
                 <Column editable="false" title="C&#xd3;DIGO(1)" type="java.lang.String"/>
                 <Column editable="false" title="NOMBRE" type="java.lang.String"/>
@@ -77,6 +77,7 @@
                 <Column editable="false" title="INV. M&#xcd;NIMO" type="java.lang.Integer"/>
                 <Column editable="false" title="MARCA" type="java.lang.String"/>
                 <Column editable="false" title="CATEGOR&#xcd;A" type="java.lang.String"/>
+                <Column editable="false" title="UBICACI&#xd3;N" type="java.lang.String"/>
                 <Column editable="false" title="ESTADO" type="java.lang.String"/>
               </Table>
             </Property>

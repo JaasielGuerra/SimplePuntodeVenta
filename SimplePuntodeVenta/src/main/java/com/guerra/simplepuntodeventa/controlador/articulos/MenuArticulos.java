@@ -5,6 +5,7 @@ import com.guerra.simplepuntodeventa.vista.articulos.IfrmMenuArticulos;
 import com.guerra.simplepuntodeventa.vista.articulos.PanEditarArticulo;
 import com.guerra.simplepuntodeventa.vista.articulos.PanListArticulos;
 import com.guerra.simplepuntodeventa.vista.articulos.PanNuevoArticulo;
+import com.guerra.simplepuntodeventa.vista.articulos.VistaArticuloBean;
 import com.guerra.simplepuntodeventa.vista.articulos.caracteristicas.PanCategorias;
 import com.guerra.simplepuntodeventa.vista.articulos.caracteristicas.PanMarcas;
 import com.guerra.simplepuntodeventa.vista.articulos.caracteristicas.PanUbicaciones;
@@ -25,6 +26,9 @@ public class MenuArticulos {
     private final PanUbicaciones panUbicaciones = new PanUbicaciones();
 
     ////////////controladores///////////
+    private final ControladorArticulos articulosAction = new ControladorArticulos(
+            new VistaArticuloBean(panNuevoArticulo, panEditarArticulo, panListArticulos)
+    );
     private final ControladorMarcas marcasAction = new ControladorMarcas(panMarcas);
     private final ControladorCategorias controladorCategorias = new ControladorCategorias(panCategorias);
     private final ControladorUbicaciones controladorUbicaciones = new ControladorUbicaciones(panUbicaciones);
@@ -54,9 +58,14 @@ public class MenuArticulos {
 
     ////////////eventos//////////////
     private void nuevoArticulo() {
+        articulosAction.cargarCombosCaracteristicasNuevoArticulo();
+        articulosAction.resetValuesNuevoArticulo();
+        PanelUtil.cambiarPanel(IfrmMenuArticulos.PANEL_CAMBIANTE, panNuevoArticulo);
     }
 
     private void consultarArticulos() {
+        articulosAction.consultarArticulos();
+        PanelUtil.cambiarPanel(IfrmMenuArticulos.PANEL_CAMBIANTE, panListArticulos);
     }
 
     private void marcas() {
