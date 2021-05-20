@@ -14,6 +14,11 @@ import com.guerra.simplepuntodeventa.recursos.utilerias.NumeroUtil;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
+import org.eclipse.persistence.queries.StoredFunctionCall;
+import org.eclipse.persistence.queries.StoredProcedureCall;
 
 /**
  *
@@ -74,38 +79,49 @@ public class FuncionesInventario {
     /**
      * Devuelve la suma de la existencia de todo el inventario
      *
-     * @param inventario
      * @return long de la suma
      */
-    public static long getSumaInventarioTotal(List<Articulo> inventario) {
-        return inventario.stream().filter((articulo) -> articulo.getCantidad() > 0).
-                mapToLong((articulo) -> articulo.getCantidad())
-                .sum();
+    public static long getSumaInventarioTotal() {
+        if (articuloDAO == null) {
+            articuloDAO = DAOManager.getInstancia().getArticuloDAO();
+        }
+
+        EntityManager em = articuloDAO.getEntityManager();
+        Integer suma = em.createQuery("SELECT FUNCTION('inventario_total') FROM Articulo a", Integer.class)
+                .getSingleResult();
+
+        return suma;
     }
 
     /**
      * Devuelve la suma del costo total del inventario
      *
-     * @param inventario
      * @return Double de la suma
      */
-    public static double getSumaCostoTotalInventario(List<Articulo> inventario) {
-        Double suma = inventario.stream().filter((articulo) -> articulo.getCantidad() > 0)
-                .mapToDouble((articulo) -> articulo.getPrecioCompra() * articulo.getCantidad())
-                .sum();
+    public static double getSumaCostoTotalInventario() {
+        if (articuloDAO == null) {
+            articuloDAO = DAOManager.getInstancia().getArticuloDAO();
+        }
+
+        EntityManager em = articuloDAO.getEntityManager();
+        Double suma = em.createQuery("SELECT FUNCTION('costo_inventario') FROM Articulo a", Double.class)
+                .getSingleResult();
         return NumeroUtil.redondear(suma, 2);
     }
 
     /**
      * Devuelve la suma total de la ganancia de todo el inventario
      *
-     * @param inventario
      * @return Double de la suma
      */
-    public static double getSumaGananciaTotalInventario(List<Articulo> inventario) {
-        Double suma = inventario.stream().filter((articulo) -> articulo.getCantidad() > 0)
-                .mapToDouble((articulo) -> articulo.getGanancia() * articulo.getCantidad())
-                .sum();
+    public static double getSumaGananciaTotalInventario() {
+        if (articuloDAO == null) {
+            articuloDAO = DAOManager.getInstancia().getArticuloDAO();
+        }
+
+        EntityManager em = articuloDAO.getEntityManager();
+        Double suma = em.createQuery("SELECT FUNCTION('ganancia_inventario') FROM Articulo a", Double.class)
+                .getSingleResult();
         return NumeroUtil.redondear(suma, 2);
     }
 
@@ -160,6 +176,8 @@ public class FuncionesInventario {
         k.setExistenciaPosterior(existenciaPosterior);
         k.setIdUsuario((Usuario) Session.getInstancia().getAttribute("user"));
         k.setIdArticulo(articulo);
+        k.setFechaCommit(new Date());
+        k.setHoraCommit(new Date());
         try {
             if (kardexDAO == null) {
                 kardexDAO = DAOManager.getInstancia().getKardexDAO();

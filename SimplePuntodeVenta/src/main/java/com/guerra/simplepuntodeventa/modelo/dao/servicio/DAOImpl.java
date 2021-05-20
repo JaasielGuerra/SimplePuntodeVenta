@@ -17,6 +17,10 @@ public class DAOImpl<Entity, Id> extends CRUDImpl<Entity, Id> implements DAO<Ent
         this.em = em;
     }
 
+    public EntityManager getEntityManager() {
+        return em;
+    }
+
     @Override
     public Entity readOne(Id id) {
         Entity find = em.find(type, id);
