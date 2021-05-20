@@ -61,7 +61,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        com.guerra.spv.controlador.Main
+                                        com.guerra.simplepuntodeventa.Main
                                     </mainClass>
                                 </manifest>
                             </archive>
