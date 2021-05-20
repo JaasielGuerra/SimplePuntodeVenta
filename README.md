@@ -31,3 +31,8 @@ Proyecto control de inventario y venta de servicios
 2021.05.18
 - CRUD Articulos completo
 - Trigger para inventario inicial
+
+2021-05.20
+- Modulo inventario
+- FUnciones MariaDB para calculo de totales
+- Procedimiento para buscar movimiento por articulo

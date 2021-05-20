@@ -540,6 +540,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 -- Triggers
 -- -----------------------------------------------------
+DELIMITER $$
+$$
 CREATE TRIGGER inventario_inicial
 AFTER INSERT
 ON articulo FOR EACH ROW
@@ -551,6 +553,63 @@ BEGIN
 	
 	END IF; 
 END
+$$
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- FUnciones
+-- -----------------------------------------------------
+DELIMITER $$
+$$
+CREATE FUNCTION inventario_total ()
+RETURNS integer
+BEGIN
+
+RETURN (SELECT SUM(a.cantidad) FROM articulo a);
+END$$
+
+DELIMITER ;
+
+
+DELIMITER $$
+$$
+CREATE FUNCTION costo_inventario ()
+RETURNS double
+BEGIN
+
+RETURN (SELECT SUM(a.cantidad * a.precio_compra) FROM articulo a);
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+$$
+CREATE FUNCTION ganancia_inventario ()
+RETURNS double
+BEGIN
+
+RETURN (SELECT SUM(a.ganancia * a.cantidad) FROM articulo a);
+END$$
+
+DELIMITER ;
+
+
+-- -----------------------------------------------------
+-- Procedimientos
+-- -----------------------------------------------------
+DELIMITER $$
+$$
+CREATE PROCEDURE filtrar_movimientos_articulo (articulo varchar(50))
+BEGIN
+	select * from kardex k 
+	join articulo a 
+	on k.id_articulo = a.id_articulo
+	where a.descripcion like concat('%', articulo, '%');
+END$$
+
+DELIMITER ;
+
+
 
 -- -----------------------------------------------------
 -- Datos de prueba
