@@ -18,7 +18,6 @@ import com.guerra.simplepuntodeventa.modelo.entidades.Categoria;
 import com.guerra.simplepuntodeventa.modelo.entidades.Marca;
 import com.guerra.simplepuntodeventa.modelo.entidades.Ubicacion;
 import com.guerra.simplepuntodeventa.modelo.entidades.Usuario;
-import com.guerra.simplepuntodeventa.modelo.funciones.FuncionesInventario;
 import com.guerra.simplepuntodeventa.recursos.componentes.modelos.ModeloJTextFieldCodigoBarra;
 import com.guerra.simplepuntodeventa.recursos.utilerias.PanelUtil;
 import com.guerra.simplepuntodeventa.recursos.utilerias.ComboBoxUtil;
