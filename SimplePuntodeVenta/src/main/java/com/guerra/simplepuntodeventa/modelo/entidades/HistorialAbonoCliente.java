@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "HistorialAbonoCliente.findByIdHistorialAbonoCliente", query = "SELECT h FROM HistorialAbonoCliente h WHERE h.idHistorialAbonoCliente = :idHistorialAbonoCliente"),
     @NamedQuery(name = "HistorialAbonoCliente.findByFecha", query = "SELECT h FROM HistorialAbonoCliente h WHERE h.fecha = :fecha"),
     @NamedQuery(name = "HistorialAbonoCliente.findByAbono", query = "SELECT h FROM HistorialAbonoCliente h WHERE h.abono = :abono"),
+    @NamedQuery(name = "HistorialAbonoCliente.findByDocumento", query = "SELECT h FROM HistorialAbonoCliente h WHERE h.documento = :documento"),
     @NamedQuery(name = "HistorialAbonoCliente.findByHoraCommit", query = "SELECT h FROM HistorialAbonoCliente h WHERE h.horaCommit = :horaCommit"),
     @NamedQuery(name = "HistorialAbonoCliente.findByFechaCommit", query = "SELECT h FROM HistorialAbonoCliente h WHERE h.fechaCommit = :fechaCommit")})
 public class HistorialAbonoCliente implements Serializable {
@@ -50,6 +51,8 @@ public class HistorialAbonoCliente implements Serializable {
     @Basic(optional = false)
     @Column(name = "abono")
     private double abono;
+    @Column(name = "documento")
+    private String documento;
     @Basic(optional = false)
     @Column(name = "hora_commit")
     @Temporal(TemporalType.TIME)
@@ -102,6 +105,14 @@ public class HistorialAbonoCliente implements Serializable {
 
     public void setAbono(double abono) {
         this.abono = abono;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public Date getHoraCommit() {

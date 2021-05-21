@@ -343,7 +343,7 @@ public class Articulo implements Serializable {
 
     @Override
     public String toString() {
-        return this.descripcion;
+        return "com.guerra.simplepuntodeventa.modelo.entidades.Articulo[ idArticulo=" + idArticulo + " ]";
     }
     
 }

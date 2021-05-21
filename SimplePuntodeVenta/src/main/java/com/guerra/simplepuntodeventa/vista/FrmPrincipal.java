@@ -43,8 +43,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnArticulos = new javax.swing.JButton();
         btnInventario = new javax.swing.JButton();
         btnCompras = new javax.swing.JButton();
+        btnProveedores = new javax.swing.JButton();
+        btnServicios = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
         btnReportes = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
         pnlCentral = new javax.swing.JPanel();
         panPrincipal = new javax.swing.JDesktopPane();
@@ -127,6 +130,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCompras.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnlMenu.add(btnCompras);
 
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-supplier-40.png"))); // NOI18N
+        btnProveedores.setText("Proveedores");
+        btnProveedores.setFocusPainted(false);
+        btnProveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pnlMenu.add(btnProveedores);
+
+        btnServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-work-40.png"))); // NOI18N
+        btnServicios.setText("Servicios");
+        btnServicios.setFocusPainted(false);
+        btnServicios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnServicios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pnlMenu.add(btnServicios);
+
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-user-group-40.png"))); // NOI18N
         btnClientes.setText("Clientes");
         btnClientes.setFocusPainted(false);
@@ -140,6 +157,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnReportes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnReportes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnlMenu.add(btnReportes);
+
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-people-skin-type-7-40.png"))); // NOI18N
+        btnUsuarios.setText("Usuarios");
+        btnUsuarios.setFocusPainted(false);
+        btnUsuarios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUsuarios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pnlMenu.add(btnUsuarios);
 
         btnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-gear-40.png"))); // NOI18N
         btnConfiguracion.setText("Configuración");
@@ -168,7 +192,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public javax.swing.JButton btnCompras;
     public javax.swing.JButton btnConfiguracion;
     public javax.swing.JButton btnInventario;
+    public javax.swing.JButton btnProveedores;
     public javax.swing.JButton btnReportes;
+    public javax.swing.JButton btnServicios;
+    public javax.swing.JButton btnUsuarios;
     public javax.swing.JButton btnVentas;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
