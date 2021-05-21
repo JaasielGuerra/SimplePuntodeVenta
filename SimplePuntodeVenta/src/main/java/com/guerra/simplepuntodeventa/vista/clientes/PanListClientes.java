@@ -5,6 +5,8 @@
  */
 package com.guerra.simplepuntodeventa.vista.clientes;
 
+import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
+
 
 /**
  *
@@ -17,6 +19,7 @@ public class PanListClientes extends javax.swing.JPanel {
      */
     public PanListClientes() {
         initComponents();
+        TablaUtil.ocultarCol(tblClientes, 0);
     }
 
     /**

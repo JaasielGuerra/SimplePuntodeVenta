@@ -22,6 +22,7 @@ public class DlgAbonarDeuda extends javax.swing.JDialog {
     public DlgAbonarDeuda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        PlaceHolderSupport.setPlaceHolder("Documento de pago (opcional)", txtDoc);
         PlaceHolderSupport.setPlaceHolder("Descripción del abono", txtComentario);
     }
 
@@ -40,6 +41,8 @@ public class DlgAbonarDeuda extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         txtFecha = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtDoc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtComentario = new javax.swing.JTextField();
         spnAbono = new javax.swing.JSpinner();
@@ -51,7 +54,6 @@ public class DlgAbonarDeuda extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Realizar abono");
         setMinimumSize(new java.awt.Dimension(400, 300));
-        setPreferredSize(new java.awt.Dimension(400, 250));
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
 
@@ -64,6 +66,8 @@ public class DlgAbonarDeuda extends javax.swing.JDialog {
         jLabel1.setText("Fecha(*):");
 
         jLabel3.setText("Abono(*):");
+
+        jLabel2.setText("Documento:");
 
         jLabel4.setText("Comentario(*):");
 
@@ -79,10 +83,12 @@ public class DlgAbonarDeuda extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDoc)
                     .addComponent(txtComentario)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
                             .addComponent(jLabel4))
                         .addGap(0, 96, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -114,10 +120,14 @@ public class DlgAbonarDeuda extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMaximo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtComentario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -147,6 +157,7 @@ public class DlgAbonarDeuda extends javax.swing.JDialog {
     public javax.swing.JCheckBox cbxImprimir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -155,6 +166,7 @@ public class DlgAbonarDeuda extends javax.swing.JDialog {
     public javax.swing.JLabel lblMaximo;
     public javax.swing.JSpinner spnAbono;
     public javax.swing.JTextField txtComentario;
+    public javax.swing.JTextField txtDoc;
     public com.toedter.calendar.JDateChooser txtFecha;
     // End of variables declaration//GEN-END:variables
 }

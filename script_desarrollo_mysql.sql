@@ -594,6 +594,24 @@ END$$
 DELIMITER ;
 
 
+
+DELIMITER $$
+$$
+CREATE FUNCTION deuda_cliente (id_cliente integer)
+RETURNS double
+BEGIN
+
+RETURN (
+	select COALESCE(sum(v.saldo),0.00)  from venta v
+	where v.id_cliente = id_cliente
+	and v.estado = 1
+	and v.tipo_venta = 2
+);
+END$$
+
+DELIMITER ;
+
+
 -- -----------------------------------------------------
 -- Procedimientos
 -- -----------------------------------------------------

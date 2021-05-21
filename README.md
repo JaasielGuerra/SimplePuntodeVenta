@@ -36,3 +36,5 @@ Proyecto control de inventario y venta de servicios
 - Modulo inventario
 - FUnciones MariaDB para calculo de totales
 - Procedimiento para buscar movimiento por articulo
+- CRUD Clientes
+- FUncion mariabDB para calcular deuda cliente
