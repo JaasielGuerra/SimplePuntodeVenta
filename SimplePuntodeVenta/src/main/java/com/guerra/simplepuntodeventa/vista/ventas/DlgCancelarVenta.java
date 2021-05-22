@@ -20,6 +20,8 @@ public class DlgCancelarVenta extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         PlaceHolderSupport.setPlaceHolder("Escriba el motivo de la cancelación", txtConcepto);
+        jLabel2.setVisible(false);
+        txtConcepto.setVisible(false);
     }
 
     /**
@@ -43,6 +45,7 @@ public class DlgCancelarVenta extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cancelar venta");
         setMinimumSize(new java.awt.Dimension(500, 300));
+        setPreferredSize(new java.awt.Dimension(500, 300));
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
 
@@ -68,6 +71,8 @@ public class DlgCancelarVenta extends javax.swing.JDialog {
         jLabel1.setOpaque(true);
 
         jLabel2.setText("Concepto(*):");
+
+        txtConcepto.setText("Cancelacion venta");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

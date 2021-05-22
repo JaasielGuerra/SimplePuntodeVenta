@@ -712,9 +712,10 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- Datos de prueba
 -- -----------------------------------------------------
+INSERT INTO `db_spv`.`empresa` (`nombre`, `direccion`, `telefono`, `logo`) VALUES ('MI EMPRESA', 'ZACAPA', '55557777', 'logo_demo.png');
 INSERT INTO `db_spv`.`privilegio` VALUES (1, 'ADMINISTRADOR', '1', '2021/05/17', '09:48', '1', '1', '1', '1', '1', '1', '1', '1', '1');
 INSERT INTO `db_spv`.`usuario` VALUES (1, 'Jaasiel Ebiezer Guerra González', 'admin', 'admin', '2021/05/17', '09:48', '1', '1');
-INSERT INTO `db_spv`.`cliente` VALUES (1, '-', 'PÚBLICO GENERAL', '-', '-', '0', '1', '2021/05/17', '09:48', '1');
+INSERT INTO `cliente` VALUES (1,'-','PÚBLICO GENERAL','-','-',0,1,'2021-05-17','09:48:00',1),(2,'','JAASIEL GUERRA','ZACAPA','',3500,1,'2021-05-20','21:23:37',1);
 INSERT INTO `db_spv`.`proveedor` VALUES (1, '-', 'PROVEEDOR PRINCIPAL', '-', '-', '1', '9:48', '2021/05/17', '1');
 INSERT INTO `categoria` VALUES (1,'TECNOLOGÍAS','CATEGORIA DE ARTÍCULOS ELECTRONICOS',1,'2021-05-17','20:45:05',1);
 INSERT INTO `marca` VALUES (1,'PIONNER','MARCA PARA EQUIPOS DE AUDIO',1,'2021-05-17','10:57:04',1);

@@ -175,7 +175,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.spv.modelo.entidades.Categoria[ idCategoria=" + idCategoria + " ]";
+        return nombre;
     }
     
 }
