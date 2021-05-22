@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 public class ProveedorDAOImpl extends DAOImpl<Proveedor, Integer> {
 
     public ProveedorDAOImpl(EntityManagerFactory emf) {
-        super(Proveedor.class, emf.createEntityManager());
+        super(Proveedor.class, emf);
     }
 
 }

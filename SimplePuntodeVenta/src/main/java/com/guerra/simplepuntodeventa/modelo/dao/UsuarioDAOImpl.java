@@ -12,7 +12,7 @@ import javax.persistence.EntityManagerFactory;
 public class UsuarioDAOImpl extends DAOImpl<Usuario, Integer> {
 
     public UsuarioDAOImpl(EntityManagerFactory emf) {
-        super(Usuario.class, emf.createEntityManager());
+        super(Usuario.class, emf);
     }
 
 }

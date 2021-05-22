@@ -195,7 +195,7 @@ public class Proveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.Proveedor[ idProveedor=" + idProveedor + " ]";
+        return "com.guerra.spv.modelo.entidades.Proveedor[ idProveedor=" + idProveedor + " ]";
     }
     
 }

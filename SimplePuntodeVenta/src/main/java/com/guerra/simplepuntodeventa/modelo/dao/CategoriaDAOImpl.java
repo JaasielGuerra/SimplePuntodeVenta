@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 public class CategoriaDAOImpl extends DAOImpl<Categoria, Integer> {
 
     public CategoriaDAOImpl(EntityManagerFactory emf) {
-        super(Categoria.class, emf.createEntityManager());
+        super(Categoria.class, emf);
     }
 
 }

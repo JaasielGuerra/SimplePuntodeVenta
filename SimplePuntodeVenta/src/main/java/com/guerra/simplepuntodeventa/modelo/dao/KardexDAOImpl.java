@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 public class KardexDAOImpl extends DAOImpl<Kardex, Integer> {
 
     public KardexDAOImpl(EntityManagerFactory emf) {
-        super(Kardex.class, emf.createEntityManager());
+        super(Kardex.class, emf);
     }
 
 }

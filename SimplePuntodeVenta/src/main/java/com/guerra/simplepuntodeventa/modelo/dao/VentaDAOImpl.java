@@ -12,7 +12,7 @@ import javax.persistence.EntityManagerFactory;
 public class VentaDAOImpl extends DAOImpl<Venta, Integer> {
 
     public VentaDAOImpl(EntityManagerFactory emf) {
-        super(Venta.class, emf.createEntityManager());
+        super(Venta.class, emf);
     }
 
 }

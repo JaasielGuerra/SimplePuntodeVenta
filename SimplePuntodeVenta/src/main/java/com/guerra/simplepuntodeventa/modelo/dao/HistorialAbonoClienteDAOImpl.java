@@ -12,7 +12,7 @@ import javax.persistence.EntityManagerFactory;
 public class HistorialAbonoClienteDAOImpl extends DAOImpl<HistorialAbonoCliente, Integer> {
 
     public HistorialAbonoClienteDAOImpl(EntityManagerFactory emf) {
-        super(HistorialAbonoCliente.class, emf.createEntityManager());
+        super(HistorialAbonoCliente.class, emf);
     }
 
 }

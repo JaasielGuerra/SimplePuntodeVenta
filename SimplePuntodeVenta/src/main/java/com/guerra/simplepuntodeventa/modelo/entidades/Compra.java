@@ -246,7 +246,7 @@ public class Compra implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.Compra[ idCompra=" + idCompra + " ]";
+        return "com.guerra.spv.modelo.entidades.Compra[ idCompra=" + idCompra + " ]";
     }
     
 }

@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 public class CuentaClienteDAOImpl extends DAOImpl<CuentaCliente, Integer> {
 
     public CuentaClienteDAOImpl(EntityManagerFactory emf) {
-        super(CuentaCliente.class, emf.createEntityManager());
+        super(CuentaCliente.class, emf);
     }
 
 }

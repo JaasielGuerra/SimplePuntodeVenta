@@ -93,6 +93,8 @@ public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Marca> marcaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<DetalleVenta> detalleVentaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Kardex> kardexList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Proveedor> proveedorList;
@@ -275,6 +277,15 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
+    public List<DetalleVenta> getDetalleVentaList() {
+        return detalleVentaList;
+    }
+
+    public void setDetalleVentaList(List<DetalleVenta> detalleVentaList) {
+        this.detalleVentaList = detalleVentaList;
+    }
+
+    @XmlTransient
     public List<Kardex> getKardexList() {
         return kardexList;
     }
@@ -331,7 +342,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "com.guerra.spv.modelo.entidades.Usuario[ idUsuario=" + idUsuario + " ]";
     }
     
 }

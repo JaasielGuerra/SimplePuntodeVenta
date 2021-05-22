@@ -208,7 +208,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.Cliente[ idCliente=" + idCliente + " ]";
+        return "com.guerra.spv.modelo.entidades.Cliente[ idCliente=" + idCliente + " ]";
     }
     
 }

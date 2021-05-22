@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="persistence_unit" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Articulo</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Categoria</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Cliente</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Compra</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.CuentaCliente</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.CuentaProveedor</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.DetalleCompra</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.DetalleVenta</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Empresa</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.HistorialAbonoCliente</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.HistorialAbonoProveedor</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Kardex</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Marca</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Privilegio</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Proveedor</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Servicio</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Ubicacion</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Usuario</class>
-    <class>com.guerra.simplepuntodeventa.modelo.entidades.Venta</class>
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_spv"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="1234"/>
-      <property name="eclipselink.logging.level" value="FINE"/>
-    </properties>
-  </persistence-unit>
+    <persistence-unit name="persistence_unit" transaction-type="RESOURCE_LOCAL">
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Articulo</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Categoria</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Cliente</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Compra</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.CuentaCliente</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.CuentaProveedor</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.DetalleCompra</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.DetalleVenta</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Empresa</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.HistorialAbonoCliente</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.HistorialAbonoProveedor</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Kardex</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Marca</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Privilegio</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Proveedor</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Servicio</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Ubicacion</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Usuario</class>
+        <class>com.guerra.simplepuntodeventa.modelo.entidades.Venta</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_spv"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.password" value="1234"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.cache.shared.default" value="false"/>
+        </properties>
+    </persistence-unit>
 </persistence>

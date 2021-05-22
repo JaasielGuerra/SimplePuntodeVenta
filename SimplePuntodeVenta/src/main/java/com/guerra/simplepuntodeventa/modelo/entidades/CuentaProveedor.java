@@ -195,7 +195,7 @@ public class CuentaProveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.CuentaProveedor[ idCuentaProveedor=" + idCuentaProveedor + " ]";
+        return "com.guerra.spv.modelo.entidades.CuentaProveedor[ idCuentaProveedor=" + idCuentaProveedor + " ]";
     }
     
 }

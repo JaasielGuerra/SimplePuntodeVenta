@@ -5,6 +5,8 @@
  */
 package com.guerra.simplepuntodeventa.vista.inventario;
 
+import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
+
 /**
  *
  * @author Jaasiel
@@ -17,6 +19,7 @@ public class DlgBuscarArticulo extends javax.swing.JDialog {
     public DlgBuscarArticulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        TablaUtil.ocultarCol(tblArticulos, 0);
     }
 
     /**

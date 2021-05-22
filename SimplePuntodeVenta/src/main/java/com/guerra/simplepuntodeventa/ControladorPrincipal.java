@@ -6,6 +6,7 @@ package com.guerra.simplepuntodeventa;
 import com.guerra.simplepuntodeventa.controlador.articulos.MenuArticulos;
 import com.guerra.simplepuntodeventa.controlador.clientes.MenuClientes;
 import com.guerra.simplepuntodeventa.controlador.inventario.MenuInventario;
+import com.guerra.simplepuntodeventa.controlador.ventas.ControladorVenta;
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.entidades.Cliente;
 import com.guerra.simplepuntodeventa.modelo.entidades.Proveedor;
@@ -48,6 +49,7 @@ public class ControladorPrincipal {
     private final MenuArticulos menuArticulos = new MenuArticulos(ifrmMenuArticulos);
     private final MenuInventario menuInventario = new MenuInventario(ifrmMenuInventario);
     private final MenuClientes menuClientes = new MenuClientes(ifrmMenuClientes);
+    private final ControladorVenta controladorVenta = new ControladorVenta(ifrmMenuVentas);
 
     public ControladorPrincipal() {
         init();

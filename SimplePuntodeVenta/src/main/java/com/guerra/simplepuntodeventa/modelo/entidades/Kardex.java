@@ -210,7 +210,7 @@ public class Kardex implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.Kardex[ idKardex=" + idKardex + " ]";
+        return "com.guerra.spv.modelo.entidades.Kardex[ idKardex=" + idKardex + " ]";
     }
     
 }

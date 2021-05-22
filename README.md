@@ -38,3 +38,12 @@ Proyecto control de inventario y venta de servicios
 - Procedimiento para buscar movimiento por articulo
 - CRUD Clientes
 - FUncion mariabDB para calcular deuda cliente
+
+2021.05.21
+- Cache del ORM desactivado https://wiki.eclipse.org/EclipseLink/Examples/JPA/Caching
+- Realizar ventas al contado
+- Patron DAO modificado
+- Esquema de base de datos modificado (tabla detalle_venta)
+- Trigger para desontar inventario y registrar movimiento al realizar venta
+- Trigger para sumar inventario y registrar movimiento al cancelar compra
+
