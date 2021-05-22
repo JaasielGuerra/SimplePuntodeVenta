@@ -49,3 +49,10 @@ Proyecto control de inventario y venta de servicios
 - Consultar y cancelar ventas
 - Realizar ventas al credito
 
+2021.05.22
+- Tabla para bitacora de ventas diarias
+- Tabla para bitacora de compras diarias
+- Trigger para regitrar bitacora de ventas
+- Trigger para registrar credito a cuenta cliente en una venta al credito
+- Manejo de creditos clientes
+

@@ -5,6 +5,8 @@
  */
 package com.guerra.simplepuntodeventa.vista.clientes;
 
+import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
+
 /**
  *
  * @author Jaasiel
@@ -16,6 +18,7 @@ public class PanEstadoCuentaCliente extends javax.swing.JPanel {
      */
     public PanEstadoCuentaCliente() {
         initComponents();
+        TablaUtil.ocultarCol(tblDeudas, 0);
     }
 
     /**

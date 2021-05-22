@@ -8,6 +8,7 @@ import com.guerra.simplepuntodeventa.modelo.entidades.Cliente;
 import com.guerra.simplepuntodeventa.modelo.entidades.Venta;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -32,17 +33,13 @@ public class FuncionesClientes {
         if (ventaDAO == null) {
             ventaDAO = DAOManager.getInstancia().getVentaDAO();
         }
-        List<Parameter> p = new ArrayList<>();
-        p.add(new Parameter("cliente", cliente));
-        p.add(new Parameter("tipo", 2));//credito
-        p.add(new Parameter("estado", 1));//realizado
 
-        List<Venta> creditos = ventaDAO.readByQuery(
-                "SELECT v FROM Venta v WHERE v.estado = :estado "
-                + "AND v.idCliente = :cliente AND v.tipoVenta = :tipo",
-                p
-        );
-        return cliente.getLimite() - creditos.stream().mapToDouble(credito -> credito.getSaldo()).sum();
+        EntityManager em = clienteDAO.getEntityManager();
+        List<Double> resultList = em.createQuery("SELECT FUNCTION('deuda_cliente', :cliente) FROM Cliente c", Double.class)
+                .setParameter("cliente", cliente.getIdCliente())
+                .getResultList();
+
+        return cliente.getLimite() - resultList.get(0);
     }
 
     /**

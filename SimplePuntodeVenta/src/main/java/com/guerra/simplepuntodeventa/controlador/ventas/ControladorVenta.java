@@ -570,22 +570,6 @@ public class ControladorVenta {
 
                     }
 
-                    //si es al credito, entonces cargarlo a la cuenta
-                    if (venta.getTipoVenta() == VENTA_CREDITO) {
-                        CuentaCliente c = new CuentaCliente();
-                        Usuario user = (Usuario) Session.getInstancia().getAttribute("user");
-                        c.setFecha(FechaUtil.formatearFechaTextoSqlite3(new Date()));
-                        c.setComentario("Crédito por venta No.: " + venta.getIdVenta());
-                        c.setCargo(venta.getTotal());
-                        c.setAbono(0.00D);
-                        c.setSaldo(venta.getTotal());
-                        c.setIdVenta(venta);
-                        c.setFechaCommit(new Date());
-                        c.setHoraCommit(new Date());
-                        c.setIdUsuario(user);
-                        cuentaClienteDAO.create(c);
-                    }
-
                     if (dlgCobrar.cbxImprimirTicket.isSelected()) {
                         imprimirTicket(venta.getIdVenta());
                     }
