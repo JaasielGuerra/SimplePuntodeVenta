@@ -6,6 +6,7 @@ package com.guerra.simplepuntodeventa;
 import com.guerra.simplepuntodeventa.controlador.articulos.MenuArticulos;
 import com.guerra.simplepuntodeventa.controlador.clientes.MenuClientes;
 import com.guerra.simplepuntodeventa.controlador.inventario.MenuInventario;
+import com.guerra.simplepuntodeventa.controlador.proveedores.MenuProveedores;
 import com.guerra.simplepuntodeventa.controlador.ventas.ControladorVenta;
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.entidades.Cliente;
@@ -19,6 +20,7 @@ import com.guerra.simplepuntodeventa.vista.clientes.IfrmMenuClientes;
 import com.guerra.simplepuntodeventa.vista.compras.IfrmMenuCompras;
 import com.guerra.simplepuntodeventa.vista.empresa.IfrmMenuEmpresa;
 import com.guerra.simplepuntodeventa.vista.inventario.IfrmMenuInventario;
+import com.guerra.simplepuntodeventa.vista.proveedores.IfrmMenuProveedores;
 import com.guerra.simplepuntodeventa.vista.reportes.IfrmMenuReportes;
 import com.guerra.simplepuntodeventa.vista.ventas.IfrmVentas;
 import java.awt.event.MouseAdapter;
@@ -42,14 +44,15 @@ public class ControladorPrincipal {
     private final IfrmMenuCompras ifrmMenuCompras = new IfrmMenuCompras();
     private final IfrmMenuClientes ifrmMenuClientes = new IfrmMenuClientes();
     private final IfrmMenuReportes ifrmMenuReportes = new IfrmMenuReportes();
-    private final IfrmVentas ifrmMenuVentas1 = new IfrmVentas();
     private final IfrmMenuEmpresa ifrmMenuEmpresa = new IfrmMenuEmpresa();
+    private final IfrmMenuProveedores ifrmMenuProveedores = new IfrmMenuProveedores();
 
     /////////////controladores/////////////
     private final MenuArticulos menuArticulos = new MenuArticulos(ifrmMenuArticulos);
     private final MenuInventario menuInventario = new MenuInventario(ifrmMenuInventario);
     private final MenuClientes menuClientes = new MenuClientes(ifrmMenuClientes);
     private final ControladorVenta controladorVenta = new ControladorVenta(ifrmMenuVentas);
+    private final MenuProveedores menuProveedores = new MenuProveedores(ifrmMenuProveedores);
 
     public ControladorPrincipal() {
         init();
@@ -73,8 +76,8 @@ public class ControladorPrincipal {
         ifrmMenuCompras.hide();
         ifrmMenuClientes.hide();
         ifrmMenuReportes.hide();
-        ifrmMenuVentas1.hide();
         ifrmMenuEmpresa.hide();
+        ifrmMenuProveedores.hide();
 
         agregarIFRM(ifrmMenuVentas);
         agregarIFRM(ifrmMenuArticulos);
@@ -82,8 +85,8 @@ public class ControladorPrincipal {
         agregarIFRM(ifrmMenuCompras);
         agregarIFRM(ifrmMenuClientes);
         agregarIFRM(ifrmMenuReportes);
-        agregarIFRM(ifrmMenuVentas1);
         agregarIFRM(ifrmMenuEmpresa);
+        agregarIFRM(ifrmMenuProveedores);
     }
 
     private void initOyentes() {//listar eventos
@@ -114,6 +117,9 @@ public class ControladorPrincipal {
         });
         frmPrincipal.btnConfiguracion.addActionListener((e) -> {
             mostrarVentanConfiguracion();
+        });
+        frmPrincipal.btnProveedores.addActionListener((ae) -> {
+            mostrarVentanaProveedores();
         });
     }
 
@@ -164,6 +170,12 @@ public class ControladorPrincipal {
 
     private void mostrarVentanConfiguracion() {
 
+    }
+
+    private void mostrarVentanaProveedores() {
+        PantallaUtil.centrarIFRM(ifrmMenuProveedores, frmPrincipal.panPrincipal, MARGEN_X, MARGEN_Y);
+        ifrmMenuProveedores.toFront();
+        ifrmMenuProveedores.show();
     }
 
 }
