@@ -14,11 +14,14 @@ import com.guerra.simplepuntodeventa.modelo.dao.HistorialAbonoClienteDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.KardexDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.MarcaDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.CuentaClienteDAOImpl;
+import com.guerra.simplepuntodeventa.modelo.dao.CuentaProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.EmpresaDAOImpl;
+import com.guerra.simplepuntodeventa.modelo.dao.HistorialAbonoProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.ProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.UbicacionDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.UsuarioDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.VentaDAOImpl;
+import com.guerra.simplepuntodeventa.modelo.entidades.HistorialAbonoProveedor;
 import javax.persistence.EntityManagerFactory;
 
 /**
@@ -46,6 +49,8 @@ public class DAOManager {
     private final MarcaDAOImpl marcaDAO;
     private final EmpresaDAOImpl empresaDAO;
     private final UbicacionDAOImpl ubicacionDAO;
+    private final CuentaProveedorDAOImpl cuentaProveedorDAO;
+    private final HistorialAbonoProveedorDAOImpl historialAbonoProveedorDAO;
 
     //evitar instancias con new
     private DAOManager() {
@@ -64,6 +69,8 @@ public class DAOManager {
         marcaDAO = new MarcaDAOImpl(emf);
         empresaDAO = new EmpresaDAOImpl(emf);
         ubicacionDAO = new UbicacionDAOImpl(emf);
+        cuentaProveedorDAO = new CuentaProveedorDAOImpl(emf);
+        historialAbonoProveedorDAO = new HistorialAbonoProveedorDAOImpl(emf);
     }
 
     public static DAOManager getInstancia() {
@@ -131,6 +138,14 @@ public class DAOManager {
 
     public UbicacionDAOImpl getUbicacionDAO() {
         return ubicacionDAO;
+    }
+
+    public CuentaProveedorDAOImpl getCuentaProveedorDAO() {
+        return cuentaProveedorDAO;
+    }
+
+    public HistorialAbonoProveedorDAOImpl getHistorialAbonoProveedorDAO() {
+        return historialAbonoProveedorDAO;
     }
 
 }

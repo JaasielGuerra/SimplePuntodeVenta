@@ -5,6 +5,8 @@
  */
 package com.guerra.simplepuntodeventa.vista.proveedores;
 
+import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
+
 
 /**
  *
@@ -17,6 +19,7 @@ public class PanListProveedores extends javax.swing.JPanel {
      */
     public PanListProveedores() {
         initComponents();
+        TablaUtil.ocultarCol(tblProveedores, 0);
     }
 
     /**

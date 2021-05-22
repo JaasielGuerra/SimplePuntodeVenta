@@ -55,4 +55,6 @@ Proyecto control de inventario y venta de servicios
 - Trigger para regitrar bitacora de ventas
 - Trigger para registrar credito a cuenta cliente en una venta al credito
 - Manejo de creditos clientes
+- CRUD de proveedores
+- Funcion para calcular deuda total de un proveedor
 

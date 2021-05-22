@@ -760,6 +760,24 @@ END$$
 DELIMITER ;
 
 
+
+DELIMITER $$
+$$
+CREATE FUNCTION deuda_proveedor (id_proveedor integer)
+RETURNS double
+BEGIN
+
+RETURN (
+	select COALESCE(sum(c.saldo),0.00)  from compra c
+	where c.id_proveedor = id_proveedor
+	and c.estado = 1
+	and c.tipo_compra = 2
+);
+END$$
+
+DELIMITER ;
+
+
 -- -----------------------------------------------------
 -- Procedimientos
 -- -----------------------------------------------------
