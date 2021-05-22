@@ -326,28 +326,11 @@ public class ControladorVenta {
                     v.setEstado(0);
                     ventaDAO.update(v);
 
-                    //2. ahora por cada detalle devolverlo al inventario
+                    //2. ahora por cada detalle se debe cambiar estado
                     for (DetalleVenta d : v.getDetalleVentaList()) {
 
-                        Articulo a = d.getIdArticulo();
-
-                        // sumar la cantidad al inventario
-                        int cantidadVendida = d.getCantidad();
-                        int cantidadActual = a.getCantidad();
-                        a.setCantidad(cantidadActual + cantidadVendida);// nueva cantidad = cantidad_actual + cantidad_vendida
-
-                        articuloDAO.update(a);// ahora actualizo su cantidad
-
-                        // 3. registrar kardex
-                        boolean registroKardex = FuncionesInventario.registrarKardex(
-                                motivo.concat(" (Venta No.: ").concat(v.getIdVenta() + "").concat(")"),
-                                cantidadActual, FuncionesInventario.MOVIMIENTO_DEVOLUCION,
-                                cantidadVendida, a.getCantidad(), a
-                        );
-
-                        if (!registroKardex) {
-                            throw new Exception("Error registrando Kardex");
-                        }
+                        d.setEstado(0);//cancelado
+                        detalleVentaDAO.update(d);
 
                     }
 
@@ -1260,11 +1243,11 @@ public class ControladorVenta {
     }
 
     private void confirmarCancelarVenta() {
-        if (ValidarJTextField.campoVacio(dlgCancelarVenta.txtConcepto)) {
-            MsjValidacion.msjJTextFieldRequeridos(dlgCancelarVenta);
-        } else {
-            procederCancelarVenta(ventaTemp, dlgCancelarVenta.txtConcepto.getText());
-        }
+//        if (ValidarJTextField.campoVacio(dlgCancelarVenta.txtConcepto)) {
+//        MsjValidacion.msjJTextFieldRequeridos(dlgCancelarVenta);
+//        } else {
+        procederCancelarVenta(ventaTemp, dlgCancelarVenta.txtConcepto.getText());
+//        }
     }
 
 }

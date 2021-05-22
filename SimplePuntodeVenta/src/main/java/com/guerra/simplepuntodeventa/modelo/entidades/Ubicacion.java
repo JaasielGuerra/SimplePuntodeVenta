@@ -175,7 +175,7 @@ public class Ubicacion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.spv.modelo.entidades.Ubicacion[ idUbicacion=" + idUbicacion + " ]";
+        return nombre;
     }
     
 }
