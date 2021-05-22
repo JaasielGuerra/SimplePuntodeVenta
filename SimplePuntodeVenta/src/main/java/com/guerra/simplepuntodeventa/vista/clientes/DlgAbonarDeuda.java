@@ -54,6 +54,7 @@ public class DlgAbonarDeuda extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Realizar abono");
         setMinimumSize(new java.awt.Dimension(400, 300));
+        setPreferredSize(new java.awt.Dimension(400, 300));
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
 

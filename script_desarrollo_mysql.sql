@@ -636,6 +636,74 @@ DELIMITER ;
 
 
 
+
+
+DELIMITER $$
+$$
+CREATE TRIGGER credito_cliente
+AFTER INSERT
+ON venta FOR EACH ROW
+BEGIN 
+
+	
+	IF NEW.tipo_venta = 2 THEN 
+	
+		
+		INSERT INTO db_spv.cuenta_cliente (fecha, comentario, cargo, abono, saldo, id_venta, fecha_commit, hora_commit, id_usuario)
+		VALUES(current_date(), CONCAT('Crédito por venta No. ', NEW.id_venta), NEW.total, 0, NEW.total, NEW.id_venta, current_date(), current_time(), NEW.id_usuario);
+
+	
+	
+	END IF;
+	
+	
+END ;
+$$
+DELIMITER ;
+
+
+
+
+
+
+DELIMITER $$
+$$
+CREATE TRIGGER bitacora_venta
+AFTER INSERT
+ON venta FOR EACH ROW
+BEGIN 
+	
+	-- consultar si existe registro
+	DECLARE existe_registro INT;
+	DECLARE id_historial INT;
+
+	select count(id_historial_venta) , id_historial_venta INTO existe_registro, id_historial 
+	from historial_venta where fecha = current_date() and tipo = NEW.tipo_venta;
+	
+	IF existe_registro > 0 THEN
+	
+		UPDATE db_spv.historial_venta
+		SET cantidad=cantidad + 1, total=total + NEW.total
+		WHERE id_historial_venta=id_historial;
+	
+	
+	ELSE
+	
+		INSERT INTO db_spv.historial_venta
+		(fecha, cantidad, tipo, total)
+		VALUES(current_date(), 1, NEW.tipo_venta, NEW.total);
+
+	
+	END IF;
+	
+	
+END ;
+$$
+DELIMITER ;
+
+
+
+
 -- -----------------------------------------------------
 -- FUnciones
 -- -----------------------------------------------------

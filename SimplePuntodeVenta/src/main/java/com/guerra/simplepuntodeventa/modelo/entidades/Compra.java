@@ -46,6 +46,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Compra.findBySaldo", query = "SELECT c FROM Compra c WHERE c.saldo = :saldo")})
 public class Compra implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "tipo_compra")
+    private int tipoCompra;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -247,6 +251,14 @@ public class Compra implements Serializable {
     @Override
     public String toString() {
         return "com.guerra.spv.modelo.entidades.Compra[ idCompra=" + idCompra + " ]";
+    }
+
+    public int getTipoCompra() {
+        return tipoCompra;
+    }
+
+    public void setTipoCompra(int tipoCompra) {
+        this.tipoCompra = tipoCompra;
     }
     
 }
