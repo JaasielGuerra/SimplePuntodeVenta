@@ -257,7 +257,7 @@ public class Venta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.Venta[ idVenta=" + idVenta + " ]";
+        return "com.guerra.spv.modelo.entidades.Venta[ idVenta=" + idVenta + " ]";
     }
     
 }

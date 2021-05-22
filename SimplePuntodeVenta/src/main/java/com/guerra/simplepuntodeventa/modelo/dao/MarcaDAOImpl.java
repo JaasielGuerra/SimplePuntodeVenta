@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 public class MarcaDAOImpl extends DAOImpl<Marca, Integer> {
 
     public MarcaDAOImpl(EntityManagerFactory emf) {
-        super(Marca.class, emf.createEntityManager());
+        super(Marca.class, emf);
     }
 
 }

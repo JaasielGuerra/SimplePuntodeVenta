@@ -169,7 +169,7 @@ public class HistorialAbonoProveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.HistorialAbonoProveedor[ idHistorialAbonoProveedor=" + idHistorialAbonoProveedor + " ]";
+        return "com.guerra.spv.modelo.entidades.HistorialAbonoProveedor[ idHistorialAbonoProveedor=" + idHistorialAbonoProveedor + " ]";
     }
     
 }

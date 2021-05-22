@@ -18,7 +18,7 @@ public class UbicacionDAOImpl extends DAOImpl<Ubicacion, Integer> implements Ser
 
     public UbicacionDAOImpl(EntityManagerFactory emf) {
 
-        super(Ubicacion.class, emf.createEntityManager());
+        super(Ubicacion.class, emf);
 
     }
 

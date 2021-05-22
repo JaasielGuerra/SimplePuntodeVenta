@@ -213,7 +213,7 @@ public class Servicio implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.Servicio[ idServicio=" + idServicio + " ]";
+        return "com.guerra.spv.modelo.entidades.Servicio[ idServicio=" + idServicio + " ]";
     }
     
 }

@@ -4,32 +4,35 @@ import com.guerra.simplepuntodeventa.modelo.Parameter;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 
 public class DAOImpl<Entity, Id> extends CRUDImpl<Entity, Id> implements DAO<Entity, Id>, Serializable {
 
     private final Class<Entity> type;
-    private final EntityManager em;
+    private final EntityManagerFactory emf;
 
-    public DAOImpl(Class<Entity> t, EntityManager em) {
-        super(t, em);
+    public DAOImpl(Class<Entity> t, EntityManagerFactory emf) {
+        super(t, emf);
         type = t;
-        this.em = em;
+        this.emf = emf;
     }
 
     public EntityManager getEntityManager() {
-        return em;
+        return emf.createEntityManager();
     }
 
     @Override
     public Entity readOne(Id id) {
+        EntityManager em = emf.createEntityManager();
         Entity find = em.find(type, id);
-
         return find;
     }
 
     @Override
     public List<Entity> readByNameQuery(String nameQuery, String p, Object v) {
+
+        EntityManager em = emf.createEntityManager();
         TypedQuery<Entity> query = em.createNamedQuery(nameQuery, type);
 
         query.setParameter(p, v);
@@ -41,6 +44,8 @@ public class DAOImpl<Entity, Id> extends CRUDImpl<Entity, Id> implements DAO<Ent
 
     @Override
     public List<Entity> readByQuery(String jpqlQuery, List<Parameter> parameters) {
+
+        EntityManager em = emf.createEntityManager();
         TypedQuery<Entity> query2 = em.createQuery(jpqlQuery, type);
 
         if (parameters != null) {
@@ -57,6 +62,8 @@ public class DAOImpl<Entity, Id> extends CRUDImpl<Entity, Id> implements DAO<Ent
 
     @Override
     public List<Entity> readByQueryAndLimit(String jpqlQuery, List<Parameter> parameters, int startPosition, int maxResult) {
+
+        EntityManager em = emf.createEntityManager();
         TypedQuery<Entity> query2 = em.createQuery(jpqlQuery, type)
                 .setFirstResult(startPosition).setMaxResults(maxResult);
 
@@ -71,6 +78,8 @@ public class DAOImpl<Entity, Id> extends CRUDImpl<Entity, Id> implements DAO<Ent
 
     @Override
     public int count(String jpqlQuery, List<Parameter> parameters) {
+
+        EntityManager em = emf.createEntityManager();
         TypedQuery<Object> query2 = em.createQuery(jpqlQuery, Object.class);
 
         parameters.forEach((parameter) -> {
@@ -84,6 +93,8 @@ public class DAOImpl<Entity, Id> extends CRUDImpl<Entity, Id> implements DAO<Ent
 
     @Override
     public List<Object[]> readByQueryObjectCol(String jpqlQuery, List<Parameter> parameters) {
+
+        EntityManager em = emf.createEntityManager();
         TypedQuery<Object[]> query2 = em.createQuery(jpqlQuery, Object[].class);
 
         parameters.forEach((parameter) -> {

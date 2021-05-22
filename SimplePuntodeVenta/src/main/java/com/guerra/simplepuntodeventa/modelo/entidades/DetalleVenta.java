@@ -67,6 +67,9 @@ public class DetalleVenta implements Serializable {
     @JoinColumn(name = "id_servicio", referencedColumnName = "id_servicio")
     @ManyToOne
     private Servicio idServicio;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
     @JoinColumn(name = "id_venta", referencedColumnName = "id_venta")
     @ManyToOne(optional = false)
     private Venta idVenta;
@@ -160,6 +163,14 @@ public class DetalleVenta implements Serializable {
         this.idServicio = idServicio;
     }
 
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public Venta getIdVenta() {
         return idVenta;
     }
@@ -190,7 +201,7 @@ public class DetalleVenta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.DetalleVenta[ idDetalleVenta=" + idDetalleVenta + " ]";
+        return "com.guerra.spv.modelo.entidades.DetalleVenta[ idDetalleVenta=" + idDetalleVenta + " ]";
     }
     
 }

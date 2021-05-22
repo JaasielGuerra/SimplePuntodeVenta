@@ -129,7 +129,7 @@ public class Empresa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.Empresa[ idEmpresa=" + idEmpresa + " ]";
+        return "com.guerra.spv.modelo.entidades.Empresa[ idEmpresa=" + idEmpresa + " ]";
     }
     
 }
