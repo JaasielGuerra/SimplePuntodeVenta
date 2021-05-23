@@ -44,6 +44,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByEstado", query = "SELECT u FROM Usuario u WHERE u.estado = :estado")})
 public class Usuario implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<DetalleCompra> detalleCompraList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -343,6 +346,15 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "com.guerra.spv.modelo.entidades.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    @XmlTransient
+    public List<DetalleCompra> getDetalleCompraList() {
+        return detalleCompraList;
+    }
+
+    public void setDetalleCompraList(List<DetalleCompra> detalleCompraList) {
+        this.detalleCompraList = detalleCompraList;
     }
     
 }

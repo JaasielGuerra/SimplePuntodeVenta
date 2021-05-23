@@ -5,9 +5,6 @@
  */
 package com.guerra.simplepuntodeventa.vista.inventario;
 
-import java.awt.Font;
-import javax.swing.table.JTableHeader;
-
 /**
  *
  * @author Jaasiel
@@ -19,8 +16,6 @@ public class PanMovimientos extends javax.swing.JPanel {
      */
     public PanMovimientos() {
         initComponents();
-        JTableHeader h = tblMovimientos.getTableHeader();
-        h.setFont(new Font("Dialog", Font.BOLD, 13));
     }
 
 

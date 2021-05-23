@@ -625,8 +625,6 @@ BEGIN
 		INSERT INTO db_spv.kardex (fecha, concepto, existencia_anterior, tipo, cantidad, existencia_posterior, id_usuario, id_articulo, hora_commit, fecha_commit)
 		VALUES(current_date(), CONCAT('Cancelación de venta No. ', NEW.id_venta), anterior,
 		4, NEW.cantidad, anterior + NEW.cantidad, NEW.id_usuario, NEW.id_articulo, current_time(), current_date());
-
-	
 	
 	END IF;
 	
@@ -701,6 +699,68 @@ END ;
 $$
 DELIMITER ;
 
+
+
+
+
+DELIMITER $$
+$$
+CREATE TRIGGER entrada_inventario
+AFTER INSERT
+ON detalle_compra FOR EACH ROW
+
+BEGIN 
+
+	-- salvar existencia anterior
+	DECLARE anterior INT;
+	select a.cantidad into anterior from db_spv.articulo a where a.id_articulo = NEW.id_articulo;
+		
+		-- Sumar inventario
+		UPDATE db_spv.articulo
+		SET cantidad= cantidad + NEW.cantidad
+		WHERE id_articulo =  NEW.id_articulo;
+		
+	
+		-- Registrar movimiento en kardex
+		INSERT INTO db_spv.kardex (fecha, concepto, existencia_anterior, tipo, cantidad, existencia_posterior, id_usuario, id_articulo, hora_commit, fecha_commit)
+		VALUES(current_date(), CONCAT('Realización de compra No. ', NEW.id_compra), anterior,
+		1, NEW.cantidad, anterior + NEW.cantidad, NEW.id_usuario, NEW.id_articulo, current_time(), current_date());
+
+
+	
+END
+$$
+DELIMITER ;
+
+
+
+
+
+
+DELIMITER $$
+$$
+CREATE TRIGGER salida_inventario_compra
+AFTER UPDATE
+ON detalle_compra FOR EACH ROW
+BEGIN
+
+	-- salvar existencia anterior
+	DECLARE anterior INT;
+	select a.cantidad into anterior from db_spv.articulo a where a.id_articulo = NEW.id_articulo;
+	
+	
+	-- Restar inventario
+	UPDATE db_spv.articulo
+	SET cantidad= cantidad - NEW.cantidad
+	WHERE id_articulo =  NEW.id_articulo;
+	
+	-- Registrar movimiento en kardex
+	INSERT INTO db_spv.kardex (fecha, concepto, existencia_anterior, tipo, cantidad, existencia_posterior, id_usuario, id_articulo, hora_commit, fecha_commit)
+	VALUES(current_date(), CONCAT('Cancelación de compra No. ', NEW.id_compra), anterior,
+	2, NEW.cantidad, anterior - NEW.cantidad, NEW.id_usuario, NEW.id_articulo, current_time(), current_date());
+
+END;$$
+DELIMITER ;
 
 
 

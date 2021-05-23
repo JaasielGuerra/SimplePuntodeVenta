@@ -19,6 +19,8 @@ public class PanNuevaCompra extends javax.swing.JPanel {
     public PanNuevaCompra() {
         initComponents();
         TablaUtil.ocultarCol(tblDetalles, 0);
+        txtConcepto.setVisible(false);
+        jLabel8.setVisible(false);
     }
 
     /**
