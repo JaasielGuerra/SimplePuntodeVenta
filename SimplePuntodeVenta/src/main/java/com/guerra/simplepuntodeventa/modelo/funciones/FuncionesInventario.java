@@ -84,7 +84,7 @@ public class FuncionesInventario {
 
         EntityManager em = articuloDAO.getEntityManager();
         Integer suma = em.createQuery("SELECT FUNCTION('inventario_total') FROM Articulo a", Integer.class)
-                .getSingleResult();
+                .getResultList().get(0);
 
         return suma;
     }
@@ -101,7 +101,7 @@ public class FuncionesInventario {
 
         EntityManager em = articuloDAO.getEntityManager();
         Double suma = em.createQuery("SELECT FUNCTION('costo_inventario') FROM Articulo a", Double.class)
-                .getSingleResult();
+                .getResultList().get(0);
         return NumeroUtil.redondear(suma, 2);
     }
 
@@ -117,7 +117,7 @@ public class FuncionesInventario {
 
         EntityManager em = articuloDAO.getEntityManager();
         Double suma = em.createQuery("SELECT FUNCTION('ganancia_inventario') FROM Articulo a", Double.class)
-                .getSingleResult();
+                .getResultList().get(0);
         return NumeroUtil.redondear(suma, 2);
     }
 

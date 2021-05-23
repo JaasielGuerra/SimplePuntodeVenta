@@ -35,6 +35,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DetalleCompra.findByEstado", query = "SELECT d FROM DetalleCompra d WHERE d.estado = :estado")})
 public class DetalleCompra implements Serializable {
 
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -154,6 +158,14 @@ public class DetalleCompra implements Serializable {
     @Override
     public String toString() {
         return "com.guerra.spv.modelo.entidades.DetalleCompra[ idDetalleCompra=" + idDetalleCompra + " ]";
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
     
 }

@@ -5,6 +5,9 @@
  */
 package com.guerra.simplepuntodeventa.vista.compras;
 
+import com.guerra.simplepuntodeventa.recursos.componentes.extensiones.PlaceHolderSupport;
+import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
+
 
 /**
  *
@@ -17,6 +20,8 @@ public class PanListCompras extends javax.swing.JPanel {
      */
     public PanListCompras() {
         initComponents();
+        TablaUtil.ocultarCol(tblCompras, 0);
+        PlaceHolderSupport.setPlaceHolder("Número de factura...", txtBuscarFactura);
     }
 
     /**
@@ -80,7 +85,7 @@ public class PanListCompras extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jLabel4.setText("Mostrar con estado");
+        jLabel4.setText("Estado");
         jPanel1.add(jLabel4);
 
         cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -104,11 +109,11 @@ public class PanListCompras extends javax.swing.JPanel {
         btnIr.setFocusPainted(false);
         jPanel1.add(btnIr);
 
-        jLabel3.setText("Buscar Factura");
+        jLabel3.setText("Buscar");
         jPanel1.add(jLabel3);
 
         txtBuscarFactura.setBackground(new java.awt.Color(255, 255, 0));
-        txtBuscarFactura.setPreferredSize(new java.awt.Dimension(175, 24));
+        txtBuscarFactura.setPreferredSize(new java.awt.Dimension(150, 24));
         jPanel1.add(txtBuscarFactura);
 
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
@@ -133,8 +138,8 @@ public class PanListCompras extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 979, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1133, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

@@ -20,6 +20,8 @@ public class DlgCancelarCompra extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         PlaceHolderSupport.setPlaceHolder("Escriba el motivo de la cancelación", txtConcepto);
+        txtConcepto.setVisible(false);
+        jLabel2.setVisible(false);
     }
 
     /**
@@ -44,6 +46,7 @@ public class DlgCancelarCompra extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cancelar compra");
         setMinimumSize(new java.awt.Dimension(500, 300));
+        setPreferredSize(new java.awt.Dimension(500, 300));
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
 

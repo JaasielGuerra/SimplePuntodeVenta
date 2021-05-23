@@ -57,4 +57,6 @@ Proyecto control de inventario y venta de servicios
 - Manejo de creditos clientes
 - CRUD de proveedores
 - Funcion para calcular deuda total de un proveedor
+- Triggers para actualizar inventario y registrar movimiento al realizar compras o cancelarla
+- Tabla Compra relacionada con usuario
 
