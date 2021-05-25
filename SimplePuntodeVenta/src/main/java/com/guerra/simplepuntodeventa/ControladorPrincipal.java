@@ -6,6 +6,7 @@ package com.guerra.simplepuntodeventa;
 import com.guerra.simplepuntodeventa.controlador.articulos.MenuArticulos;
 import com.guerra.simplepuntodeventa.controlador.clientes.MenuClientes;
 import com.guerra.simplepuntodeventa.controlador.compras.MenuCompras;
+import com.guerra.simplepuntodeventa.controlador.configuracionempresa.ControladorConfiguracion;
 import com.guerra.simplepuntodeventa.controlador.inventario.MenuInventario;
 import com.guerra.simplepuntodeventa.controlador.proveedores.MenuProveedores;
 import com.guerra.simplepuntodeventa.controlador.ventas.ControladorVenta;
@@ -55,6 +56,7 @@ public class ControladorPrincipal {
     private final ControladorVenta controladorVenta = new ControladorVenta(ifrmMenuVentas);
     private final MenuProveedores menuProveedores = new MenuProveedores(ifrmMenuProveedores);
     private final MenuCompras menuCompras = new MenuCompras(ifrmMenuCompras);
+    private final ControladorConfiguracion configuracion = new ControladorConfiguracion(ifrmMenuEmpresa);
 
     public ControladorPrincipal() {
         init();
@@ -171,7 +173,10 @@ public class ControladorPrincipal {
     }
 
     private void mostrarVentanConfiguracion() {
-
+        configuracion.consultarDatos();
+        PantallaUtil.centrarIFRM(ifrmMenuEmpresa, frmPrincipal.panPrincipal, MARGEN_X, MARGEN_Y);
+        ifrmMenuEmpresa.toFront();
+        ifrmMenuEmpresa.show();
     }
 
     private void mostrarVentanaProveedores() {

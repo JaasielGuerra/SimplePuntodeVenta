@@ -3,6 +3,9 @@ Proyecto control de inventario y venta de servicios
 
 ## Historial de cambios
 
+2021.05.24
+- Modulo configuracion Empresa
+
 2021.05.12
 - Realización de Modelo ER
 
@@ -59,4 +62,6 @@ Proyecto control de inventario y venta de servicios
 - Funcion para calcular deuda total de un proveedor
 - Triggers para actualizar inventario y registrar movimiento al realizar compras o cancelarla
 - Tabla Compra relacionada con usuario
+
+
 
