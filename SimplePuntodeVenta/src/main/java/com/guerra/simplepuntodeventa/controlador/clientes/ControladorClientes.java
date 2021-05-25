@@ -135,6 +135,9 @@ public class ControladorClientes {
                 }
             }
         });
+        panCreditosCliente.btnActualizar.addActionListener((ae) -> {
+            verEstadoCuentaCliente();
+        });
     }
 
     private boolean imprimirComprobante(int idHistorialAbono) {
@@ -317,9 +320,8 @@ public class ControladorClientes {
             TablaUtil.limpiarTabla(panCreditosCliente.tblHistorial);
             TablaUtil.limpiarTabla(panCreditosCliente.tblMovimientos);
 
-            List<Venta> deudas = c.getVentaList().stream().filter(v -> v.getTipoVenta() == 2 && v.getEstado() == 1)
-                    .collect(Collectors.toList());
-
+            List<Venta> deudas = FuncionesClientes.consultarDeudasDeCliente(c);
+                    
             TablaUtil.llenarTablaConEntity(panCreditosCliente.tblDeudas, deudas, new String[]{
                 "idVenta", "fecha", "total", "saldo"
             }, 0);

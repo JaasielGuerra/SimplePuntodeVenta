@@ -69,3 +69,8 @@ Proyecto control de inventario y venta de servicios
 - Trigger para actualizar bitacora compra cuando se cancela la compra
 - Realizar una compra al credito
 - Seleccionar proveedor al registrar una compra
+
+2021.05.25
+- Realizar abonos a una compra al credito
+- Ver abonos e historial de abonos
+- Boton para actualizar vista estado de cuenta

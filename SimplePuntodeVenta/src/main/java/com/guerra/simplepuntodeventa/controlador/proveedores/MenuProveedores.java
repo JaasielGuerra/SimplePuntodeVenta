@@ -1,8 +1,6 @@
 package com.guerra.simplepuntodeventa.controlador.proveedores;
 
 import com.guerra.simplepuntodeventa.recursos.utilerias.PanelUtil;
-import static com.guerra.simplepuntodeventa.recursos.utilerias.PanelUtil.cambiarPanel;
-import com.guerra.simplepuntodeventa.vista.clientes.IfrmMenuClientes;
 import com.guerra.simplepuntodeventa.vista.proveedores.IfrmMenuProveedores;
 import com.guerra.simplepuntodeventa.vista.proveedores.PanEditarProveedor;
 import com.guerra.simplepuntodeventa.vista.proveedores.PanEstadoCuentaProveedor;

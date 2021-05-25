@@ -88,4 +88,28 @@ public class FuncionesClientes {
         );
         return clientes;
     }
+
+    /**
+     * Consultar las deudas de un cliente
+     *
+     * @param c
+     * @return
+     */
+    public static List<Venta> consultarDeudasDeCliente(Cliente c) {
+        if (ventaDAO == null) {
+            ventaDAO = DAOManager.getInstancia().getVentaDAO();
+        }
+        List<Parameter> p = new ArrayList<>();
+        p.add(new Parameter("cliente", c));
+        p.add(new Parameter("tipo", 2));
+        p.add(new Parameter("estado", 1));
+
+        List<Venta> deudas = ventaDAO.readByQuery(""
+                + "SELECT v FROM Venta v "
+                + "WHERE v.idCliente = :cliente "
+                + "AND v.tipoVenta = :tipo "
+                + "AND v.estado = :estado", p);
+
+        return deudas;
+    }
 }
