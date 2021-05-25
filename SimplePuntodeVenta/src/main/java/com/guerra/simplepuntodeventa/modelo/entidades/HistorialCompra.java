@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "HistorialCompra.findAll", query = "SELECT h FROM HistorialCompra h"),
-    @NamedQuery(name = "HistorialCompra.findByIdHistorialVenta", query = "SELECT h FROM HistorialCompra h WHERE h.idHistorialVenta = :idHistorialVenta"),
+    @NamedQuery(name = "HistorialCompra.findByIdHistorialVenta", query = "SELECT h FROM HistorialCompra h WHERE h.idHistorialCompra = :idHistorialCompra"),
     @NamedQuery(name = "HistorialCompra.findByFecha", query = "SELECT h FROM HistorialCompra h WHERE h.fecha = :fecha"),
     @NamedQuery(name = "HistorialCompra.findByCantidad", query = "SELECT h FROM HistorialCompra h WHERE h.cantidad = :cantidad"),
     @NamedQuery(name = "HistorialCompra.findByTipo", query = "SELECT h FROM HistorialCompra h WHERE h.tipo = :tipo"),
@@ -40,8 +40,8 @@ public class HistorialCompra implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_historial_venta")
-    private Integer idHistorialVenta;
+    @Column(name = "id_historial_compra")
+    private Integer idHistorialCompra;
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
@@ -59,24 +59,24 @@ public class HistorialCompra implements Serializable {
     public HistorialCompra() {
     }
 
-    public HistorialCompra(Integer idHistorialVenta) {
-        this.idHistorialVenta = idHistorialVenta;
+    public HistorialCompra(Integer idHistorialCompra) {
+        this.idHistorialCompra = idHistorialCompra;
     }
 
-    public HistorialCompra(Integer idHistorialVenta, Date fecha, long cantidad, int tipo, double total) {
-        this.idHistorialVenta = idHistorialVenta;
+    public HistorialCompra(Integer idHistorialCompra, Date fecha, long cantidad, int tipo, double total) {
+        this.idHistorialCompra = idHistorialCompra;
         this.fecha = fecha;
         this.cantidad = cantidad;
         this.tipo = tipo;
         this.total = total;
     }
 
-    public Integer getIdHistorialVenta() {
-        return idHistorialVenta;
+    public Integer getIdHistorialCompra() {
+        return idHistorialCompra;
     }
 
-    public void setIdHistorialVenta(Integer idHistorialVenta) {
-        this.idHistorialVenta = idHistorialVenta;
+    public void setIdHistorialCompra(Integer idHistorialCompra) {
+        this.idHistorialCompra = idHistorialCompra;
     }
 
     public Date getFecha() {
@@ -114,7 +114,7 @@ public class HistorialCompra implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idHistorialVenta != null ? idHistorialVenta.hashCode() : 0);
+        hash += (idHistorialCompra != null ? idHistorialCompra.hashCode() : 0);
         return hash;
     }
 
@@ -125,7 +125,7 @@ public class HistorialCompra implements Serializable {
             return false;
         }
         HistorialCompra other = (HistorialCompra) object;
-        if ((this.idHistorialVenta == null && other.idHistorialVenta != null) || (this.idHistorialVenta != null && !this.idHistorialVenta.equals(other.idHistorialVenta))) {
+        if ((this.idHistorialCompra == null && other.idHistorialCompra != null) || (this.idHistorialCompra != null && !this.idHistorialCompra.equals(other.idHistorialCompra))) {
             return false;
         }
         return true;
@@ -133,7 +133,7 @@ public class HistorialCompra implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.simplepuntodeventa.modelo.entidades.HistorialCompra[ idHistorialVenta=" + idHistorialVenta + " ]";
+        return "com.guerra.simplepuntodeventa.modelo.entidades.HistorialCompra[ idHistorialCompra=" + idHistorialCompra + " ]";
     }
     
 }

@@ -14,7 +14,6 @@ import com.guerra.simplepuntodeventa.modelo.dao.DetalleVentaDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.VentaDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.entidades.Articulo;
 import com.guerra.simplepuntodeventa.modelo.entidades.Cliente;
-import com.guerra.simplepuntodeventa.modelo.entidades.CuentaCliente;
 import com.guerra.simplepuntodeventa.modelo.entidades.DetalleVenta;
 import com.guerra.simplepuntodeventa.modelo.entidades.Usuario;
 import com.guerra.simplepuntodeventa.modelo.entidades.Venta;

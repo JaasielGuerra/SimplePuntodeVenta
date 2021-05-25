@@ -3,9 +3,6 @@ Proyecto control de inventario y venta de servicios
 
 ## Historial de cambios
 
-2021.05.24
-- Modulo configuracion Empresa
-
 2021.05.12
 - Realización de Modelo ER
 
@@ -63,5 +60,12 @@ Proyecto control de inventario y venta de servicios
 - Triggers para actualizar inventario y registrar movimiento al realizar compras o cancelarla
 - Tabla Compra relacionada con usuario
 
-
-
+2021.05.24
+- Modulo configuracion Empresa
+- Resuelto problema en registrar articulo desde dialogo de modulo compra
+- Trigger para actualizar bitacora venta
+- Trigger para registrar credito en cuenta de proveedor al realizar compra al credito
+- Triger para registrar en bitacora de compra
+- Trigger para actualizar bitacora compra cuando se cancela la compra
+- Realizar una compra al credito
+- Seleccionar proveedor al registrar una compra

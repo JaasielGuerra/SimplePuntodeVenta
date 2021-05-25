@@ -566,6 +566,8 @@ $$
 DELIMITER ;
 
 
+
+
 DELIMITER $$
 $$
 CREATE TRIGGER salida_inventario
@@ -663,6 +665,31 @@ DELIMITER ;
 
 
 
+DELIMITER $$
+$$
+CREATE TRIGGER credito_proveedor
+AFTER INSERT
+ON compra FOR EACH ROW
+BEGIN 
+
+	
+	IF NEW.tipo_compra = 2 THEN  -- compra al credito
+	
+		
+		INSERT INTO db_spv.cuenta_proveedor (fecha, comentario, cargo, abono, saldo, id_compra, hora_commit, fecha_commit, id_usuario)
+		VALUES(current_date(), CONCAT('Crédito por compra No. ', NEW.id_compra), NEW.total, 0, NEW.total, NEW.id_compra, current_time(), current_date(), NEW.id_usuario);
+
+	
+	
+	END IF;
+	
+	
+END ;
+$$
+DELIMITER ;
+
+
+
 
 DELIMITER $$
 $$
@@ -697,6 +724,100 @@ BEGIN
 	
 END ;
 $$
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+$$
+CREATE TRIGGER actualizar_bitacora_venta
+AFTER UPDATE 
+ON venta FOR EACH ROW
+BEGIN 
+	
+	-- consultar registro con fecha correspondiente a venta cancelada
+	DECLARE id_historial INT;
+
+	select id_historial_venta INTO id_historial 
+	from historial_venta where fecha = NEW.fecha and tipo = NEW.tipo_venta;
+	
+	IF NEW.estado = 0 THEN
+	
+		UPDATE db_spv.historial_venta
+		SET cantidad=cantidad - 1, total=total - NEW.total
+		WHERE id_historial_venta=id_historial;
+
+	END IF;
+	
+END ;
+$$
+DELIMITER ;
+
+
+
+
+
+DELIMITER $$
+$$
+CREATE TRIGGER bitacora_compra
+AFTER INSERT
+ON compra FOR EACH ROW
+BEGIN 
+	
+	-- consultar si existe registro
+	DECLARE existe_registro INT;
+	DECLARE id_historial INT;
+
+	select count(id_historial_compra) , id_historial_compra INTO existe_registro, id_historial 
+	from historial_compra where fecha = current_date() and tipo = NEW.tipo_compra;
+	
+	IF existe_registro > 0 THEN
+	
+		UPDATE db_spv.historial_compra 
+		SET cantidad=cantidad + 1, total=total + NEW.total
+		WHERE id_historial_compra=id_historial;
+	
+	
+	ELSE
+	
+		INSERT INTO db_spv.historial_compra 
+		(fecha, cantidad, tipo, total)
+		VALUES(current_date(), 1, NEW.tipo_compra, NEW.total);
+
+	
+	END IF;
+	
+	
+END ;$$
+DELIMITER ;
+
+
+
+
+
+DELIMITER $$
+$$
+CREATE TRIGGER actualizar_bitacora_compra
+AFTER UPDATE 
+ON compra FOR EACH ROW
+BEGIN 
+	
+	-- consultar registro con fecha correspondiente a compra cancelada
+	DECLARE id_historial INT;
+
+	select id_historial_compra INTO id_historial 
+	from historial_compra where fecha = NEW.fecha and tipo = NEW.tipo_compra;
+	
+	IF NEW.estado = 0 THEN -- Compra cancelada
+	
+		UPDATE db_spv.historial_compra
+		SET cantidad=cantidad - 1, total=total - NEW.total
+		WHERE id_historial_compra=id_historial;
+
+	END IF;
+	
+END ;$$
 DELIMITER ;
 
 

@@ -18,6 +18,7 @@ import com.guerra.simplepuntodeventa.modelo.entidades.Usuario;
 import com.guerra.simplepuntodeventa.modelo.funciones.FuncionesCompras;
 import com.guerra.simplepuntodeventa.modelo.funciones.FuncionesInventario;
 import com.guerra.simplepuntodeventa.global.Session;
+import com.guerra.simplepuntodeventa.modelo.funciones.FuncionesProveedores;
 import com.guerra.simplepuntodeventa.recursos.componentes.modelos.ModeloJTextFieldCodigoBarra;
 import com.guerra.simplepuntodeventa.recursos.utilerias.PanelUtil;
 import com.guerra.simplepuntodeventa.recursos.utilerias.ComboBoxUtil;
@@ -389,6 +390,12 @@ public class ControladorCompra {
         DefaultTableModel model = (DefaultTableModel) panNuevaCompra.tblDetalles.getModel();
         model.setRowCount(0);
         panNuevaCompra.ftdTotal.setValue(0.00D);
+        List<Proveedor> proveedors = FuncionesProveedores.consultarProveedoresEstado(1);
+        panNuevaCompra.cmbProveedor.removeAllItems();
+        proveedors.forEach((c) -> {
+            panNuevaCompra.cmbProveedor.addItem(c);
+        });
+        panNuevaCompra.rbtnContado.setSelected(true);
     }
 
     public void consultarCompras() {
@@ -465,13 +472,13 @@ public class ControladorCompra {
             c.setNoFactura(panNuevaCompra.txtNoFactura.getText().trim());
             c.setSerieFactura(panNuevaCompra.txtSerie.getText().trim());
             c.setTotal(NumeroUtil.redondear((double) panNuevaCompra.ftdTotal.getValue(), 2));
-            c.setIdProveedor((Proveedor) Session.getInstancia().getAttribute("proveedor"));// proveedor por defecto
+            c.setIdProveedor((Proveedor) panNuevaCompra.cmbProveedor.getSelectedItem());
             c.setEstado(1);// realizada
             c.setIdUsuario((Usuario) Session.getInstancia().getAttribute("user"));
             c.setFechaCommit(new Date());
             c.setHoraCommit(new Date());
-            c.setSaldo(null);
-            c.setTipoCompra(1);//al contado
+            c.setSaldo(panNuevaCompra.rbtnCredito.isSelected() ? c.getTotal() : null);
+            c.setTipoCompra(panNuevaCompra.rbtnContado.isSelected() ? 1 : 2);
 
             DefaultTableModel m = (DefaultTableModel) panNuevaCompra.tblDetalles.getModel();
             int rowCount = m.getRowCount();

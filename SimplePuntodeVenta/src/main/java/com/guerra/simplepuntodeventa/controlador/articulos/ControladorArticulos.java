@@ -304,7 +304,8 @@ public class ControladorArticulos {
                 a.setCod3(panNuevoArticulo.txtCod3.getText().trim().isEmpty() ? null : panNuevoArticulo.txtCod3.getText().trim().toUpperCase());
                 a.setNombre(panNuevoArticulo.txtNombre.getText().trim());
                 a.setDescripcion(panNuevoArticulo.txtDescripcion.getText().trim());
-                a.setCantidad((Integer) panNuevoArticulo.spnCantidad.getValue());
+                a.setCantidad(panNuevoArticulo.spnCantidad.isEnabled()
+                        ? Integer.valueOf(panNuevoArticulo.spnCantidad.getValue().toString()) : 0);
                 a.setMinExistencia((Integer) panNuevoArticulo.spnMin.getValue());
                 a.setPrecioCompra((Double) panNuevoArticulo.spnPCompra.getValue());
                 a.setPrecioVenta((Double) panNuevoArticulo.spnPVenta.getValue());
@@ -415,7 +416,6 @@ public class ControladorArticulos {
                 articuloEditar.setIdMarca(m);
                 articuloEditar.setIdCategoria(c);
                 articuloEditar.setIdUbicacion(u);
-
 
                 try {
                     articuloDAO.update(articuloEditar);
