@@ -47,7 +47,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -134,6 +133,9 @@ public class ControladorClientes {
                     verMovimientosEHistorial();
                 }
             }
+        });
+        panCreditosCliente.btnActualizar.addActionListener((ae) -> {
+            verEstadoCuentaCliente();
         });
     }
 
@@ -317,9 +319,8 @@ public class ControladorClientes {
             TablaUtil.limpiarTabla(panCreditosCliente.tblHistorial);
             TablaUtil.limpiarTabla(panCreditosCliente.tblMovimientos);
 
-            List<Venta> deudas = c.getVentaList().stream().filter(v -> v.getTipoVenta() == 2 && v.getEstado() == 1)
-                    .collect(Collectors.toList());
-
+            List<Venta> deudas = FuncionesClientes.consultarDeudasDeCliente(c);
+                    
             TablaUtil.llenarTablaConEntity(panCreditosCliente.tblDeudas, deudas, new String[]{
                 "idVenta", "fecha", "total", "saldo"
             }, 0);

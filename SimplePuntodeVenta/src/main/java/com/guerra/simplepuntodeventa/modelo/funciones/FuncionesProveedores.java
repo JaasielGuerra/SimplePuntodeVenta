@@ -4,6 +4,7 @@ import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.Parameter;
 import com.guerra.simplepuntodeventa.modelo.dao.CompraDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.ProveedorDAOImpl;
+import com.guerra.simplepuntodeventa.modelo.entidades.Compra;
 import com.guerra.simplepuntodeventa.modelo.entidades.Proveedor;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,5 +67,29 @@ public class FuncionesProveedores {
                 p
         );
         return proveedores;
+    }
+
+    /**
+     * Consultar las deudas a un proveedor
+     *
+     * @param pr
+     * @return
+     */
+    public static List<Compra> consultarDeudasAProveedor(Proveedor pr) {
+        if (compraDAO == null) {
+            compraDAO = DAOManager.getInstancia().getCompraDAO();
+        }
+        List<Parameter> p = new ArrayList<>();
+        p.add(new Parameter("proveedor", pr));
+        p.add(new Parameter("tipo", 2));
+        p.add(new Parameter("estado", 1));
+
+        List<Compra> deudas = compraDAO.readByQuery(""
+                + "SELECT c FROM Compra c "
+                + "WHERE c.idProveedor = :proveedor "
+                + "AND c.tipoCompra = :tipo "
+                + "AND c.estado = :estado", p);
+
+        return deudas;
     }
 }

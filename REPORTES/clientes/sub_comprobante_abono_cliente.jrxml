@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_comprobante_abono_cliente" pageWidth="286" pageHeight="100" columnWidth="286" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8887d002-90be-4f01-8519-22bcb969455c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLITE3"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="id_historial" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT historial_abono_cliente.fecha AS fecha_abono,
+	historial_abono_cliente.abono,
+	venta.total,
+	venta.saldo,
+	venta.fecha AS fecha_credito,
+	historial_abono_cliente.documento,
+	venta.id_venta
+FROM historial_abono_cliente
+	INNER JOIN venta ON 
+	 historial_abono_cliente.id_venta = venta.id_venta
+WHERE historial_abono_cliente.id_historial_abono_cliente =  $P{id_historial}]]>
+	</queryString>
+	<field name="fecha_abono" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_abono"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_abono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="historial_abono_cliente"/>
+	</field>
+	<field name="abono" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="abono"/>
+		<property name="com.jaspersoft.studio.field.label" value="abono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="historial_abono_cliente"/>
+	</field>
+	<field name="total" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="venta"/>
+	</field>
+	<field name="saldo" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="saldo"/>
+		<property name="com.jaspersoft.studio.field.label" value="saldo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="venta"/>
+	</field>
+	<field name="fecha_credito" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_credito"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_credito"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="venta"/>
+	</field>
+	<field name="documento" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="documento"/>
+		<property name="com.jaspersoft.studio.field.label" value="documento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="historial_abono_cliente"/>
+	</field>
+	<field name="id_venta" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="id_venta"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_venta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="venta"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="16" uuid="b38f3a2c-75e9-4eb2-bfa5-d9c4aa078cda"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CRÉDITO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="16" width="286" height="1" uuid="d550e197-72b4-46e2-b31e-b413c7179b64">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="33" width="95" height="13" uuid="cccaef52-249f-444a-b9b1-fc8324e75006"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_credito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="95" height="13" uuid="e975cdc4-f9a4-44c9-bf58-338a791b6ce6"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha crédito]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="108" y="33" width="83" height="13" uuid="1dcd766f-6c6e-49f1-b45a-22116cf361ee"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="96" y="20" width="95" height="13" uuid="f029587c-53db-4281-aa13-9d82f2895cb7"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField pattern="#,###.00#" isBlankWhenNull="false">
+				<reportElement x="203" y="33" width="82" height="13" uuid="564a2363-9b2a-4efc-8962-5cf37ae10f79"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="191" y="20" width="95" height="13" uuid="08889c4c-89ab-4879-b0f2-ac48d759f82a"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo pendiente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="54" width="100" height="16" uuid="120b34c4-8a26-46d1-982b-b72aa3a1837f"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ABONO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="70" width="286" height="1" uuid="d84c1e53-76bc-4b18-9676-c3b4238a23b9">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="87" width="95" height="13" uuid="56572016-c5c8-46a3-9606-18c1462e2216"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_abono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="74" width="95" height="13" uuid="a396b0a6-bec6-4480-b131-45b8889b8458">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha abono]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="0" width="66" height="16" uuid="4244ccce-c86a-41c7-80d6-aaf0f8ced627"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_venta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="0" width="60" height="16" uuid="5c9b8f63-c22d-4595-8416-8ec0f06911a5"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Correlativo:]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="108" y="87" width="88" height="13" uuid="a18c4dde-72e8-411d-89eb-c485f7258afe"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="96" y="74" width="100" height="13" uuid="58d5b43f-db6a-429c-9169-e731d8a1befd"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Abono]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="196" y="87" width="90" height="13" uuid="5fe2708c-4926-4c8b-8b1b-5039e31aecfe"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="196" y="74" width="90" height="13" uuid="8612bd75-9d89-4c05-8233-90323416a19b"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="96" y="33" width="12" height="13" uuid="7d29d48e-247d-464a-b914-bc2659e72e88"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Q.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="33" width="12" height="13" uuid="1557a153-0eb3-4f2c-908c-9542ace10f43"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Q.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="96" y="87" width="12" height="13" uuid="7f3e8b44-ed36-4c93-8319-b66ba55c2173"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Q.]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

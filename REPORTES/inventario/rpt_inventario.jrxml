@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_inventario" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="772" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="9f093e1f-01b1-4df9-ab79-bbd31ae38aad">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="ZW1wcmVzYSBBUyAsMTIxLDE0NCxkYjE0ODYwYy03MmNjLTQ3ZTktOWM0Zi0xY2EyZTYxYWMwZTg7"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sqlite3SPV.xml"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<topPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<leftPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<bottomPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<rightPen lineWidth="0.5" lineColor="#E0E0E0"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#F5F5F5">
+		<box>
+			<pen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<topPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<leftPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<bottomPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<rightPen lineWidth="0.5" lineColor="#E0E0E0"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<topPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<leftPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<bottomPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			<rightPen lineWidth="0.5" lineColor="#E0E0E0"/>
+		</box>
+	</style>
+	<subDataset name="Totales" uuid="fe4cdb9a-60b8-4e85-928d-b6d4e05098e8">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sqlite3SPV.xml"/>
+		<parameter name="IDCATEGORIA" class="java.lang.Integer"/>
+		<parameter name="IDMARCA" class="java.lang.Integer"/>
+		<parameter name="NOMBRE_MARCA" class="java.lang.String"/>
+		<parameter name="NOMBRE_CATEGORIA" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT 
+	COALESCE(SUM(articulo.cantidad),0.0) as total_inventario,
+	COALESCE(SUM(articulo.precio_compra * articulo.cantidad),0.0) as costo_inventario,
+	COALESCE(SUM(articulo.ganancia * articulo.cantidad),0.0) as ganancia_inventario
+FROM articulo
+WHERE articulo.estado = 1
+AND articulo.cantidad > 0 $P!{IDCATEGORIA} $P!{IDMARCA}]]>
+		</queryString>
+		<field name="total_inventario" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="total_inventario"/>
+			<property name="com.jaspersoft.studio.field.label" value="total_inventario"/>
+		</field>
+		<field name="costo_inventario" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="costo_inventario"/>
+			<property name="com.jaspersoft.studio.field.label" value="costo_inventario"/>
+		</field>
+		<field name="ganancia_inventario" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="ganancia_inventario"/>
+			<property name="com.jaspersoft.studio.field.label" value="ganancia_inventario"/>
+		</field>
+	</subDataset>
+	<subDataset name="Inventario" uuid="db870f94-6871-42d2-94b8-4d82d6e091dc">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sqlite3SPV.xml"/>
+		<parameter name="IDCATEGORIA" class="java.lang.Integer"/>
+		<parameter name="IDMARCA" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT articulo.cod1,
+	articulo.nombre,
+	articulo.cantidad,
+	articulo.min_existencia,
+	articulo.precio_compra,
+	articulo.precio_venta,
+	articulo.porcentaje_ganancia,
+	articulo.ganancia
+FROM articulo
+where articulo.estado = 1 $P!{IDCATEGORIA}  $P!{IDMARCA}]]>
+		</queryString>
+		<field name="cod1" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="cod1"/>
+			<property name="com.jaspersoft.studio.field.label" value="cod1"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+		</field>
+		<field name="nombre" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+		</field>
+		<field name="cantidad" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="cantidad"/>
+			<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+		</field>
+		<field name="min_existencia" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="min_existencia"/>
+			<property name="com.jaspersoft.studio.field.label" value="min_existencia"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+		</field>
+		<field name="precio_compra" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="precio_compra"/>
+			<property name="com.jaspersoft.studio.field.label" value="precio_compra"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+		</field>
+		<field name="precio_venta" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="precio_venta"/>
+			<property name="com.jaspersoft.studio.field.label" value="precio_venta"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+		</field>
+		<field name="porcentaje_ganancia" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="porcentaje_ganancia"/>
+			<property name="com.jaspersoft.studio.field.label" value="porcentaje_ganancia"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+		</field>
+		<field name="ganancia" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="ganancia"/>
+			<property name="com.jaspersoft.studio.field.label" value="ganancia"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+		</field>
+	</subDataset>
+	<parameter name="LOGO" class="java.lang.String"/>
+	<parameter name="MARCA" class="java.lang.Integer"/>
+	<parameter name="CATEGORIA" class="java.lang.Integer"/>
+	<parameter name="MARCA_NOMBRE" class="java.lang.String"/>
+	<parameter name="CATEGORIA_NOMBRE" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT empresa.nombre,
+	empresa.direccion,
+	empresa.telefono
+FROM empresa
+where empresa.id_empresa = 1]]>
+	</queryString>
+	<field name="nombre" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="direccion" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.label" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="telefono" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="270" y="16" width="502" height="30" uuid="fe70fa9c-646c-4c87-9d0c-a7271af378ba"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="70" height="70" uuid="95259605-d45f-48cb-b6fa-7d2b99d7c306"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="72" width="772" height="1" backcolor="#E0E0E0" uuid="0186f02e-3f1e-411f-bffc-7efcbb54da9d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineColor="#E0E0E0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="73" width="772" height="18" uuid="b229cbbb-29f5-494f-b992-d006c5fb348c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{direccion}+" - Tel: "+$F{telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="90" width="772" height="40" uuid="36642f9e-78d1-4363-a7b4-01d02cfc166b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de inventario]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="462" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<componentElement>
+				<reportElement x="0" y="0" width="772" height="72" uuid="a81d80dd-f288-4ac6-9cd1-9c0355b64335"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Totales" uuid="04add7c6-3fa4-442c-bd63-787ed9e6be3b">
+						<datasetParameter name="IDCATEGORIA">
+							<datasetParameterExpression><![CDATA[$P{CATEGORIA} != null ? " AND articulo.id_categoria = "+$P{CATEGORIA} : ""]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="IDMARCA">
+							<datasetParameterExpression><![CDATA[$P{MARCA} != null ? " AND articulo.id_marca = " + $P{MARCA} : ""]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="NOMBRE_MARCA">
+							<datasetParameterExpression><![CDATA[$P{MARCA_NOMBRE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="NOMBRE_CATEGORIA">
+							<datasetParameterExpression><![CDATA[$P{CATEGORIA_NOMBRE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="72" width="772">
+						<textField pattern="#,###.###;(#,###.###-)">
+							<reportElement x="0" y="0" width="150" height="17" uuid="7bbfc956-8aea-4a00-809e-c8c3084e4daa"/>
+							<textElement>
+								<font size="12"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{total_inventario}]]></textFieldExpression>
+						</textField>
+						<textField pattern="¤#,##0.###;¤(#,##0.###-)">
+							<reportElement x="150" y="0" width="150" height="17" uuid="56277a77-ec46-40bf-b1d0-d9eaebed82ce"/>
+							<textElement>
+								<font size="12"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{costo_inventario}]]></textFieldExpression>
+						</textField>
+						<textField pattern="¤#,##0.###;¤(#,##0.###-)">
+							<reportElement x="300" y="0" width="150" height="17" uuid="8856663a-d4ab-41e2-b79c-d53a77136309"/>
+							<textElement>
+								<font size="12"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ganancia_inventario}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="16" width="150" height="16" uuid="6f9c00c3-6826-49e7-9083-07ea60494f8a"/>
+							<textElement textAlignment="Left">
+								<font isBold="true"/>
+							</textElement>
+							<text><![CDATA[Inventario total]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="150" y="16" width="150" height="16" uuid="17a72f02-04e8-4ba7-a300-1dc6e0506962"/>
+							<textElement textAlignment="Left">
+								<font isBold="true"/>
+							</textElement>
+							<text><![CDATA[Costo total del inventario]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="300" y="16" width="150" height="16" uuid="3362a1c8-15a9-4dcf-84f7-0f27195b86f4"/>
+							<textElement textAlignment="Left">
+								<font isBold="true"/>
+							</textElement>
+							<text><![CDATA[Ganancia total del inventario]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="56" width="150" height="16" uuid="bf6b642f-d109-4c5b-84f4-e9970077dd3d"/>
+							<textElement textAlignment="Left">
+								<font isBold="true"/>
+							</textElement>
+							<text><![CDATA[Marca]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="150" y="56" width="150" height="16" uuid="84b8a2ac-9af9-4ff5-8eb9-34b91ffc2e56"/>
+							<textElement textAlignment="Left">
+								<font isBold="true"/>
+							</textElement>
+							<text><![CDATA[Categoría]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="0" y="40" width="150" height="16" uuid="6753b3d5-3124-4607-bee7-7fd29f3edb8c"/>
+							<textElement>
+								<font size="12"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$P{NOMBRE_MARCA}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="150" y="40" width="150" height="16" uuid="d8795745-cbc1-4ab1-8649-72595359586c"/>
+							<textElement>
+								<font size="12"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$P{NOMBRE_CATEGORIA}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="80" width="772" height="382" uuid="57eaf68f-0dfd-4e67-8afa-3910bacb71ad">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.components.autoresize.proportional" value="true"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Inventario" uuid="4b45c47b-7e86-43a9-bd94-91b031413539">
+						<datasetParameter name="IDCATEGORIA">
+							<datasetParameterExpression><![CDATA[$P{CATEGORIA} != null ? " AND articulo.id_categoria = "+$P{CATEGORIA} : ""]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="IDMARCA">
+							<datasetParameterExpression><![CDATA[$P{MARCA} != null ? " AND articulo.id_marca = " + $P{MARCA} : ""]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="83" uuid="a15301da-527b-4efc-b666-acaaf1322ad0">
+						<jr:columnHeader style="Table_CH" height="30">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<staticText>
+								<reportElement x="0" y="0" width="83" height="30" uuid="d262c17c-3de2-4098-a7ae-2d5c5ecef9ad"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[CÓDIGO(1)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="83" height="15" uuid="f141ded7-1888-406c-802e-035a30cb39e8">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{cod1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="200" uuid="ebe3faa1-fbe9-441f-837a-f579a0affcff">
+						<jr:columnHeader style="Table_CH" height="30">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<staticText>
+								<reportElement x="0" y="0" width="200" height="30" uuid="1af11965-af47-4ab2-b582-b1b5ae9dd0d4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[ARTÍCULO (NOMBRE)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="97" height="15" uuid="00426196-73b5-484a-8614-659b3d34cb32"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="83" uuid="2f405257-7f42-4a01-af97-7dd9f70e297a">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="83" height="30" uuid="7b2efc32-83f4-4b56-94a0-cb011a1d5d4f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[CANTIDAD]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="83" height="15" uuid="7ea24ea7-6906-45ee-b426-033d05269854"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="82" uuid="3c6dbdc2-27e1-473f-b643-82fadae51b77">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="82" height="30" uuid="e1867ee5-f522-4a30-9809-da3603092309"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[MIN. INVENTARIO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="82" height="15" uuid="317d287c-4344-49ac-a05d-50dc234a0ee1"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{min_existencia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="81" uuid="e733f78f-0424-4015-8107-0a48c06e126b">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="81" height="30" uuid="90bdddb1-6d07-4366-b558-350af4b571bd"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[PRECIO COMPRA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="81" height="15" uuid="2889680f-ac3c-4858-9e86-b97502e8b175"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{precio_compra}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="81" uuid="97760eef-0f91-463c-88ed-40fe5fc2b930">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="81" height="30" uuid="e440256f-ca73-415f-a039-17e9bad797bf"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[PRECIO VENTA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="81" height="15" uuid="926adc09-4be6-47e0-b919-be45c280edca"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{precio_venta}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="81" uuid="330dfb98-adbf-4915-b6f1-cbab1b57a81a">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="81" height="30" uuid="b383e9a2-b870-4106-bfff-5cb8eb86cfbc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[PORCENTAJE GANANCIA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="81" height="15" uuid="83a092e4-63e1-4aa9-b9e7-ec9769e4558f"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{porcentaje_ganancia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="81" uuid="5ec05fdc-0f15-4011-9ec8-802f2ccdab2a">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="81" height="30" uuid="d6018833-104a-4acf-96b9-9a773853b162"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[GANANCIA UNIT.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="81" height="15" uuid="e4badec3-6afa-4efc-92ca-df39e9b0708f"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{ganancia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>
