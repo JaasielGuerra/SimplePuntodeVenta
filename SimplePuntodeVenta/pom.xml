@@ -29,14 +29,14 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>6.15.0</version>
+            <version>6.16.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-fonts -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-fonts</artifactId>
-            <version>6.15.0</version>
+            <version>6.16.0</version>
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.jpa -->

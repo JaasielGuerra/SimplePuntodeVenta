@@ -12,13 +12,10 @@ import com.guerra.simplepuntodeventa.modelo.dao.CuentaProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.HistorialAbonoProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.ProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.entidades.Compra;
-import com.guerra.simplepuntodeventa.modelo.entidades.CuentaCliente;
 import com.guerra.simplepuntodeventa.modelo.entidades.CuentaProveedor;
-import com.guerra.simplepuntodeventa.modelo.entidades.HistorialAbonoCliente;
 import com.guerra.simplepuntodeventa.modelo.entidades.HistorialAbonoProveedor;
 import com.guerra.simplepuntodeventa.modelo.entidades.Proveedor;
 import com.guerra.simplepuntodeventa.modelo.entidades.Usuario;
-import com.guerra.simplepuntodeventa.modelo.entidades.Venta;
 import com.guerra.simplepuntodeventa.modelo.funciones.FuncionesProveedores;
 import com.guerra.simplepuntodeventa.recursos.componentes.animacion.DlgProceso;
 import com.guerra.simplepuntodeventa.recursos.mensajes.MsjException;
@@ -145,22 +142,22 @@ public class ControladorProveedores {
 
     private boolean imprimirComprobante(int idHistorialAbono) {
         boolean exito = true;
-//        try {
-//
-//            String logo = ConfiguracionEmpresa.getInstancia().getLogo();
-//
-//            ParametroReporte[] p = new ParametroReporte[]{
-//                new ParametroReporte("RUTA_LOGO", logo, ParametroReporte.OBJETO),
-//                new ParametroReporte("ID_HISTORIAL_ABONO", idHistorialAbono, ParametroReporte.OBJETO),
-//                new ParametroReporte("SUBRPT_DETALLE", "/reportes/sub_comprobante_abono_cliente.jasper",
-//                ParametroReporte.NOMBRE_SUB_RPT)
-//            };
-//
-//            exito = ServicioReporte.getInstancia().imprimir("/reportes/comprobante_abono_cliente.jasper", p);
-//
-//        } catch (HeadlessException | PrinterException | IOException | NullPointerException | JRException ex) {
-//            MsjException.msjErrorEstandar(dlgAbonarDeuda, "Error imprimiendo comprobante: " + ex.getMessage());
-//        }
+        try {
+
+            String logo = ConfiguracionEmpresa.getInstancia().getLogo();
+
+            ParametroReporte[] p = new ParametroReporte[]{
+                new ParametroReporte("RUTA_LOGO", logo, ParametroReporte.OBJETO),
+                new ParametroReporte("ID_HISTORIAL_ABONO", idHistorialAbono, ParametroReporte.OBJETO),
+                new ParametroReporte("SUBRPT_DETALLE", "/reportes/sub_comprobante_abono_proveedor.jasper",
+                ParametroReporte.NOMBRE_SUB_RPT)
+            };
+
+            exito = ServicioReporte.getInstancia().imprimir("/reportes/comprobante_abono_proveedor.jasper", p);
+
+        } catch (HeadlessException | PrinterException | IOException | NullPointerException | JRException ex) {
+            MsjException.msjErrorEstandar(dlgAbonarDeuda, "Error imprimiendo comprobante: " + ex.getMessage());
+        }
 
         return exito;
     }

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>Sqlite3SPV</name><driver>org.sqlite.JDBC</driver><username></username><password></password><savePassword>true</savePassword><url>jdbc:sqlite:D:\Users\Jaasiel\Documents\Proyectos\SPV\SimplePuntodeVenta\data\db_spv.db</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>

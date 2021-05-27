@@ -74,3 +74,6 @@ Proyecto control de inventario y venta de servicios
 - Realizar abonos a una compra al credito
 - Ver abonos e historial de abonos
 - Boton para actualizar vista estado de cuenta
+- Imprimir comprobante por cada abono a compra
+- Vista para reporte de comprobante abono compra
+- Procedimiento para llamar al reporte de comprobante abono compra

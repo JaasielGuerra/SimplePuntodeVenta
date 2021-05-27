@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comprobante_abono_proveedor" pageWidth="612" pageHeight="792" columnWidth="592" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="fc6ec1b8-bf1f-4748-a83a-c60297cb2718">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="spv"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="RUTA_LOGO" class="java.lang.String"/>
+	<parameter name="ID_HISTORIAL_ABONO" class="java.lang.Integer"/>
+	<parameter name="SUBRPT_DETALLE" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+	empresa.nombre,
+	empresa.direccion,
+	empresa.telefono 
+FROM
+	empresa 
+WHERE
+	empresa.id_empresa = 1]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.label" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="361" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="77" width="286" height="25" forecolor="#000000" backcolor="#000000" uuid="55bb5f5b-6f8f-4cfe-82c4-0d8d76265d8a"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[- COMPROBANTE DE ABONO -]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="0" width="286" height="70" backcolor="rgba(255, 255, 255, 0.0)" uuid="171fd0a5-ebbd-4ca3-8763-b083f1749542"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="10" y="10" width="210" height="20" uuid="ba3cd22d-2f68-49e1-bcfd-37bee4763ff5"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="30" width="210" height="15" uuid="de0dd992-c6b6-46aa-8897-3c2f58b7f371"/>
+				<textElement>
+					<font fontName="SansSerif" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="45" width="210" height="15" uuid="f4a05fc9-aa13-486b-923b-78172d64c100"/>
+				<textElement>
+					<font fontName="SansSerif" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="230" y="10" width="50" height="50" uuid="ac6ba066-d834-4c38-856b-0440703c1d7d"/>
+				<imageExpression><![CDATA[$P{RUTA_LOGO}]]></imageExpression>
+			</image>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="1" y="270" width="100" height="12" uuid="3f7bfd88-d405-4181-81ba-7a535b814eac"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="110" y="266" width="176" height="1" uuid="a80744be-797e-4e52-b52d-61ba54634b54">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="180" y="270" width="106" height="12" uuid="670fc88c-1dcc-4c89-9000-58ca284638dd"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Firma y/o sello]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="110" width="286" height="110" uuid="cc3d5166-3254-454e-bab3-ad2982483858"/>
+				<subreportParameter name="id_historial">
+					<subreportParameterExpression><![CDATA[$P{ID_HISTORIAL_ABONO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBRPT_DETALLE}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

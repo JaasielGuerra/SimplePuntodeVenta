@@ -556,10 +556,8 @@ AFTER INSERT
 ON articulo FOR EACH ROW
 BEGIN 
 	IF NEW.cantidad > 0 THEN
-	
 		INSERT INTO db_spv.kardex (fecha, concepto, existencia_anterior, tipo, cantidad, existencia_posterior, id_usuario, id_articulo, hora_commit, fecha_commit)
 		VALUES(current_date(), 'Inventario inicial', 0, 1, NEW.cantidad, NEW.cantidad, new.id_usuario, NEW.id_articulo, current_date(), current_time());
-	
 	END IF; 
 END
 $$
@@ -574,29 +572,19 @@ CREATE TRIGGER salida_inventario
 AFTER INSERT
 ON detalle_venta FOR EACH ROW
 BEGIN 
-
 	-- salvar existencia anterior
 	DECLARE anterior INT;
 	select a.cantidad into anterior from db_spv.articulo a where a.id_articulo = NEW.id_articulo;
-	
 	IF NEW.id_articulo IS NOT NULL THEN 
-	
-	
 		-- Restar inventario
 		UPDATE db_spv.articulo
 		SET cantidad= cantidad - NEW.cantidad
 		WHERE id_articulo =  NEW.id_articulo;
-		
-	
 		-- Registrar movimiento en kardex
 		INSERT INTO db_spv.kardex (fecha, concepto, existencia_anterior, tipo, cantidad, existencia_posterior, id_usuario, id_articulo, hora_commit, fecha_commit)
 		VALUES(current_date(), CONCAT('Realización de venta No. ', NEW.id_venta), anterior,
 		2, NEW.cantidad, anterior - NEW.cantidad, NEW.id_usuario, NEW.id_articulo, current_time(), current_date());
-
-	
-	
 	END IF;
-	
 END
 $$
 DELIMITER ;
@@ -610,30 +598,22 @@ CREATE TRIGGER devolucion_inventario
 AFTER UPDATE 
 ON detalle_venta FOR EACH ROW
 BEGIN 
-
 	-- salvar existencia anterior
 	DECLARE anterior INT;
 	select a.cantidad into anterior from db_spv.articulo a where a.id_articulo = NEW.id_articulo;
-	
-	IF NEW.id_articulo IS NOT NULL THEN 
-					
+	IF NEW.id_articulo IS NOT NULL THEN 			
 		-- Sumar inventario
 		UPDATE db_spv.articulo
 		SET cantidad= cantidad + NEW.cantidad
 		WHERE id_articulo =  NEW.id_articulo;
-		
-	
 		-- Registrar movimiento en kardex
 		INSERT INTO db_spv.kardex (fecha, concepto, existencia_anterior, tipo, cantidad, existencia_posterior, id_usuario, id_articulo, hora_commit, fecha_commit)
 		VALUES(current_date(), CONCAT('Cancelación de venta No. ', NEW.id_venta), anterior,
 		4, NEW.cantidad, anterior + NEW.cantidad, NEW.id_usuario, NEW.id_articulo, current_time(), current_date());
-	
-	END IF;
-	
+	END IF;	
 END
 $$
 DELIMITER ;
-
 
 
 
@@ -644,23 +624,13 @@ CREATE TRIGGER credito_cliente
 AFTER INSERT
 ON venta FOR EACH ROW
 BEGIN 
-
-	
 	IF NEW.tipo_venta = 2 THEN 
-	
-		
 		INSERT INTO db_spv.cuenta_cliente (fecha, comentario, cargo, abono, saldo, id_venta, fecha_commit, hora_commit, id_usuario)
 		VALUES(current_date(), CONCAT('Crédito por venta No. ', NEW.id_venta), NEW.total, 0, NEW.total, NEW.id_venta, current_date(), current_time(), NEW.id_usuario);
-
-	
-	
-	END IF;
-	
-	
+	END IF;	
 END ;
 $$
 DELIMITER ;
-
 
 
 
@@ -671,19 +641,10 @@ CREATE TRIGGER credito_proveedor
 AFTER INSERT
 ON compra FOR EACH ROW
 BEGIN 
-
-	
 	IF NEW.tipo_compra = 2 THEN  -- compra al credito
-	
-		
 		INSERT INTO db_spv.cuenta_proveedor (fecha, comentario, cargo, abono, saldo, id_compra, hora_commit, fecha_commit, id_usuario)
 		VALUES(current_date(), CONCAT('Crédito por compra No. ', NEW.id_compra), NEW.total, 0, NEW.total, NEW.id_compra, current_time(), current_date(), NEW.id_usuario);
-
-	
-	
-	END IF;
-	
-	
+	END IF;	
 END ;
 $$
 DELIMITER ;
@@ -697,31 +658,20 @@ CREATE TRIGGER bitacora_venta
 AFTER INSERT
 ON venta FOR EACH ROW
 BEGIN 
-	
 	-- consultar si existe registro
 	DECLARE existe_registro INT;
 	DECLARE id_historial INT;
-
 	select count(id_historial_venta) , id_historial_venta INTO existe_registro, id_historial 
 	from historial_venta where fecha = current_date() and tipo = NEW.tipo_venta;
-	
 	IF existe_registro > 0 THEN
-	
 		UPDATE db_spv.historial_venta
 		SET cantidad=cantidad + 1, total=total + NEW.total
 		WHERE id_historial_venta=id_historial;
-	
-	
 	ELSE
-	
 		INSERT INTO db_spv.historial_venta
 		(fecha, cantidad, tipo, total)
 		VALUES(current_date(), 1, NEW.tipo_venta, NEW.total);
-
-	
-	END IF;
-	
-	
+	END IF;	
 END ;
 $$
 DELIMITER ;
@@ -735,21 +685,15 @@ CREATE TRIGGER actualizar_bitacora_venta
 AFTER UPDATE 
 ON venta FOR EACH ROW
 BEGIN 
-	
 	-- consultar registro con fecha correspondiente a venta cancelada
 	DECLARE id_historial INT;
-
 	select id_historial_venta INTO id_historial 
 	from historial_venta where fecha = NEW.fecha and tipo = NEW.tipo_venta;
-	
 	IF NEW.estado = 0 THEN
-	
 		UPDATE db_spv.historial_venta
 		SET cantidad=cantidad - 1, total=total - NEW.total
 		WHERE id_historial_venta=id_historial;
-
 	END IF;
-	
 END ;
 $$
 DELIMITER ;
@@ -764,31 +708,20 @@ CREATE TRIGGER bitacora_compra
 AFTER INSERT
 ON compra FOR EACH ROW
 BEGIN 
-	
 	-- consultar si existe registro
 	DECLARE existe_registro INT;
 	DECLARE id_historial INT;
-
 	select count(id_historial_compra) , id_historial_compra INTO existe_registro, id_historial 
 	from historial_compra where fecha = current_date() and tipo = NEW.tipo_compra;
-	
 	IF existe_registro > 0 THEN
-	
 		UPDATE db_spv.historial_compra 
 		SET cantidad=cantidad + 1, total=total + NEW.total
 		WHERE id_historial_compra=id_historial;
-	
-	
 	ELSE
-	
 		INSERT INTO db_spv.historial_compra 
 		(fecha, cantidad, tipo, total)
-		VALUES(current_date(), 1, NEW.tipo_compra, NEW.total);
-
-	
+		VALUES(current_date(), 1, NEW.tipo_compra, NEW.total);	
 	END IF;
-	
-	
 END ;$$
 DELIMITER ;
 
@@ -802,24 +735,17 @@ CREATE TRIGGER actualizar_bitacora_compra
 AFTER UPDATE 
 ON compra FOR EACH ROW
 BEGIN 
-	
 	-- consultar registro con fecha correspondiente a compra cancelada
 	DECLARE id_historial INT;
-
 	select id_historial_compra INTO id_historial 
 	from historial_compra where fecha = NEW.fecha and tipo = NEW.tipo_compra;
-	
 	IF NEW.estado = 0 THEN -- Compra cancelada
-	
 		UPDATE db_spv.historial_compra
 		SET cantidad=cantidad - 1, total=total - NEW.total
 		WHERE id_historial_compra=id_historial;
-
 	END IF;
-	
 END ;$$
 DELIMITER ;
-
 
 
 
@@ -829,31 +755,21 @@ $$
 CREATE TRIGGER entrada_inventario
 AFTER INSERT
 ON detalle_compra FOR EACH ROW
-
 BEGIN 
-
 	-- salvar existencia anterior
 	DECLARE anterior INT;
 	select a.cantidad into anterior from db_spv.articulo a where a.id_articulo = NEW.id_articulo;
-		
 		-- Sumar inventario
 		UPDATE db_spv.articulo
 		SET cantidad= cantidad + NEW.cantidad
 		WHERE id_articulo =  NEW.id_articulo;
-		
-	
 		-- Registrar movimiento en kardex
 		INSERT INTO db_spv.kardex (fecha, concepto, existencia_anterior, tipo, cantidad, existencia_posterior, id_usuario, id_articulo, hora_commit, fecha_commit)
 		VALUES(current_date(), CONCAT('Realización de compra No. ', NEW.id_compra), anterior,
 		1, NEW.cantidad, anterior + NEW.cantidad, NEW.id_usuario, NEW.id_articulo, current_time(), current_date());
-
-
-	
 END
 $$
 DELIMITER ;
-
-
 
 
 
@@ -864,22 +780,17 @@ CREATE TRIGGER salida_inventario_compra
 AFTER UPDATE
 ON detalle_compra FOR EACH ROW
 BEGIN
-
 	-- salvar existencia anterior
 	DECLARE anterior INT;
 	select a.cantidad into anterior from db_spv.articulo a where a.id_articulo = NEW.id_articulo;
-	
-	
 	-- Restar inventario
 	UPDATE db_spv.articulo
 	SET cantidad= cantidad - NEW.cantidad
 	WHERE id_articulo =  NEW.id_articulo;
-	
 	-- Registrar movimiento en kardex
 	INSERT INTO db_spv.kardex (fecha, concepto, existencia_anterior, tipo, cantidad, existencia_posterior, id_usuario, id_articulo, hora_commit, fecha_commit)
 	VALUES(current_date(), CONCAT('Cancelación de compra No. ', NEW.id_compra), anterior,
 	2, NEW.cantidad, anterior - NEW.cantidad, NEW.id_usuario, NEW.id_articulo, current_time(), current_date());
-
 END;$$
 DELIMITER ;
 
@@ -893,11 +804,10 @@ $$
 CREATE FUNCTION inventario_total ()
 RETURNS integer
 BEGIN
-
 RETURN (SELECT SUM(a.cantidad) FROM articulo a);
 END$$
-
 DELIMITER ;
+
 
 
 DELIMITER $$
@@ -905,21 +815,16 @@ $$
 CREATE FUNCTION costo_inventario ()
 RETURNS double
 BEGIN
-
 RETURN (SELECT SUM(a.cantidad * a.precio_compra) FROM articulo a);
 END$$
-
 DELIMITER ;
-
 DELIMITER $$
 $$
 CREATE FUNCTION ganancia_inventario ()
 RETURNS double
 BEGIN
-
 RETURN (SELECT SUM(a.ganancia * a.cantidad) FROM articulo a);
 END$$
-
 DELIMITER ;
 
 
@@ -929,7 +834,6 @@ $$
 CREATE FUNCTION deuda_cliente (id_cliente integer)
 RETURNS double
 BEGIN
-
 RETURN (
 	select COALESCE(sum(v.saldo),0.00)  from venta v
 	where v.id_cliente = id_cliente
@@ -937,7 +841,6 @@ RETURN (
 	and v.tipo_venta = 2
 );
 END$$
-
 DELIMITER ;
 
 
@@ -947,7 +850,6 @@ $$
 CREATE FUNCTION deuda_proveedor (id_proveedor integer)
 RETURNS double
 BEGIN
-
 RETURN (
 	select COALESCE(sum(c.saldo),0.00)  from compra c
 	where c.id_proveedor = id_proveedor
@@ -955,7 +857,6 @@ RETURN (
 	and c.tipo_compra = 2
 );
 END$$
-
 DELIMITER ;
 
 
@@ -971,8 +872,34 @@ BEGIN
 	on k.id_articulo = a.id_articulo
 	where a.descripcion like concat('%', articulo, '%');
 END$$
-
 DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE consultar_reporte_abono_compra (id_historial INT)
+BEGIN
+	SELECT * FROM reporte_abono_compra WHERE id_historial_abono_proveedor = id_historial;
+END$$
+DELIMITER ;
+
+
+
+-- -----------------------------------------------------
+-- Vistas
+-- -----------------------------------------------------
+CREATE  OR REPLACE VIEW reporte_abono_compra AS
+SELECT historial_abono_proveedor.fecha AS fecha_abono,
+	historial_abono_proveedor.abono,
+	compra.total,
+	compra.saldo,
+	compra.fecha AS fecha_credito,
+	historial_abono_proveedor.documento,
+	compra.id_compra,
+    historial_abono_proveedor.id_historial_abono_proveedor
+FROM historial_abono_proveedor
+	INNER JOIN compra ON 
+	 historial_abono_proveedor.id_compra = compra.id_compra;
 
 
 
