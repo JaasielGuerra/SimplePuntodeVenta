@@ -9,6 +9,7 @@ import com.guerra.simplepuntodeventa.controlador.compras.MenuCompras;
 import com.guerra.simplepuntodeventa.controlador.configuracionempresa.ControladorConfiguracion;
 import com.guerra.simplepuntodeventa.controlador.inventario.MenuInventario;
 import com.guerra.simplepuntodeventa.controlador.proveedores.MenuProveedores;
+import com.guerra.simplepuntodeventa.controlador.servicios.ControladorServicios;
 import com.guerra.simplepuntodeventa.controlador.ventas.ControladorVenta;
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.entidades.Cliente;
@@ -24,6 +25,7 @@ import com.guerra.simplepuntodeventa.vista.empresa.IfrmMenuEmpresa;
 import com.guerra.simplepuntodeventa.vista.inventario.IfrmMenuInventario;
 import com.guerra.simplepuntodeventa.vista.proveedores.IfrmMenuProveedores;
 import com.guerra.simplepuntodeventa.vista.reportes.IfrmMenuReportes;
+import com.guerra.simplepuntodeventa.vista.servicios.IfrmServicios;
 import com.guerra.simplepuntodeventa.vista.ventas.IfrmVentas;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -48,6 +50,7 @@ public class ControladorPrincipal {
     private final IfrmMenuReportes ifrmMenuReportes = new IfrmMenuReportes();
     private final IfrmMenuEmpresa ifrmMenuEmpresa = new IfrmMenuEmpresa();
     private final IfrmMenuProveedores ifrmMenuProveedores = new IfrmMenuProveedores();
+    private final IfrmServicios ifrmServicios = new IfrmServicios();
 
     /////////////controladores/////////////
     private final MenuArticulos menuArticulos = new MenuArticulos(ifrmMenuArticulos);
@@ -57,6 +60,7 @@ public class ControladorPrincipal {
     private final MenuProveedores menuProveedores = new MenuProveedores(ifrmMenuProveedores);
     private final MenuCompras menuCompras = new MenuCompras(ifrmMenuCompras);
     private final ControladorConfiguracion configuracion = new ControladorConfiguracion(ifrmMenuEmpresa);
+    private final ControladorServicios controladorServicios = new ControladorServicios(ifrmServicios);
 
     public ControladorPrincipal() {
         init();
@@ -82,6 +86,7 @@ public class ControladorPrincipal {
         ifrmMenuReportes.hide();
         ifrmMenuEmpresa.hide();
         ifrmMenuProveedores.hide();
+        ifrmServicios.hide();
 
         agregarIFRM(ifrmMenuVentas);
         agregarIFRM(ifrmMenuArticulos);
@@ -91,6 +96,7 @@ public class ControladorPrincipal {
         agregarIFRM(ifrmMenuReportes);
         agregarIFRM(ifrmMenuEmpresa);
         agregarIFRM(ifrmMenuProveedores);
+        agregarIFRM(ifrmServicios);
     }
 
     private void initOyentes() {//listar eventos
@@ -124,6 +130,9 @@ public class ControladorPrincipal {
         });
         frmPrincipal.btnProveedores.addActionListener((ae) -> {
             mostrarVentanaProveedores();
+        });
+        frmPrincipal.btnServicios.addActionListener((ae) -> {
+            mostrarVentanaServicios();
         });
     }
 
@@ -183,6 +192,14 @@ public class ControladorPrincipal {
         PantallaUtil.centrarIFRM(ifrmMenuProveedores, frmPrincipal.panPrincipal, MARGEN_X, MARGEN_Y);
         ifrmMenuProveedores.toFront();
         ifrmMenuProveedores.show();
+    }
+
+    private void mostrarVentanaServicios() {
+        controladorServicios.resetFormulario();
+        controladorServicios.consultarServicios();
+        PantallaUtil.centrarIFRM(ifrmServicios, frmPrincipal.panPrincipal, MARGEN_X, MARGEN_Y);
+        ifrmServicios.toFront();
+        ifrmServicios.show();
     }
 
 }
