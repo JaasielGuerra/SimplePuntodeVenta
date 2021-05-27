@@ -5,6 +5,8 @@
  */
 package com.guerra.simplepuntodeventa.vista.servicios;
 
+import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
+
 /**
  *
  * @author Jaasiel
@@ -16,6 +18,7 @@ public class IfrmServicios extends javax.swing.JInternalFrame {
      */
     public IfrmServicios() {
         initComponents();
+        TablaUtil.ocultarCol(tblServicios, 0);
     }
 
     /**
@@ -51,7 +54,7 @@ public class IfrmServicios extends javax.swing.JInternalFrame {
         btnDesactivar = new javax.swing.JButton();
         btnActivar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCate = new javax.swing.JTable();
+        tblServicios = new javax.swing.JTable();
         cbxEstado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
@@ -95,7 +98,7 @@ public class IfrmServicios extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Precio A(*):");
 
-        spnPrecioA.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        spnPrecioA.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
 
         jLabel14.setText("Precio B(*):");
 
@@ -207,7 +210,7 @@ public class IfrmServicios extends javax.swing.JInternalFrame {
         btnActivar.setFocusPainted(false);
         jPanel5.add(btnActivar);
 
-        tblCate.setModel(new javax.swing.table.DefaultTableModel(
+        tblServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -233,8 +236,8 @@ public class IfrmServicios extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblCate.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(tblCate);
+        tblServicios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tblServicios);
 
         cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -325,7 +328,7 @@ public class IfrmServicios extends javax.swing.JInternalFrame {
     public javax.swing.JSpinner spnPrecioA;
     public javax.swing.JSpinner spnPrecioB;
     public javax.swing.JSpinner spnPrecioC;
-    public javax.swing.JTable tblCate;
+    public javax.swing.JTable tblServicios;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtDescripcion;
     // End of variables declaration//GEN-END:variables

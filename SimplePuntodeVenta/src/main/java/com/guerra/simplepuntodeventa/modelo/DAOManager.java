@@ -18,10 +18,10 @@ import com.guerra.simplepuntodeventa.modelo.dao.CuentaProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.EmpresaDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.HistorialAbonoProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.ProveedorDAOImpl;
+import com.guerra.simplepuntodeventa.modelo.dao.ServicioDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.UbicacionDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.UsuarioDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.VentaDAOImpl;
-import com.guerra.simplepuntodeventa.modelo.entidades.HistorialAbonoProveedor;
 import javax.persistence.EntityManagerFactory;
 
 /**
@@ -51,6 +51,7 @@ public class DAOManager {
     private final UbicacionDAOImpl ubicacionDAO;
     private final CuentaProveedorDAOImpl cuentaProveedorDAO;
     private final HistorialAbonoProveedorDAOImpl historialAbonoProveedorDAO;
+    private final ServicioDAOImpl servicioDAO;
 
     //evitar instancias con new
     private DAOManager() {
@@ -71,6 +72,7 @@ public class DAOManager {
         ubicacionDAO = new UbicacionDAOImpl(emf);
         cuentaProveedorDAO = new CuentaProveedorDAOImpl(emf);
         historialAbonoProveedorDAO = new HistorialAbonoProveedorDAOImpl(emf);
+        servicioDAO = new ServicioDAOImpl(emf);
     }
 
     public static DAOManager getInstancia() {
@@ -146,6 +148,10 @@ public class DAOManager {
 
     public HistorialAbonoProveedorDAOImpl getHistorialAbonoProveedorDAO() {
         return historialAbonoProveedorDAO;
+    }
+
+    public ServicioDAOImpl getServicioDAO() {
+        return servicioDAO;
     }
 
 }

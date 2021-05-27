@@ -7,7 +7,6 @@ package com.guerra.simplepuntodeventa.modelo.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,12 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -59,13 +56,13 @@ public class Servicio implements Serializable {
     private String descripcion;
     @Basic(optional = false)
     @Column(name = "precio_a")
-    private String precioA;
+    private double precioA;
     @Basic(optional = false)
     @Column(name = "precio_b")
-    private String precioB;
+    private double precioB;
     @Basic(optional = false)
     @Column(name = "precio_c")
-    private String precioC;
+    private double precioC;
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
@@ -80,8 +77,6 @@ public class Servicio implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
-    @OneToMany(mappedBy = "idServicio")
-    private List<DetalleVenta> detalleVentaList;
 
     public Servicio() {
     }
@@ -90,7 +85,7 @@ public class Servicio implements Serializable {
         this.idServicio = idServicio;
     }
 
-    public Servicio(Integer idServicio, String codigo, String descripcion, String precioA, String precioB, String precioC, int estado, Date fechaCommit, Date horaCommit) {
+    public Servicio(Integer idServicio, String codigo, String descripcion, double precioA, double precioB, double precioC, int estado, Date fechaCommit, Date horaCommit) {
         this.idServicio = idServicio;
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -126,27 +121,27 @@ public class Servicio implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getPrecioA() {
+    public double getPrecioA() {
         return precioA;
     }
 
-    public void setPrecioA(String precioA) {
+    public void setPrecioA(double precioA) {
         this.precioA = precioA;
     }
 
-    public String getPrecioB() {
+    public double getPrecioB() {
         return precioB;
     }
 
-    public void setPrecioB(String precioB) {
+    public void setPrecioB(double precioB) {
         this.precioB = precioB;
     }
 
-    public String getPrecioC() {
+    public double getPrecioC() {
         return precioC;
     }
 
-    public void setPrecioC(String precioC) {
+    public void setPrecioC(double precioC) {
         this.precioC = precioC;
     }
 
@@ -182,15 +177,6 @@ public class Servicio implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    @XmlTransient
-    public List<DetalleVenta> getDetalleVentaList() {
-        return detalleVentaList;
-    }
-
-    public void setDetalleVentaList(List<DetalleVenta> detalleVentaList) {
-        this.detalleVentaList = detalleVentaList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -213,7 +199,7 @@ public class Servicio implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.spv.modelo.entidades.Servicio[ idServicio=" + idServicio + " ]";
+        return "com.guerra.simplepuntodeventa.modelo.entidades.Servicio[ idServicio=" + idServicio + " ]";
     }
     
 }

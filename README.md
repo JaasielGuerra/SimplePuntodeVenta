@@ -77,3 +77,10 @@ Proyecto control de inventario y venta de servicios
 - Imprimir comprobante por cada abono a compra
 - Vista para reporte de comprobante abono compra
 - Procedimiento para llamar al reporte de comprobante abono compra
+
+2021.05.26
+- Modulo de servicios terminado
+- Realización de registro de un servicio
+- Actualizar servicios
+- Consultar servicios y filtrar por estado
+- Activar o desactivar servicios
