@@ -44,4 +44,25 @@ public class FuncionesServicios {
         return s;
     }
 
+    
+     /**
+     * Buscar coincidencias con la clausa LIKE por descripcion y estado
+     *
+     * @param estado
+     * @param busqueda
+     * @return listado de resultado de la consulta
+     */
+    public static List<Servicio> buscarServicioPorDescripcionEstado(int estado,
+            String busqueda) {
+        if (servicioDAO == null) {
+            servicioDAO = DAOManager.getInstancia().getServicioDAO();
+        }
+        List<Parameter> p = new ArrayList<>();
+        p.add(new Parameter("estado", estado));
+        p.add(new Parameter("busqueda", "%".concat(busqueda).concat("%")));
+        return servicioDAO.readByQuery("SELECT s "
+                + "FROM Servicio s "
+                + "WHERE s.estado = :estado "
+                + "AND s.descripcion LIKE :busqueda", p);
+    }
 }

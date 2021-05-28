@@ -113,7 +113,7 @@ public class IfrmVentas extends javax.swing.JInternalFrame {
 
         btnBuscarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-package-search-28.png"))); // NOI18N
         btnBuscarArticulo.setText("BUSCAR");
-        btnBuscarArticulo.setToolTipText("Realizar una búsqueda de artículo por descripción");
+        btnBuscarArticulo.setToolTipText("Realizar una búsqueda de artículo/servicio por descripción");
         btnBuscarArticulo.setFocusPainted(false);
         btnBuscarArticulo.setPreferredSize(new java.awt.Dimension(121, 35));
         jPanel11.add(btnBuscarArticulo);

@@ -4,7 +4,8 @@
  */
 package com.guerra.simplepuntodeventa.controlador.ventas;
 
-import com.guerra.simplepuntodeventa.controlador.busquedaarticulo.ControladorBusquedaArticulo;
+import com.guerra.simplepuntodeventa.controlador.busqueda.ControladorBusquedaArticulo;
+import com.guerra.simplepuntodeventa.controlador.busqueda.ControladorBusquedaServicio;
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.Estado;
 import com.guerra.simplepuntodeventa.modelo.Tipo;
@@ -112,6 +113,7 @@ public class ControladorVenta {
     private final PanCredito panCredito;
 
     private ControladorBusquedaArticulo controladorBusquedaArticulo;
+    private ControladorBusquedaServicio controladorBusquedaServicio;
 
     public ControladorVenta(IfrmVentas ifrmMenuVentas) {
         this.ifrmVentas = ifrmMenuVentas;
@@ -181,7 +183,19 @@ public class ControladorVenta {
             quitarArticuloTabla();
         });
         ifrmVentas.btnBuscarArticulo.addActionListener((e) -> {
-            mostrarVentabaBuscarArticulo();
+
+            int tipo = ifrmVentas.cmbTipo.getSelectedIndex() + 1;
+
+            switch (tipo) {
+                case DETALLE_ARTICULO:
+                    controladorBusquedaArticulo.mostrarDialogoBuscarArticulo();
+                    break;
+                case DETALLE_SERVICIO:
+                    controladorBusquedaServicio.mostrarDialogoBuscarServicio();
+                    break;
+                default:
+                    break;
+            }
         });
         ifrmVentas.btnAumentarCantidad.addActionListener((e) -> {
             aumentarCantidadArticulo();
@@ -234,6 +248,10 @@ public class ControladorVenta {
                 setArticuloServicioATabla(seleccionado, null, DETALLE_ARTICULO);
                 resetCodigoBarra();
             }
+        });
+        controladorBusquedaServicio = new ControladorBusquedaServicio(ifrmVentas, (seleccionado) -> {
+            setArticuloServicioATabla(null, seleccionado, DETALLE_SERVICIO);
+            resetCodigoBarra();
         });
         //----------------------------------------------------------------------
         ifrmVentas.tbdDetalle.addChangeListener((e) -> {
@@ -927,10 +945,6 @@ public class ControladorVenta {
         } else {
             MsjInfo.msjSeleccioneFila(ifrmVentas);
         }
-    }
-
-    private void mostrarVentabaBuscarArticulo() {
-        controladorBusquedaArticulo.mostrarDialogoBuscarArticulo();
     }
 
     private void aumentarCantidadArticulo() {

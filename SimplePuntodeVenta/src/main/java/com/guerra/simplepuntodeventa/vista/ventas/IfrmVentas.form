@@ -167,7 +167,7 @@
                       <Image iconType="3" name="/img/icons8-package-search-28.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="BUSCAR"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Realizar una b&#xfa;squeda de art&#xed;culo por descripci&#xf3;n"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Realizar una b&#xfa;squeda de art&#xed;culo/servicio por descripci&#xf3;n"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[121, 35]"/>
