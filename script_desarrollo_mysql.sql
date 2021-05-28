@@ -820,6 +820,9 @@ END$$
 DELIMITER ;
 DELIMITER $$
 $$
+
+
+
 CREATE FUNCTION ganancia_inventario ()
 RETURNS double
 BEGIN
@@ -860,6 +863,34 @@ END$$
 DELIMITER ;
 
 
+
+DELIMITER $$
+CREATE FUNCTION cantidad_articulos_venta (id_venta INT)
+RETURNS INTEGER
+BEGIN
+RETURN 
+	(SELECT SUM(detalle_venta.cantidad)
+	FROM detalle_venta
+	WHERE detalle_venta.id_venta =  id_venta);
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE FUNCTION total_venta (id_venta INT)
+RETURNS DOUBLE
+BEGIN
+RETURN 
+	(SELECT venta.total
+	FROM venta
+    WHERE venta.id_venta =  id_venta);
+END$$
+DELIMITER ;
+
+
+
+
 -- -----------------------------------------------------
 -- Procedimientos
 -- -----------------------------------------------------
@@ -885,6 +916,18 @@ DELIMITER ;
 
 
 
+
+DELIMITER $$
+CREATE PROCEDURE ticket_venta (id_venta INT)
+BEGIN
+	SELECT * FROM db_spv.reporte_ticket_venta
+	WHERE reporte_ticket_venta.id_venta = id_venta;
+END$$
+DELIMITER ;
+
+
+
+
 -- -----------------------------------------------------
 -- Vistas
 -- -----------------------------------------------------
@@ -900,6 +943,23 @@ SELECT historial_abono_proveedor.fecha AS fecha_abono,
 FROM historial_abono_proveedor
 	INNER JOIN compra ON 
 	 historial_abono_proveedor.id_compra = compra.id_compra;
+
+
+
+
+CREATE  OR REPLACE VIEW reporte_ticket_venta AS
+SELECT
+	detalle_venta.id_venta,
+	detalle_venta.cantidad,
+	detalle_venta.precio_unitario,
+	COALESCE(articulo.descripcion, servicio.descripcion) AS descripcion,
+	detalle_venta.sub_total 
+
+FROM detalle_venta
+	 LEFT JOIN articulo ON 
+	 articulo.id_articulo = detalle_venta.id_articulo
+	 LEFT JOIN servicio ON
+	 servicio.id_servicio = detalle_venta.id_servicio;
 
 
 

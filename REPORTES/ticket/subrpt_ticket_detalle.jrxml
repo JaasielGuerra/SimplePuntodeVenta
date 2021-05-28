@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subrpt_ticket_detalle" pageWidth="286" pageHeight="792" columnWidth="286" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4155c05b-bee4-4c0d-a0c4-594228a7fed4">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLITE3"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="spv"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -33,55 +33,47 @@
 	</style>
 	<subDataset name="DETALLE_TICKET" uuid="4bcc2ad9-54f3-45bc-9d93-029f1329a712">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLITE3"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="spv"/>
 		<parameter name="ID_VENTA" class="java.lang.Integer"/>
 		<queryString language="SQL">
-			<![CDATA[SELECT detalle_venta.cantidad,
-	detalle_venta.precio_unitario,
-	articulo.descripcion,
-	detalle_venta.sub_total 
-
-FROM detalle_venta
-	INNER JOIN articulo ON 
-	 articulo.id_articulo = detalle_venta.id_articulo
-	 
-WHERE detalle_venta.id_venta =  $P{ID_VENTA}]]>
+			<![CDATA[call ticket_venta($P{ID_VENTA});  ]]>
 		</queryString>
-		<field name="descripcion" class="java.lang.Object">
-			<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-			<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-			<property name="com.jaspersoft.studio.field.tree.path" value="articulo"/>
+		<field name="id_venta" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="id_venta"/>
+			<property name="com.jaspersoft.studio.field.label" value="id_venta"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reporte_ticket_venta"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="cantidad" class="java.lang.Object">
+		<field name="cantidad" class="java.lang.Integer">
 			<property name="com.jaspersoft.studio.field.name" value="cantidad"/>
 			<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
-			<property name="com.jaspersoft.studio.field.tree.path" value="detalle_venta"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reporte_ticket_venta"/>
 		</field>
-		<field name="precio_unitario" class="java.lang.Object">
+		<field name="precio_unitario" class="java.lang.Double">
 			<property name="com.jaspersoft.studio.field.name" value="precio_unitario"/>
 			<property name="com.jaspersoft.studio.field.label" value="precio_unitario"/>
-			<property name="com.jaspersoft.studio.field.tree.path" value="detalle_venta"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reporte_ticket_venta"/>
 		</field>
-		<field name="sub_total" class="java.lang.Object">
+		<field name="descripcion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+			<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reporte_ticket_venta"/>
+		</field>
+		<field name="sub_total" class="java.lang.Double">
 			<property name="com.jaspersoft.studio.field.name" value="sub_total"/>
 			<property name="com.jaspersoft.studio.field.label" value="sub_total"/>
-			<property name="com.jaspersoft.studio.field.tree.path" value="detalle_venta"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="reporte_ticket_venta"/>
 		</field>
 	</subDataset>
 	<parameter name="ID_VENTA_DETALLE" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT SUM(detalle_venta.cantidad) as cantidad_articulos,
-SUM(detalle_venta.sub_total) as total
-
-FROM detalle_venta
-
-WHERE detalle_venta.id_venta =  $P{ID_VENTA_DETALLE}]]>
+		<![CDATA[select cantidad_articulos_venta(  $P{ID_VENTA_DETALLE}) cantidad_articulos, total_venta( $P{ID_VENTA_DETALLE}) total;]]>
 	</queryString>
-	<field name="cantidad_articulos" class="java.lang.Object">
+	<field name="cantidad_articulos" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="cantidad_articulos"/>
 		<property name="com.jaspersoft.studio.field.label" value="cantidad_articulos"/>
 	</field>
-	<field name="total" class="java.lang.Object">
+	<field name="total" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.name" value="total"/>
 		<property name="com.jaspersoft.studio.field.label" value="total"/>
 	</field>

@@ -462,7 +462,7 @@ public class ControladorCompra {
             MsjValidacion.msjJTextFieldRequeridos(panNuevaCompra);
 
         } else if (panNuevaCompra.tblDetalles.getRowCount() == 0) {
-            MsjValidacion.msjTablaVaciaSinArticulos(panNuevaCompra);
+            MsjValidacion.msjTablaVaciaSinDetalles(panNuevaCompra);
 
         } else {//formulario valido
 

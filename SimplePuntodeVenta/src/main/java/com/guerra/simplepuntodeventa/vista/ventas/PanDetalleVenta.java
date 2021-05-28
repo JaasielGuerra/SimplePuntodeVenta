@@ -29,6 +29,7 @@ public class PanDetalleVenta extends javax.swing.JPanel {
     public PanDetalleVenta() {
         initComponents();
         TablaUtil.ocultarCol(tblDetalleVenta, 0);
+        TablaUtil.anchoMinimoColumna(tblDetalleVenta, 2, 350);
     }
 
     /**
@@ -50,7 +51,7 @@ public class PanDetalleVenta extends javax.swing.JPanel {
 
             },
             new String [] {
-                "entity", "CÓDIGO(1)", "ARTÍCULO", "P. UNITARIO", "CANTIDAD", "GANANCIA", "SUBTOTAL"
+                "entity", "CÓDIGO", "DESCRIPCIÓN", "P. UNITARIO", "CANTIDAD", "GANANCIA", "SUBTOTAL"
             }
         ) {
             Class[] types = new Class [] {

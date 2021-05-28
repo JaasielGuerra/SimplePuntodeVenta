@@ -22,6 +22,8 @@ import com.guerra.simplepuntodeventa.modelo.funciones.FuncionesInventario;
 import com.guerra.simplepuntodeventa.modelo.funciones.FuncionesVentas;
 import com.guerra.simplepuntodeventa.global.ConfiguracionEmpresa;
 import com.guerra.simplepuntodeventa.global.Session;
+import com.guerra.simplepuntodeventa.modelo.entidades.Servicio;
+import com.guerra.simplepuntodeventa.modelo.funciones.FuncionesServicios;
 import com.guerra.simplepuntodeventa.recursos.componentes.animacion.DlgProceso;
 import com.guerra.simplepuntodeventa.recursos.componentes.modelos.ModeloJTextFieldCodigoBarra;
 import com.guerra.simplepuntodeventa.recursos.utilerias.PanelUtil;
@@ -58,6 +60,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -79,6 +82,10 @@ public class ControladorVenta {
     //constantes para determinar origen de venta al momento de registrarla
     private static final short NUEVA = 0;
     private static final short PENDIENTE = 1;
+
+    //constantes para el tipo de objeto que se vende en el detalle
+    private static final short DETALLE_ARTICULO = 1;
+    private static final short DETALLE_SERVICIO = 2;
 
     //para salvar temporalmente una venta para cencelarla
     private Venta ventaTemp;
@@ -224,7 +231,7 @@ public class ControladorVenta {
                 int cantidad = (int) spn.getValue();
                 ifrmVentas.spnCantidad.setValue(cantidad);
 
-                setArticuloATabla(seleccionado);
+                setArticuloServicioATabla(seleccionado, null, DETALLE_ARTICULO);
                 resetCodigoBarra();
             }
         });
@@ -432,8 +439,16 @@ public class ControladorVenta {
                 // obtener detalle de la tabla
                 DetalleVenta dtActual = (DetalleVenta) m.getValueAt(i, 0);
 
-                // validar coincidencia con el id del articulo
-                if (dtActual.getIdArticulo().getIdArticulo().equals(d.getIdArticulo().getIdArticulo())) {
+                Integer idObjetoTabla = dtActual.getTipo() == DETALLE_ARTICULO
+                        ? dtActual.getIdArticulo().getIdArticulo()
+                        : dtActual.getIdServicio().getIdServicio();
+
+                Integer idObjetoInsertar = d.getTipo() == DETALLE_ARTICULO
+                        ? d.getIdArticulo().getIdArticulo()
+                        : d.getIdServicio().getIdServicio();
+
+                // validar coincidencia con el id del articulo/servicio
+                if (idObjetoTabla.equals(idObjetoInsertar)) {
 
                     coincidencia = true;
 
@@ -442,9 +457,10 @@ public class ControladorVenta {
                     double nuevoSubtotal = NumeroUtil.redondear(d.getPrecioUnitario() * nuevaCantidad, 2);
 
                     //actualizar los datos
+                    Double gananciaDetalle = d.getTipo() == DETALLE_ARTICULO ? d.getIdArticulo().getGanancia() : d.getPrecioUnitario();
                     d.setCantidad(nuevaCantidad);
                     d.setSubTotal(nuevoSubtotal);
-                    d.setGanancia(nuevaCantidad * d.getIdArticulo().getGanancia());
+                    d.setGanancia(nuevaCantidad * gananciaDetalle);
 
                     m.setValueAt(d, i, 0);
                     m.setValueAt(d.getPrecioUnitario(), i, 3);
@@ -465,10 +481,14 @@ public class ControladorVenta {
 
     //agregar una fila nueva con un detalle a la tabla de detalle de venta
     private void agregarFilaDetalleATablaNuevaCompra(DefaultTableModel m, DetalleVenta d) {
+
+        String codigo = d.getTipo() == DETALLE_ARTICULO ? d.getIdArticulo().getCod1() : d.getIdServicio().getCodigo();
+        String descripcion = d.getTipo() == DETALLE_ARTICULO ? d.getIdArticulo().getDescripcion() : d.getIdServicio().getDescripcion();
+
         Object[] f = new Object[7];
         f[0] = d;
-        f[1] = d.getIdArticulo().getCod1();
-        f[2] = d.getIdArticulo().getDescripcion();
+        f[1] = codigo;
+        f[2] = descripcion;
         f[3] = d.getPrecioUnitario();
         f[4] = d.getCantidad();
         f[5] = d.getGanancia();
@@ -505,21 +525,50 @@ public class ControladorVenta {
         return (PanDetalleVenta) ifrmVentas.tbdDetalle.getComponentAt(i);
     }
 
-    // meter un articulo como detalle a la tabla
-    private void setArticuloATabla(Articulo a) {
+    // meter un articulo/servicio como detalle a la tabla
+    private void setArticuloServicioATabla(Articulo a, Servicio s, int tipoDetalle) {
 
         int cantidad = (int) ifrmVentas.spnCantidad.getValue();
+
+        Double precioUnitario = 0.00D;
+        Double gananciaDetalle = 0.00D;
+
+        if (tipoDetalle == DETALLE_SERVICIO) {
+
+            String[] options = new String[]{"Aceptar", "Cancelar"};
+            JComboBox<Double> precio = new JComboBox<>();
+
+            precio.addItem(s.getPrecioA());
+            precio.addItem(s.getPrecioB());
+            precio.addItem(s.getPrecioC());
+
+            int opcion = JOptionPane.showOptionDialog(ifrmVentas, precio, "¿Precio?",
+                    JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            if (opcion != JOptionPane.OK_OPTION) {
+                return;
+            }
+
+            precioUnitario = (Double) precio.getSelectedItem();
+            gananciaDetalle = precioUnitario;
+        }
+
+        if (tipoDetalle == DETALLE_ARTICULO) {
+            precioUnitario = a.getPrecioVenta();
+            gananciaDetalle = a.getGanancia();
+        }
 
         ///////nuevo detalle de venta/////////
         DetalleVenta d = new DetalleVenta();
 
         d.setCantidad(cantidad);
-        d.setPrecioUnitario(a.getPrecioVenta());
-        d.setSubTotal(cantidad * a.getPrecioVenta());
-        d.setGanancia(cantidad * a.getGanancia());
-        d.setIdArticulo(a);
-        d.setTipo(1);//articulo
+        d.setPrecioUnitario(precioUnitario);
+        d.setSubTotal(cantidad * precioUnitario);
+        d.setGanancia(cantidad * gananciaDetalle);
+        d.setTipo(tipoDetalle);
         d.setEstado(1);
+        d.setIdArticulo(a);
+        d.setIdServicio(s);
         d.setIdUsuario((Usuario) Session.getInstancia().getAttribute("user"));
 
         agregarDetalleATabla(getTablaTabSeleccionado(), d);
@@ -793,7 +842,7 @@ public class ControladorVenta {
             dlgCobrar.setVisible(true);
 
         } else {
-            MsjValidacion.msjTablaVaciaSinArticulos(ifrmVentas);
+            MsjValidacion.msjTablaVaciaSinDetalles(ifrmVentas);
         }
     }
 
@@ -803,13 +852,27 @@ public class ControladorVenta {
             MsjInfo.msjNoArticuloBuscado(ifrmVentas);
         } else {
 
+            Articulo a = null;
+            Servicio s = null;
+
             String c = ifrmVentas.txtCodigo.getText();
 
-            Articulo a = FuncionesInventario.getArticuloPorCodigo(c);
+            int tipo = ifrmVentas.cmbTipo.getSelectedIndex() + 1;
 
-            if (a != null) {
+            switch (tipo) {
+                case DETALLE_ARTICULO:
+                    a = FuncionesInventario.getArticuloPorCodigo(c);
+                    break;
+                case DETALLE_SERVICIO:
+                    s = FuncionesServicios.getServicioPorCodigo(c);
+                    break;
+                default:
+                    break;
+            }
 
-                setArticuloATabla(a);
+            if (a != null || s != null) {
+
+                setArticuloServicioATabla(a, s, tipo);
                 resetCodigoBarra();
 
             } else {
@@ -877,9 +940,10 @@ public class ControladorVenta {
             DefaultTableModel m = (DefaultTableModel) getTablaTabSeleccionado().getModel();
 
             //actualizar el detalle
+            Double gananciaDetalle = d.getTipo() == DETALLE_ARTICULO ? d.getIdArticulo().getGanancia() : d.getPrecioUnitario();
             d.setCantidad(d.getCantidad() + 1);
             d.setSubTotal(d.getCantidad() * d.getPrecioUnitario());
-            d.setGanancia(d.getCantidad() * d.getIdArticulo().getGanancia());
+            d.setGanancia(d.getCantidad() * gananciaDetalle);
 
             //actualizar la tabla
             m.setValueAt(d.getCantidad(), getTablaTabSeleccionado().getSelectedRow(), 4);
@@ -903,9 +967,10 @@ public class ControladorVenta {
                 DefaultTableModel m = (DefaultTableModel) getTablaTabSeleccionado().getModel();
 
                 //actualizar el detalle
+                Double gananciaDetalle = d.getTipo() == DETALLE_ARTICULO ? d.getIdArticulo().getGanancia() : d.getPrecioUnitario();
                 d.setCantidad(d.getCantidad() - 1);
                 d.setSubTotal(d.getCantidad() * d.getPrecioUnitario());
-                d.setGanancia(d.getCantidad() * d.getIdArticulo().getGanancia());
+                d.setGanancia(d.getCantidad() * gananciaDetalle);
 
                 //actualizar la tabla
                 m.setValueAt(d.getCantidad(), getTablaTabSeleccionado().getSelectedRow(), 4);
@@ -1026,9 +1091,13 @@ public class ControladorVenta {
             List<DetalleVenta> detalleVentaList = FuncionesVentas.obtenerDetalleVenta(v);
 
             detalleVentaList.stream().map((d) -> {
+
+                String codigo = d.getTipo() == DETALLE_ARTICULO ? d.getIdArticulo().getCod1() : d.getIdServicio().getCodigo();
+                String descripcion = d.getTipo() == DETALLE_ARTICULO ? d.getIdArticulo().getDescripcion() : d.getIdServicio().getDescripcion();
+
                 Object[] rowData = new Object[6];
-                rowData[0] = d.getIdArticulo().getCod1();
-                rowData[1] = d.getIdArticulo().getDescripcion();
+                rowData[0] = codigo;
+                rowData[1] = descripcion;
                 rowData[2] = d.getPrecioUnitario();
                 rowData[3] = d.getCantidad();
                 rowData[4] = d.getGanancia();

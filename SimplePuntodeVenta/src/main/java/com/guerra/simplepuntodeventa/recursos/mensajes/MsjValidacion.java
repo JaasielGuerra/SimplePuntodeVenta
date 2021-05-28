@@ -72,8 +72,8 @@ public class MsjValidacion {
      *
      * @param padre
      */
-    public static void msjTablaVaciaSinArticulos(Component padre) {
-        JOptionPane.showMessageDialog(padre, "No se puede realizar la acción, porque no hay artículos en la tabla.",
+    public static void msjTablaVaciaSinDetalles(Component padre) {
+        JOptionPane.showMessageDialog(padre, "No se puede realizar la acción, porque no hay detelles en la tabla.",
                 "Incorrecto", JOptionPane.ERROR_MESSAGE);
     }
 

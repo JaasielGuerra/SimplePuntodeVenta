@@ -33,8 +33,8 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="7" rowCount="0">
                 <Column editable="false" title="entity" type="java.lang.Object"/>
-                <Column editable="false" title="C&#xd3;DIGO(1)" type="java.lang.String"/>
-                <Column editable="false" title="ART&#xcd;CULO" type="java.lang.String"/>
+                <Column editable="false" title="C&#xd3;DIGO" type="java.lang.String"/>
+                <Column editable="false" title="DESCRIPCI&#xd3;N" type="java.lang.String"/>
                 <Column editable="false" title="P. UNITARIO" type="java.lang.Double"/>
                 <Column editable="false" title="CANTIDAD" type="java.lang.Integer"/>
                 <Column editable="false" title="GANANCIA" type="java.lang.Double"/>
