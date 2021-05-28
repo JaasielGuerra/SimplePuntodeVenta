@@ -84,3 +84,9 @@ Proyecto control de inventario y venta de servicios
 - Actualizar servicios
 - Consultar servicios y filtrar por estado
 - Activar o desactivar servicios
+
+2021.05.28
+- Buscar servicio por codigo
+- Realizar venta de servicios
+- Reporte ticket arreglado para detalle de servicio
+- Buscar servicios por descripcion

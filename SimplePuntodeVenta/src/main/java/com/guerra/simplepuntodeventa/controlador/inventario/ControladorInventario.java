@@ -3,7 +3,7 @@
  */
 package com.guerra.simplepuntodeventa.controlador.inventario;
 
-import com.guerra.simplepuntodeventa.controlador.busquedaarticulo.ControladorBusquedaArticulo;
+import com.guerra.simplepuntodeventa.controlador.busqueda.ControladorBusquedaArticulo;
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.dao.ArticuloDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.KardexDAOImpl;

@@ -191,7 +191,7 @@ public class DlgVentasRealizadas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "CÓDIGO(1)", "ARTÍCULO", "PRECIO UNIT.", "CANTIDAD", "GANANCIA", "SUBTOTAL"
+                "CÓDIGO", "DESCRIPCIÓN", "PRECIO UNIT.", "CANTIDAD", "GANANCIA", "SUBTOTAL"
             }
         ) {
             Class[] types = new Class [] {

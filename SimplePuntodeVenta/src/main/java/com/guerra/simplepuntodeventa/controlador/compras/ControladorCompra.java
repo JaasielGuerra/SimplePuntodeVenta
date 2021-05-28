@@ -4,7 +4,7 @@
 package com.guerra.simplepuntodeventa.controlador.compras;
 
 import com.guerra.simplepuntodeventa.controlador.articulos.ControladorArticulos;
-import com.guerra.simplepuntodeventa.controlador.busquedaarticulo.ControladorBusquedaArticulo;
+import com.guerra.simplepuntodeventa.controlador.busqueda.ControladorBusquedaArticulo;
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.Estado;
 import com.guerra.simplepuntodeventa.modelo.dao.ArticuloDAOImpl;
@@ -462,7 +462,7 @@ public class ControladorCompra {
             MsjValidacion.msjJTextFieldRequeridos(panNuevaCompra);
 
         } else if (panNuevaCompra.tblDetalles.getRowCount() == 0) {
-            MsjValidacion.msjTablaVaciaSinArticulos(panNuevaCompra);
+            MsjValidacion.msjTablaVaciaSinDetalles(panNuevaCompra);
 
         } else {//formulario valido
 

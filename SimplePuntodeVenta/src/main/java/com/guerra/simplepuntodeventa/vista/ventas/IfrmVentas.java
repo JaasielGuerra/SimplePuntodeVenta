@@ -18,7 +18,7 @@ public class IfrmVentas extends javax.swing.JInternalFrame {
      */
     public IfrmVentas() {
         initComponents();
-        PlaceHolderSupport.setPlaceHolder("Escriba el código del artículo y presione ENTER", txtCodigo);
+        PlaceHolderSupport.setPlaceHolder("Escriba el código del artículo/servicio y presione ENTER", txtCodigo);
     }
 
     /**
@@ -34,6 +34,7 @@ public class IfrmVentas extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        cmbTipo = new javax.swing.JComboBox<>();
         txtCodigo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         spnCantidad = new javax.swing.JSpinner();
@@ -81,8 +82,12 @@ public class IfrmVentas extends javax.swing.JInternalFrame {
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-barcode-32.png"))); // NOI18N
-        jLabel1.setText("Código de artículo");
+        jLabel1.setText("Buscar");
         jPanel6.add(jLabel1);
+
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "artículo", "servicio" }));
+        cmbTipo.setPreferredSize(new java.awt.Dimension(90, 25));
+        jPanel6.add(cmbTipo);
 
         txtCodigo.setBackground(new java.awt.Color(255, 255, 153));
         txtCodigo.setMinimumSize(new java.awt.Dimension(400, 35));
@@ -108,7 +113,7 @@ public class IfrmVentas extends javax.swing.JInternalFrame {
 
         btnBuscarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-package-search-28.png"))); // NOI18N
         btnBuscarArticulo.setText("BUSCAR");
-        btnBuscarArticulo.setToolTipText("Realizar una búsqueda de artículo por descripción");
+        btnBuscarArticulo.setToolTipText("Realizar una búsqueda de artículo/servicio por descripción");
         btnBuscarArticulo.setFocusPainted(false);
         btnBuscarArticulo.setPreferredSize(new java.awt.Dimension(121, 35));
         jPanel11.add(btnBuscarArticulo);
@@ -139,7 +144,7 @@ public class IfrmVentas extends javax.swing.JInternalFrame {
         jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnQuitarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-delete-bin-16.png"))); // NOI18N
-        btnQuitarArticulo.setText("QUITAR ARTÍCULO");
+        btnQuitarArticulo.setText("QUITAR DETALLE");
         btnQuitarArticulo.setToolTipText("Quitar el artículo de la fila seleccionada");
         btnQuitarArticulo.setFocusPainted(false);
         jPanel10.add(btnQuitarArticulo);
@@ -263,6 +268,7 @@ public class IfrmVentas extends javax.swing.JInternalFrame {
     public javax.swing.JButton btnPendiente;
     public javax.swing.JButton btnQuitarArticulo;
     public javax.swing.JButton btnVentasRealizadas;
+    public javax.swing.JComboBox<String> cmbTipo;
     public javax.swing.JFormattedTextField ftdTotal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

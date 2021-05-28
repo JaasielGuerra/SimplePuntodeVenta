@@ -1,7 +1,7 @@
 /*
  * Controlador para el dialogo de busqueda de un articulo
  */
-package com.guerra.simplepuntodeventa.controlador.busquedaarticulo;
+package com.guerra.simplepuntodeventa.controlador.busqueda;
 
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.dao.ArticuloDAOImpl;
@@ -27,7 +27,7 @@ public class ControladorBusquedaArticulo {
 
     private final ArticuloDAOImpl articuloDAO = DAOManager.getInstancia().getArticuloDAO();
 
-    public ControladorBusquedaArticulo(Component localizacion, ISeleccion seleccion) {
+    public ControladorBusquedaArticulo(Component localizacion, ISeleccion<Articulo> seleccion) {
         this.dlgBuscarArticulo = new DlgBuscarArticulo(null, true);
         this.seleccion = seleccion;
         this.localizacion = localizacion;

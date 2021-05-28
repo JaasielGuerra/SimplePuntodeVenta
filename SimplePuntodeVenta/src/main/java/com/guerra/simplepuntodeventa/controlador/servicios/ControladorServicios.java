@@ -7,7 +7,6 @@ import com.guerra.simplepuntodeventa.global.Session;
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.Estado;
 import com.guerra.simplepuntodeventa.modelo.dao.ServicioDAOImpl;
-import com.guerra.simplepuntodeventa.modelo.entidades.Categoria;
 import com.guerra.simplepuntodeventa.modelo.entidades.Servicio;
 import com.guerra.simplepuntodeventa.modelo.entidades.Usuario;
 import com.guerra.simplepuntodeventa.recursos.mensajes.MsjException;
