@@ -37,7 +37,7 @@
         <Property name="alignment" type="int" value="0"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnGuardar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/icons8-save-16.png"/>
@@ -79,13 +79,11 @@
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCod1" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
+                                  <Component id="txtNombre" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCod2" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
+                                  <Component id="txtUser" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
                                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCod4" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCod3" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
+                                  <Component id="txtPass" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -103,22 +101,18 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtCod1" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNombre" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtCod2" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtUser" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtCod4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtCod3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="205" max="32767" attributes="0"/>
+                      <Component id="txtPass" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="255" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -145,7 +139,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre completo(*):"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtCod1">
+            <Component class="javax.swing.JTextField" name="txtNombre">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -163,17 +157,7 @@
                 <Property name="text" type="java.lang.String" value="Usuario(*):"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtCod2">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Repetir contrase&#xf1;a(*):"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtCod3">
+            <Component class="javax.swing.JTextField" name="txtUser">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -183,7 +167,7 @@
                 <Property name="text" type="java.lang.String" value="Contrase&#xf1;a(*):"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtCod4">
+            <Component class="javax.swing.JTextField" name="txtPass">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>

@@ -5,17 +5,23 @@
  */
 package com.guerra.simplepuntodeventa.vista.usuarios;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Jaasiel
  */
 public class IfrmMenuUsuarios extends javax.swing.JInternalFrame {
 
+    public static JPanel PANEL_CAMBIANTE;
+
     /**
      * Creates new form ifrmVentas
      */
     public IfrmMenuUsuarios() {
         initComponents();
+        IfrmMenuUsuarios.PANEL_CAMBIANTE = panCentral;
+        btnPrivilegios.setVisible(false);
     }
 
     /**

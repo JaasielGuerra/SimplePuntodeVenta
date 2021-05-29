@@ -5,6 +5,8 @@
  */
 package com.guerra.simplepuntodeventa.vista.usuarios;
 
+import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
+
 /**
  *
  * @author Jaasiel
@@ -16,6 +18,8 @@ public class PanListUsuarios extends javax.swing.JPanel {
      */
     public PanListUsuarios() {
         initComponents();
+        TablaUtil.ocultarCol(tblUsuarios, 0);
+        TablaUtil.anchoMinimoColumna(tblUsuarios, 1, 250);
     }
 
     /**
@@ -29,10 +33,10 @@ public class PanListUsuarios extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblUsuarios = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbxEstado = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnDesactivar = new javax.swing.JButton();
@@ -41,7 +45,7 @@ public class PanListUsuarios extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("USUARIOS");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -67,16 +71,16 @@ public class PanListUsuarios extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
+        tblUsuarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tblUsuarios);
 
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jLabel3.setText("Estado");
         jPanel1.add(jLabel3);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2);
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbxEstado);
 
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
@@ -130,12 +134,12 @@ public class PanListUsuarios extends javax.swing.JPanel {
     public javax.swing.JButton btnActivar;
     public javax.swing.JButton btnDesactivar;
     public javax.swing.JButton btnEditar;
-    private javax.swing.JComboBox<String> jComboBox2;
+    public javax.swing.JComboBox<String> cbxEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable tblUsuarios;
     // End of variables declaration//GEN-END:variables
 }
