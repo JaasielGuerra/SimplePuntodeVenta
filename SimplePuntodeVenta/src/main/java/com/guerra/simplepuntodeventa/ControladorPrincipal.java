@@ -12,6 +12,7 @@ import com.guerra.simplepuntodeventa.controlador.proveedores.MenuProveedores;
 import com.guerra.simplepuntodeventa.controlador.servicios.ControladorServicios;
 import com.guerra.simplepuntodeventa.controlador.usuarios.MenuUsuarios;
 import com.guerra.simplepuntodeventa.controlador.ventas.ControladorVenta;
+import com.guerra.simplepuntodeventa.global.ConfiguracionEmpresa;
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.entidades.Cliente;
 import com.guerra.simplepuntodeventa.modelo.entidades.Proveedor;
@@ -73,15 +74,6 @@ public class ControladorPrincipal {
 
     private void init() {
 
-        //crear cache en la sesion
-        Usuario user = DAOManager.getInstancia().getUsuarioDAO().readOne(1);
-        Cliente cliente = DAOManager.getInstancia().getClienteDAO().readOne(1);
-        Proveedor prov = DAOManager.getInstancia().getProveedorDAO().readOne(1);
-        Session.getInstancia().setAttribute("user", user);
-        Session.getInstancia().setAttribute("cliente", cliente);
-        Session.getInstancia().setAttribute("proveedor", prov);
-
-        frmPrincipal.setVisible(true);
         ifrmMenuVentas.hide();
         ifrmMenuArticulos.hide();
         ifrmMenuInventario.hide();
@@ -107,12 +99,6 @@ public class ControladorPrincipal {
 
     private void initOyentes() {//listar eventos
 
-        frmPrincipal.btnCerrarSistema.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                cerrarSistema();
-            }
-        });
         frmPrincipal.btnVentas.addActionListener((e) -> {
             mostrarVentanaVentas();
         });
@@ -149,11 +135,25 @@ public class ControladorPrincipal {
         frmPrincipal.panPrincipal.add(ifrm);
     }
 
-    ////////////eventos////////////////
-    private void cerrarSistema() {
+    ////////metodos publicos/////////
+    public void initPrograma() {
 
+        String empresa = ConfiguracionEmpresa.getInstancia().getNombre();
+        Usuario user = (Usuario) Session.getInstancia().getAttribute("user");
+
+        frmPrincipal.lblEmpresa.setText(""
+                + "<html>"
+                + "<span style=\"font-size: 17px;\"\\>"
+                + empresa
+                + "</span>"
+                + "<br/>"
+                + "Simple punto de Venta</html>"
+                + "");
+        frmPrincipal.lblUsuario.setText(user.getNombre());
+        frmPrincipal.setVisible(true);
     }
 
+    ////////////eventos////////////////
     private void mostrarVentanaVentas() {
         PantallaUtil.centrarIFRM(ifrmMenuVentas, frmPrincipal.panPrincipal, MARGEN_X, MARGEN_Y);
         ifrmMenuVentas.toFront();

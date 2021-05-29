@@ -20,6 +20,16 @@ public class MsjValidacion {
     }
 
     /**
+     * Muestra un mensaje indicando que los credenciales no son correctos
+     *
+     * @param padre
+     */
+    public static void msjCredencialesIncorrectos(Component padre) {
+        JOptionPane.showMessageDialog(padre, "Usuario o contraseña incorrecta, verifique.",
+                "No ha funcionado", JOptionPane.ERROR_MESSAGE);
+    }
+
+    /**
      * Muestra un mensaje indicando que el cliente no dispone de credito
      * suficiente
      *

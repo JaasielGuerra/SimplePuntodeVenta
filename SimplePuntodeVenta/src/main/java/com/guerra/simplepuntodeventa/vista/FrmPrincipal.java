@@ -33,11 +33,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlCabecera = new javax.swing.JPanel();
         pnlBarraSuperior = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblEmpresa = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        btnCerrarSistema = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
         pnlMenu = new javax.swing.JPanel();
         btnVentas = new javax.swing.JButton();
         btnArticulos = new javax.swing.JButton();
@@ -65,13 +63,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel6.setMaximumSize(new java.awt.Dimension(200, 32767));
         jPanel6.setMinimumSize(new java.awt.Dimension(0, 50));
         jPanel6.setPreferredSize(new java.awt.Dimension(400, 50));
-        jPanel6.setLayout(new java.awt.BorderLayout());
+        jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/punto-de-venta.png"))); // NOI18N
-        jLabel1.setText("<html><span style=\"font-size: 17px;\"\\>Mi Empresa</span><br/>Simple punto de Venta</html>");
-        jPanel6.add(jLabel1, java.awt.BorderLayout.CENTER);
+        lblEmpresa.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblEmpresa.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmpresa.setText("<html><span style=\"font-size: 17px;\"\\>Mi Empresa</span><br/>Simple punto de Venta</html>");
+        jPanel6.add(lblEmpresa);
 
         pnlBarraSuperior.add(jPanel6);
 
@@ -80,20 +77,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel7.setPreferredSize(new java.awt.Dimension(500, 50));
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 15, 3));
 
-        jLabel34.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-calendar-40.png"))); // NOI18N
-        jLabel34.setText("<html>12/10/2020<br>13:54:36");
-        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel7.add(jLabel34);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre usuario", "Cerrar sesion" }));
-        jComboBox1.setToolTipText("");
-        jPanel7.add(jComboBox1);
-
-        btnCerrarSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-cerrar-ventana-32.png"))); // NOI18N
-        btnCerrarSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(btnCerrarSistema);
+        lblUsuario.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUsuario.setText("Nombre Usuario De Ejemplo Para el Sistema");
+        jPanel7.add(lblUsuario);
 
         pnlBarraSuperior.add(jPanel7);
 
@@ -187,7 +175,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnArticulos;
-    public javax.swing.JLabel btnCerrarSistema;
     public javax.swing.JButton btnClientes;
     public javax.swing.JButton btnCompras;
     public javax.swing.JButton btnConfiguracion;
@@ -197,11 +184,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public javax.swing.JButton btnServicios;
     public javax.swing.JButton btnUsuarios;
     public javax.swing.JButton btnVentas;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    public javax.swing.JLabel lblEmpresa;
+    public javax.swing.JLabel lblUsuario;
     public javax.swing.JDesktopPane panPrincipal;
     public javax.swing.JPanel pnlBarraSuperior;
     private javax.swing.JPanel pnlCabecera;

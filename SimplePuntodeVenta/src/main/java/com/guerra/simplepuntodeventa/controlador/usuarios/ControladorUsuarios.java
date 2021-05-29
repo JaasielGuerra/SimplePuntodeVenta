@@ -15,7 +15,6 @@ import com.guerra.simplepuntodeventa.recursos.utilerias.ComboBoxUtil;
 import com.guerra.simplepuntodeventa.recursos.utilerias.PanelUtil;
 import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
 import com.guerra.simplepuntodeventa.recursos.utilerias.ValidarJTextField;
-import com.guerra.simplepuntodeventa.vista.proveedores.IfrmMenuProveedores;
 import com.guerra.simplepuntodeventa.vista.usuarios.IfrmMenuUsuarios;
 import com.guerra.simplepuntodeventa.vista.usuarios.PanCrearUsuario;
 import com.guerra.simplepuntodeventa.vista.usuarios.PanEditarUsuario;

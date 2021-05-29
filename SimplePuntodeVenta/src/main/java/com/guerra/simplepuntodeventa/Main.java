@@ -3,6 +3,7 @@
  */
 package com.guerra.simplepuntodeventa;
 
+import com.guerra.simplepuntodeventa.seguridad.InicioSesion;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.ToolTipManager;
@@ -21,7 +22,7 @@ public class Main {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
             ToolTipManager.sharedInstance().setInitialDelay(100);
             SwingUtilities.invokeLater(() -> {
-                ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
+                InicioSesion inicioSesion = new InicioSesion();
             });
         } catch (UnsupportedLookAndFeelException | ClassNotFoundException
                 | InstantiationException | IllegalAccessException ex) {
