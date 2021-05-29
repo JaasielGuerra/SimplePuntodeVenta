@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_ganancias" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="772" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="9f093e1f-01b1-4df9-ab79-bbd31ae38aad">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_compras" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="772" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="9f093e1f-01b1-4df9-ab79-bbd31ae38aad">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="spv"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -46,27 +46,31 @@
 		<parameter name="F_MAX" class="java.lang.String"/>
 		<parameter name="T" class="java.lang.String"/>
 		<queryString language="SQL">
-			<![CDATA[SELECT * FROM db_spv.reporte_ganancias venta
-where venta.fecha BETWEEN   $P{F_MIN} and   $P{F_MAX}  $P!{T}]]>
+			<![CDATA[SELECT * FROM db_spv.reporte_compras compra
+where compra.fecha BETWEEN   $P{F_MIN} and   $P{F_MAX}  $P!{T}]]>
 		</queryString>
-		<field name="id_venta" class="java.lang.Object">
-			<property name="com.jaspersoft.studio.field.name" value="id_venta"/>
-			<property name="com.jaspersoft.studio.field.label" value="id_venta"/>
-			<property name="com.jaspersoft.studio.field.tree.path" value="venta"/>
-		</field>
 		<field name="fecha" class="java.lang.Object">
 			<property name="com.jaspersoft.studio.field.name" value="fecha"/>
 			<property name="com.jaspersoft.studio.field.label" value="fecha"/>
 			<property name="com.jaspersoft.studio.field.tree.path" value="venta"/>
 		</field>
-		<field name="tipo_venta" class="java.lang.Integer">
+		<field name="nombre" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="nombre_completo"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre_completo"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+		</field>
+		<field name="tipo_compra" class="java.lang.Integer">
 			<property name="com.jaspersoft.studio.field.name" value="tipo_venta"/>
 			<property name="com.jaspersoft.studio.field.label" value="tipo_venta"/>
 			<property name="com.jaspersoft.studio.field.tree.path" value="venta"/>
 		</field>
-		<field name="total_ganancia" class="java.lang.Object">
-			<property name="com.jaspersoft.studio.field.name" value="total_ganancia"/>
-			<property name="com.jaspersoft.studio.field.label" value="total_ganancia"/>
+		<field name="cant_articulos" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="cant_articulos"/>
+			<property name="com.jaspersoft.studio.field.label" value="cant_articulos"/>
+		</field>
+		<field name="total" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="total"/>
+			<property name="com.jaspersoft.studio.field.label" value="total"/>
 			<property name="com.jaspersoft.studio.field.tree.path" value="venta"/>
 		</field>
 	</subDataset>
@@ -77,14 +81,13 @@ where venta.fecha BETWEEN   $P{F_MIN} and   $P{F_MAX}  $P!{T}]]>
 		<parameter name="F_MAX" class="java.lang.String"/>
 		<parameter name="T" class="java.lang.String"/>
 		<queryString language="SQL">
-			<![CDATA[SELECT 
-	SUM(venta.total_ganancia) ganancia
-FROM venta
-where venta.estado = 1 and venta.fecha BETWEEN  $P{F_MIN} and  $P{F_MAX}  $P!{T}]]>
+			<![CDATA[SELECT SUM(compra.total) total
+FROM compra
+where compra.estado = 1 and compra.fecha BETWEEN  $P{F_MIN} and  $P{F_MAX}  $P!{T}]]>
 		</queryString>
-		<field name="ganancia" class="java.lang.Object">
-			<property name="com.jaspersoft.studio.field.name" value="ganancia"/>
-			<property name="com.jaspersoft.studio.field.label" value="ganancia"/>
+		<field name="total" class="java.lang.Object">
+			<property name="com.jaspersoft.studio.field.name" value="total"/>
+			<property name="com.jaspersoft.studio.field.label" value="total"/>
 		</field>
 	</subDataset>
 	<parameter name="LOGO" class="java.lang.String"/>
@@ -151,7 +154,7 @@ where empresa.id_empresa = 1]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Reporte de ganancia por venta]]></text>
+				<text><![CDATA[REPORTE DE COMPRAS]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -167,7 +170,7 @@ where empresa.id_empresa = 1]]>
 					<property name="com.jaspersoft.studio.components.autoresize.proportional" value="true"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Ventas" uuid="66e5f2d6-1d8d-422f-b6c7-79ab7d173b7b">
+					<datasetRun subDataset="Ventas" uuid="f384bfa0-9d07-42fb-bf4d-da2708787508">
 						<datasetParameter name="F_MAX">
 							<datasetParameterExpression><![CDATA[$P{MAX}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -175,33 +178,15 @@ where empresa.id_empresa = 1]]>
 							<datasetParameterExpression><![CDATA[$P{MIN}]]></datasetParameterExpression>
 						</datasetParameter>
 						<datasetParameter name="T">
-							<datasetParameterExpression><![CDATA[$P{TIPO} != null ? " AND venta.tipo_venta = " + $P{TIPO} : ""]]></datasetParameterExpression>
+							<datasetParameterExpression><![CDATA[$P{TIPO} != null ? " AND compra.tipo_compra = " + $P{TIPO} : ""]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="100" uuid="6407dd77-20c5-467c-8e08-4bdbaa83e399">
+					<jr:column width="146" uuid="15667425-18ba-4ae2-b94b-6c87d1ba4315">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
-							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<staticText>
-								<reportElement x="0" y="0" width="100" height="30" uuid="aa916d72-4277-4058-a580-be2d8c80d144"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[NO. VENTA]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table_TD" height="15">
-							<textField>
-								<reportElement x="0" y="0" width="100" height="15" uuid="0713c23d-dbad-483c-bc0f-ac434ab7a25a"/>
-								<textElement textAlignment="Center"/>
-								<textFieldExpression><![CDATA[$F{id_venta}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="225" uuid="15667425-18ba-4ae2-b94b-6c87d1ba4315">
-						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
-						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="225" height="30" uuid="66b7828d-3eac-4ab3-9cff-c5376387bb62"/>
+								<reportElement x="0" y="0" width="146" height="30" uuid="66b7828d-3eac-4ab3-9cff-c5376387bb62"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<text><![CDATA[FECHA]]></text>
 							</staticText>
@@ -209,43 +194,78 @@ where empresa.id_empresa = 1]]>
 						<jr:detailCell style="Table_TD" height="15">
 							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							<textField>
-								<reportElement x="0" y="0" width="225" height="15" uuid="e36c0de4-fdc0-48f6-92b9-b2b9a6cbaf85"/>
+								<reportElement x="0" y="0" width="146" height="15" uuid="e36c0de4-fdc0-48f6-92b9-b2b9a6cbaf85"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="224" uuid="49382587-4b3d-439e-b711-9ea0500642bc">
-						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+					<jr:column width="225" uuid="484be715-3e17-4cc0-a7f4-19bc674af447">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<staticText>
-								<reportElement x="0" y="0" width="224" height="30" uuid="6dfd1172-356f-4284-8b79-570f787b38e4"/>
+								<reportElement x="0" y="0" width="225" height="30" uuid="dedb5805-68b3-4cee-a86a-a6d92e01bd0a"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[TIPO VENTA]]></text>
+								<text><![CDATA[PROVEEDOR]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="224" height="15" uuid="6893c8a0-555d-4500-a8fb-6fa941b00a5f"/>
-								<textElement textAlignment="Center"/>
-								<textFieldExpression><![CDATA[$F{tipo_venta} == 1 ? "Contado":"Crédito"]]></textFieldExpression>
+								<reportElement x="0" y="0" width="225" height="15" uuid="3dcbc517-b931-48e8-a5c7-ddd6c3a7d5da"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="223" uuid="a9d4bb62-48ee-47e4-b170-a745e2922234">
-						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+					<jr:column width="146" uuid="49382587-4b3d-439e-b711-9ea0500642bc">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="223" height="30" uuid="3ff3105d-6539-4765-8040-d7ba8b91cad2"/>
+								<reportElement x="0" y="0" width="146" height="30" uuid="6dfd1172-356f-4284-8b79-570f787b38e4"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[GANANCIA]]></text>
+								<text><![CDATA[TIPO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="146" height="15" uuid="6893c8a0-555d-4500-a8fb-6fa941b00a5f"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{tipo_compra} == 1 ? "Contado":"Crédito"]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="110" uuid="78f99454-54b2-4167-a840-6579dcab5ae4">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							<staticText>
+								<reportElement x="0" y="0" width="110" height="30" uuid="90279ef7-2281-4c82-9060-76f4505cfec8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[CANT. ARTÍCULOS]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="110" height="15" uuid="213a9df5-3de3-46c0-acf2-0ba1aca1aba2"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{cant_articulos}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="145" uuid="bfdeb879-4fa8-4e30-ac76-006db7d2985f">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="145" height="30" uuid="19a097a0-b28d-4a52-ae1c-b936b9b856ed"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[TOTAL]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField pattern="¤#,##0.00#;¤(#,##0.00#-)">
-								<reportElement x="0" y="0" width="223" height="15" uuid="300221a1-7424-4a3e-9eb6-cc01f9a83996"/>
+								<reportElement x="0" y="0" width="145" height="15" uuid="db045725-22ba-47e9-852f-4217790636ec"/>
 								<textElement textAlignment="Right"/>
-								<textFieldExpression><![CDATA[$F{total_ganancia}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -254,7 +274,7 @@ where empresa.id_empresa = 1]]>
 			<componentElement>
 				<reportElement x="0" y="40" width="516" height="34" uuid="c68f94e7-1017-48bc-b4e7-1e0ec2cb1eec"/>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-					<datasetRun subDataset="Totales" uuid="d9e1d3de-5a62-46fc-9947-8f91beec5371">
+					<datasetRun subDataset="Totales" uuid="748aec3a-1257-4bd5-b4d6-b91e5b504b57">
 						<datasetParameter name="F_MAX">
 							<datasetParameterExpression><![CDATA[$P{MAX}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -262,28 +282,28 @@ where empresa.id_empresa = 1]]>
 							<datasetParameterExpression><![CDATA[$P{MIN}]]></datasetParameterExpression>
 						</datasetParameter>
 						<datasetParameter name="T">
-							<datasetParameterExpression><![CDATA[$P{TIPO} != null ? " AND venta.tipo_venta = " + $P{TIPO} : ""]]></datasetParameterExpression>
+							<datasetParameterExpression><![CDATA[$P{TIPO} != null ? " AND compra.tipo_compra = " + $P{TIPO} : ""]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
 					<jr:listContents height="34" width="516">
 						<textField pattern="¤#,###.00#;¤(#,###.00#-)">
-							<reportElement x="0" y="0" width="258" height="20" uuid="5e4faf95-4bba-4f3f-b9c6-804e4ccba79e">
+							<reportElement x="0" y="0" width="258" height="20" uuid="3e6ad78c-0d6d-48e9-b163-be0e4c20a380">
 								<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							</reportElement>
 							<textElement>
 								<font size="12"/>
 							</textElement>
-							<textFieldExpression><![CDATA[$F{ganancia}]]></textFieldExpression>
+							<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement x="0" y="20" width="258" height="14" uuid="1793a15a-f0f2-4cbe-8a0f-6037b9da7353">
+							<reportElement x="0" y="20" width="258" height="14" uuid="4936834f-d553-4d28-8d1f-54dfe346a46d">
 								<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							</reportElement>
 							<textElement>
 								<font isBold="true"/>
 							</textElement>
-							<text><![CDATA[Total ganancias]]></text>
+							<text><![CDATA[Total compras]]></text>
 						</staticText>
 					</jr:listContents>
 				</jr:list>
@@ -328,7 +348,7 @@ where empresa.id_empresa = 1]]>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tipo de venta]]></text>
+				<text><![CDATA[Tipo de compra]]></text>
 			</staticText>
 		</band>
 	</detail>

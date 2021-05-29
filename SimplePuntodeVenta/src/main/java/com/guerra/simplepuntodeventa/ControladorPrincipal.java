@@ -9,13 +9,11 @@ import com.guerra.simplepuntodeventa.controlador.compras.MenuCompras;
 import com.guerra.simplepuntodeventa.controlador.configuracionempresa.ControladorConfiguracion;
 import com.guerra.simplepuntodeventa.controlador.inventario.MenuInventario;
 import com.guerra.simplepuntodeventa.controlador.proveedores.MenuProveedores;
+import com.guerra.simplepuntodeventa.controlador.reportes.ControladorReportes;
 import com.guerra.simplepuntodeventa.controlador.servicios.ControladorServicios;
 import com.guerra.simplepuntodeventa.controlador.usuarios.MenuUsuarios;
 import com.guerra.simplepuntodeventa.controlador.ventas.ControladorVenta;
 import com.guerra.simplepuntodeventa.global.ConfiguracionEmpresa;
-import com.guerra.simplepuntodeventa.modelo.DAOManager;
-import com.guerra.simplepuntodeventa.modelo.entidades.Cliente;
-import com.guerra.simplepuntodeventa.modelo.entidades.Proveedor;
 import com.guerra.simplepuntodeventa.modelo.entidades.Usuario;
 import com.guerra.simplepuntodeventa.global.Session;
 import com.guerra.simplepuntodeventa.recursos.utilerias.PantallaUtil;
@@ -30,8 +28,6 @@ import com.guerra.simplepuntodeventa.vista.reportes.IfrmMenuReportes;
 import com.guerra.simplepuntodeventa.vista.servicios.IfrmServicios;
 import com.guerra.simplepuntodeventa.vista.usuarios.IfrmMenuUsuarios;
 import com.guerra.simplepuntodeventa.vista.ventas.IfrmVentas;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JInternalFrame;
 
 /**
@@ -66,6 +62,7 @@ public class ControladorPrincipal {
     private final ControladorConfiguracion configuracion = new ControladorConfiguracion(ifrmMenuEmpresa);
     private final ControladorServicios controladorServicios = new ControladorServicios(ifrmServicios);
     private final MenuUsuarios menuUsuarios = new MenuUsuarios(ifrmMenuUsuarios);
+    private final ControladorReportes controladorReportes = new ControladorReportes(ifrmMenuReportes);
 
     public ControladorPrincipal() {
         init();
@@ -73,7 +70,7 @@ public class ControladorPrincipal {
     }
 
     private void init() {
-
+        
         ifrmMenuVentas.hide();
         ifrmMenuArticulos.hide();
         ifrmMenuInventario.hide();

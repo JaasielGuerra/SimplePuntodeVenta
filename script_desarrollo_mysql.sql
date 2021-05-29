@@ -891,6 +891,18 @@ DELIMITER ;
 
 
 
+DELIMITER $$
+CREATE FUNCTION cantidad_articulos_compra (id_compra INT)
+RETURNS INTEGER
+BEGIN 
+RETURN (SELECT SUM(detalle_compra.cantidad)
+	FROM detalle_compra
+	WHERE detalle_compra.id_compra =  id_compra);
+END$$
+DELIMITER ;
+
+
+
 -- -----------------------------------------------------
 -- Procedimientos
 -- -----------------------------------------------------
@@ -928,6 +940,56 @@ DELIMITER ;
 
 
 
+DELIMITER $$
+CREATE PROCEDURE rpt_resumen_deuda_cliente (id_cliente INT)
+BEGIN
+	SELECT * FROM reporte_resumen_deuda_cliente r
+    WHERE r.id_cliente = id_cliente;
+END$$
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE rpt_detalle_deuda_cliente (id_cliente INT)
+BEGIN	
+	SELECT * FROM reporte_detalle_deuda_cliente r
+    WHERE r.id_cliente = id_cliente;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE rpt_inventario_bajo ()
+BEGIN
+	SELECT * FROM db_spv.reporte_inventario_bajo;
+END$$
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE rpt_creditos_pendientes ()
+BEGIN
+	SELECT * FROM db_spv.reporte_creditos_pendientes;
+END$$
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE rpt_movimientos_inventario ()
+BEGIN
+	SELECT * FROM db_spv.reporte_movimientos;
+END$$
+DELIMITER ;
+
+
+
 -- -----------------------------------------------------
 -- Vistas
 -- -----------------------------------------------------
@@ -960,6 +1022,103 @@ FROM detalle_venta
 	 articulo.id_articulo = detalle_venta.id_articulo
 	 LEFT JOIN servicio ON
 	 servicio.id_servicio = detalle_venta.id_servicio;
+	 
+	 
+
+CREATE  OR REPLACE VIEW reporte_resumen_deuda_cliente AS
+SELECT 
+	cliente.nombre_completo,  
+	deuda_cliente(cliente.id_cliente) AS deuda,
+    cliente.id_cliente
+FROM 
+	cliente;
+
+
+
+
+CREATE  OR REPLACE VIEW reporte_detalle_deuda_cliente AS
+SELECT 
+	v.id_venta,
+    v.fecha, v.total,
+    v.saldo, v.id_cliente
+FROM 
+	venta v 
+WHERE 
+	v.estado = 1
+    AND v.tipo_venta = 2
+    AND v.saldo > 0;
+
+
+
+
+CREATE  OR REPLACE VIEW reporte_ventas AS
+SELECT venta.fecha,
+	cliente.nombre_completo,
+	venta.tipo_venta,
+	cantidad_articulos_venta(venta.id_venta) cant_articulos,
+	venta.total,
+    venta.estado
+FROM venta
+join cliente on 
+cliente.id_cliente = venta.id_cliente
+WHERE venta.estado = 1;
+
+
+
+
+CREATE  OR REPLACE VIEW reporte_ganancias AS
+SELECT venta.id_venta, venta.fecha,
+	venta.tipo_venta,
+	venta.total_ganancia
+FROM venta
+where venta.estado = 1;
+
+
+
+CREATE  OR REPLACE VIEW reporte_compras AS
+SELECT compra.fecha,
+	proveedor.nombre,
+	compra.tipo_compra,
+	cantidad_articulos_compra(compra.id_compra) cant_articulos,
+	compra.total,
+    compra.estado
+FROM compra
+join proveedor on 
+proveedor.id_proveedor = compra.id_proveedor
+WHERE compra.estado = 1;
+
+
+
+CREATE  OR REPLACE VIEW reporte_inventario_bajo AS
+SELECT articulo.cod1,
+	articulo.nombre,
+	articulo.cantidad,
+	articulo.min_existencia
+FROM articulo
+where articulo.estado = 1
+and articulo.cantidad <= articulo.min_existencia;;
+
+
+
+CREATE  OR REPLACE VIEW reporte_creditos_pendientes AS
+SELECT c.id_cliente, c.dpi, c.nombre_completo, c.direccion, deuda_cliente(c.id_cliente) deuda FROM db_spv.cliente c
+WHERE NOT c.id_cliente = 1 and  c.estado = 1;
+
+
+
+CREATE  OR REPLACE VIEW reporte_movimientos AS
+    SELECT 
+        k.fecha,
+        a.descripcion,
+        k.concepto,
+        k.existencia_anterior,
+        k.tipo,
+        k.cantidad,
+        k.existencia_posterior
+    FROM
+        kardex k
+        JOIN articulo a ON k.id_articulo = a.id_articulo;
+
 
 
 

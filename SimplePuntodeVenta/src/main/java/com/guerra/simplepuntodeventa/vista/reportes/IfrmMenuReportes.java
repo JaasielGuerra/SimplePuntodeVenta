@@ -29,14 +29,14 @@ public class IfrmMenuReportes extends javax.swing.JInternalFrame {
 
         panCentral = new javax.swing.JPanel();
         btnReporteInventario = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnEstadoCuenta = new javax.swing.JButton();
+        btnVentas = new javax.swing.JButton();
+        btnCompras = new javax.swing.JButton();
+        btnCreditosPendientes = new javax.swing.JButton();
+        btnInventarioBajo = new javax.swing.JButton();
         btnCatalogoArticulos = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnGanancias = new javax.swing.JButton();
+        btnMovimientos = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -56,35 +56,35 @@ public class IfrmMenuReportes extends javax.swing.JInternalFrame {
         btnReporteInventario.setFocusPainted(false);
         panCentral.add(btnReporteInventario);
 
-        jButton1.setBackground(new java.awt.Color(1, 87, 155));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-circled-user-100.png"))); // NOI18N
-        jButton1.setText("<html><b style=\"font-size: 14px;\">Estado de cuenta.</b> <p>Reporte de estado de cuenta de un Cliente en específico.</p>");
-        panCentral.add(jButton1);
+        btnEstadoCuenta.setBackground(new java.awt.Color(1, 87, 155));
+        btnEstadoCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        btnEstadoCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-circled-user-100.png"))); // NOI18N
+        btnEstadoCuenta.setText("<html><b style=\"font-size: 14px;\">Estado de cuenta.</b> <p>Reporte de estado de cuenta de un Cliente en específico.</p>");
+        panCentral.add(btnEstadoCuenta);
 
-        jButton2.setBackground(new java.awt.Color(0, 96, 100));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-sales-performance-100.png"))); // NOI18N
-        jButton2.setText("<html><b style=\"font-size: 14px;\">Ventas.</b> <p>Reporte de ventas realizadas en un rango de fecha especificado.</p>");
-        panCentral.add(jButton2);
+        btnVentas.setBackground(new java.awt.Color(0, 96, 100));
+        btnVentas.setForeground(new java.awt.Color(255, 255, 255));
+        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-sales-performance-100.png"))); // NOI18N
+        btnVentas.setText("<html><b style=\"font-size: 14px;\">Ventas.</b> <p>Reporte de ventas realizadas en un rango de fecha especificado.</p>");
+        panCentral.add(btnVentas);
 
-        jButton3.setBackground(new java.awt.Color(74, 20, 140));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-shopping-cart-100.png"))); // NOI18N
-        jButton3.setText("<html><b style=\"font-size: 14px;\">Compras.</b> <p>Reporte de compras realizadas en un rango de fecha indicado.</p>");
-        panCentral.add(jButton3);
+        btnCompras.setBackground(new java.awt.Color(74, 20, 140));
+        btnCompras.setForeground(new java.awt.Color(255, 255, 255));
+        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-shopping-cart-100.png"))); // NOI18N
+        btnCompras.setText("<html><b style=\"font-size: 14px;\">Compras.</b> <p>Reporte de compras realizadas en un rango de fecha indicado.</p>");
+        panCentral.add(btnCompras);
 
-        jButton4.setBackground(new java.awt.Color(130, 119, 23));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-profile-100.png"))); // NOI18N
-        jButton4.setText("<html><b style=\"font-size: 14px;\">Créditos pendientes.</b> <p>Reporte de Clientes que tienen créditos pendientes y su respectivo saldo.</p>");
-        panCentral.add(jButton4);
+        btnCreditosPendientes.setBackground(new java.awt.Color(130, 119, 23));
+        btnCreditosPendientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnCreditosPendientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-profile-100.png"))); // NOI18N
+        btnCreditosPendientes.setText("<html><b style=\"font-size: 14px;\">Créditos pendientes.</b> <p>Reporte de Clientes que tienen créditos pendientes y su respectivo saldo.</p>");
+        panCentral.add(btnCreditosPendientes);
 
-        jButton5.setBackground(new java.awt.Color(183, 28, 28));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-descending-sorting-100.png"))); // NOI18N
-        jButton5.setText("<html><b style=\"font-size: 14px;\">Inventario bajo.</b> <p>Reporte de los artículos que están bajos en inventario.</p>");
-        panCentral.add(jButton5);
+        btnInventarioBajo.setBackground(new java.awt.Color(183, 28, 28));
+        btnInventarioBajo.setForeground(new java.awt.Color(255, 255, 255));
+        btnInventarioBajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-descending-sorting-100.png"))); // NOI18N
+        btnInventarioBajo.setText("<html><b style=\"font-size: 14px;\">Inventario bajo.</b> <p>Reporte de los artículos que están bajos en inventario.</p>");
+        panCentral.add(btnInventarioBajo);
 
         btnCatalogoArticulos.setBackground(new java.awt.Color(26, 35, 126));
         btnCatalogoArticulos.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,17 +92,17 @@ public class IfrmMenuReportes extends javax.swing.JInternalFrame {
         btnCatalogoArticulos.setText("<html><b style=\"font-size: 14px;\">Catálogo de artículos.</b> <p>Reporte de catálogo de artículos registrados en el sistema.</p>");
         panCentral.add(btnCatalogoArticulos);
 
-        jButton7.setBackground(new java.awt.Color(27, 94, 32));
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-total-sales-100.png"))); // NOI18N
-        jButton7.setText("<html><b style=\"font-size: 14px;\">Ganancias.</b> <p>Reporte de las ganancias obtenidas de las ventas realizadas.</p>");
-        panCentral.add(jButton7);
+        btnGanancias.setBackground(new java.awt.Color(27, 94, 32));
+        btnGanancias.setForeground(new java.awt.Color(255, 255, 255));
+        btnGanancias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-total-sales-100.png"))); // NOI18N
+        btnGanancias.setText("<html><b style=\"font-size: 14px;\">Ganancias.</b> <p>Reporte de las ganancias obtenidas de las ventas realizadas.</p>");
+        panCentral.add(btnGanancias);
 
-        jButton8.setBackground(new java.awt.Color(136, 14, 79));
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-pay-date-100.png"))); // NOI18N
-        jButton8.setText("<html><b style=\"font-size: 14px;\">Movimientos.</b> <p>Reporte de movimientos del inventario.</p>");
-        panCentral.add(jButton8);
+        btnMovimientos.setBackground(new java.awt.Color(136, 14, 79));
+        btnMovimientos.setForeground(new java.awt.Color(255, 255, 255));
+        btnMovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-pay-date-100.png"))); // NOI18N
+        btnMovimientos.setText("<html><b style=\"font-size: 14px;\">Movimientos.</b> <p>Reporte de movimientos del inventario.</p>");
+        panCentral.add(btnMovimientos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,14 +127,14 @@ public class IfrmMenuReportes extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnCatalogoArticulos;
+    public javax.swing.JButton btnCompras;
+    public javax.swing.JButton btnCreditosPendientes;
+    public javax.swing.JButton btnEstadoCuenta;
+    public javax.swing.JButton btnGanancias;
+    public javax.swing.JButton btnInventarioBajo;
+    public javax.swing.JButton btnMovimientos;
     public javax.swing.JButton btnReporteInventario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    public javax.swing.JButton btnVentas;
     public javax.swing.JPanel panCentral;
     // End of variables declaration//GEN-END:variables
 }

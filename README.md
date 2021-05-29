@@ -93,3 +93,6 @@ Proyecto control de inventario y venta de servicios
 - Modulo de usuarios completado
 - Sistema de loguin
 - Mostrar usuario y nombre empresa en Ventana principal
+
+2021.05.29
+- Modulo de reportes terminado
