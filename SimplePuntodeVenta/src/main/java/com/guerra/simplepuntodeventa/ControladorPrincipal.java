@@ -10,7 +10,9 @@ import com.guerra.simplepuntodeventa.controlador.configuracionempresa.Controlado
 import com.guerra.simplepuntodeventa.controlador.inventario.MenuInventario;
 import com.guerra.simplepuntodeventa.controlador.proveedores.MenuProveedores;
 import com.guerra.simplepuntodeventa.controlador.servicios.ControladorServicios;
+import com.guerra.simplepuntodeventa.controlador.usuarios.MenuUsuarios;
 import com.guerra.simplepuntodeventa.controlador.ventas.ControladorVenta;
+import com.guerra.simplepuntodeventa.global.ConfiguracionEmpresa;
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.entidades.Cliente;
 import com.guerra.simplepuntodeventa.modelo.entidades.Proveedor;
@@ -26,6 +28,7 @@ import com.guerra.simplepuntodeventa.vista.inventario.IfrmMenuInventario;
 import com.guerra.simplepuntodeventa.vista.proveedores.IfrmMenuProveedores;
 import com.guerra.simplepuntodeventa.vista.reportes.IfrmMenuReportes;
 import com.guerra.simplepuntodeventa.vista.servicios.IfrmServicios;
+import com.guerra.simplepuntodeventa.vista.usuarios.IfrmMenuUsuarios;
 import com.guerra.simplepuntodeventa.vista.ventas.IfrmVentas;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -51,6 +54,7 @@ public class ControladorPrincipal {
     private final IfrmMenuEmpresa ifrmMenuEmpresa = new IfrmMenuEmpresa();
     private final IfrmMenuProveedores ifrmMenuProveedores = new IfrmMenuProveedores();
     private final IfrmServicios ifrmServicios = new IfrmServicios();
+    private final IfrmMenuUsuarios ifrmMenuUsuarios = new IfrmMenuUsuarios();
 
     /////////////controladores/////////////
     private final MenuArticulos menuArticulos = new MenuArticulos(ifrmMenuArticulos);
@@ -61,6 +65,7 @@ public class ControladorPrincipal {
     private final MenuCompras menuCompras = new MenuCompras(ifrmMenuCompras);
     private final ControladorConfiguracion configuracion = new ControladorConfiguracion(ifrmMenuEmpresa);
     private final ControladorServicios controladorServicios = new ControladorServicios(ifrmServicios);
+    private final MenuUsuarios menuUsuarios = new MenuUsuarios(ifrmMenuUsuarios);
 
     public ControladorPrincipal() {
         init();
@@ -69,15 +74,6 @@ public class ControladorPrincipal {
 
     private void init() {
 
-        //crear cache en la sesion
-        Usuario user = DAOManager.getInstancia().getUsuarioDAO().readOne(1);
-        Cliente cliente = DAOManager.getInstancia().getClienteDAO().readOne(1);
-        Proveedor prov = DAOManager.getInstancia().getProveedorDAO().readOne(1);
-        Session.getInstancia().setAttribute("user", user);
-        Session.getInstancia().setAttribute("cliente", cliente);
-        Session.getInstancia().setAttribute("proveedor", prov);
-
-        frmPrincipal.setVisible(true);
         ifrmMenuVentas.hide();
         ifrmMenuArticulos.hide();
         ifrmMenuInventario.hide();
@@ -87,6 +83,7 @@ public class ControladorPrincipal {
         ifrmMenuEmpresa.hide();
         ifrmMenuProveedores.hide();
         ifrmServicios.hide();
+        ifrmMenuUsuarios.hide();
 
         agregarIFRM(ifrmMenuVentas);
         agregarIFRM(ifrmMenuArticulos);
@@ -97,16 +94,11 @@ public class ControladorPrincipal {
         agregarIFRM(ifrmMenuEmpresa);
         agregarIFRM(ifrmMenuProveedores);
         agregarIFRM(ifrmServicios);
+        agregarIFRM(ifrmMenuUsuarios);
     }
 
     private void initOyentes() {//listar eventos
 
-        frmPrincipal.btnCerrarSistema.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                cerrarSistema();
-            }
-        });
         frmPrincipal.btnVentas.addActionListener((e) -> {
             mostrarVentanaVentas();
         });
@@ -134,17 +126,34 @@ public class ControladorPrincipal {
         frmPrincipal.btnServicios.addActionListener((ae) -> {
             mostrarVentanaServicios();
         });
+        frmPrincipal.btnUsuarios.addActionListener((ae) -> {
+            mostrarVentanaUsuarios();
+        });
     }
 
     private void agregarIFRM(JInternalFrame ifrm) {
         frmPrincipal.panPrincipal.add(ifrm);
     }
 
-    ////////////eventos////////////////
-    private void cerrarSistema() {
+    ////////metodos publicos/////////
+    public void initPrograma() {
 
+        String empresa = ConfiguracionEmpresa.getInstancia().getNombre();
+        Usuario user = (Usuario) Session.getInstancia().getAttribute("user");
+
+        frmPrincipal.lblEmpresa.setText(""
+                + "<html>"
+                + "<span style=\"font-size: 17px;\"\\>"
+                + empresa
+                + "</span>"
+                + "<br/>"
+                + "Simple punto de Venta</html>"
+                + "");
+        frmPrincipal.lblUsuario.setText(user.getNombre());
+        frmPrincipal.setVisible(true);
     }
 
+    ////////////eventos////////////////
     private void mostrarVentanaVentas() {
         PantallaUtil.centrarIFRM(ifrmMenuVentas, frmPrincipal.panPrincipal, MARGEN_X, MARGEN_Y);
         ifrmMenuVentas.toFront();
@@ -200,6 +209,12 @@ public class ControladorPrincipal {
         PantallaUtil.centrarIFRM(ifrmServicios, frmPrincipal.panPrincipal, MARGEN_X, MARGEN_Y);
         ifrmServicios.toFront();
         ifrmServicios.show();
+    }
+
+    private void mostrarVentanaUsuarios() {
+        PantallaUtil.centrarIFRM(ifrmMenuUsuarios, frmPrincipal.panPrincipal, MARGEN_X, MARGEN_Y);
+        ifrmMenuUsuarios.toFront();
+        ifrmMenuUsuarios.show();
     }
 
 }

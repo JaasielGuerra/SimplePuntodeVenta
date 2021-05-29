@@ -30,8 +30,7 @@ import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
 import com.guerra.simplepuntodeventa.recursos.utilerias.ValidarJSpinner;
 import com.guerra.simplepuntodeventa.recursos.utilerias.ValidarJTextField;
 import com.guerra.simplepuntodeventa.recursos.utilerias.modelo.ParametroReporte;
-import com.guerra.simplepuntodeventa.vista.clientes.DlgAbonarDeuda;
-import com.guerra.simplepuntodeventa.vista.clientes.IfrmMenuClientes;
+import com.guerra.simplepuntodeventa.vista.proveedores.DlgAbonarDeuda;
 import com.guerra.simplepuntodeventa.vista.proveedores.IfrmMenuProveedores;
 import com.guerra.simplepuntodeventa.vista.proveedores.PanEditarProveedor;
 import com.guerra.simplepuntodeventa.vista.proveedores.PanEstadoCuentaProveedor;
@@ -202,7 +201,7 @@ public class ControladorProveedores {
             MsjValidacion.msjJTextFieldRequeridos(panNuevoProveedor);
         } else {
 
-            //////nuevo cliente////////
+            //////nuevo proveedor////////
             Usuario user = (Usuario) Session.getInstancia().getAttribute("user");
             Proveedor p = new Proveedor();
             p.setNit(panNuevoProveedor.txtNIT.getText());
@@ -243,7 +242,7 @@ public class ControladorProveedores {
         if (ValidarJTextField.campoVacio(panEditarProveedor.txtNombre)) {
             MsjValidacion.msjJTextFieldRequeridos(panEditarProveedor);
         } else {
-            //////editar cliente////////
+            //////editar proveedor////////
             proveedorEditar.setNit(panEditarProveedor.txtNIT.getText());
             proveedorEditar.setNombre(panEditarProveedor.txtNombre.getText());
             proveedorEditar.setDireccion(panEditarProveedor.txtDireccion.getText());
@@ -253,7 +252,7 @@ public class ControladorProveedores {
                 resetFormularioEditarProveedor();
                 MsjInfo.msjActualizacionExitosa(panEditarProveedor);
                 consultarProveedores();
-                PanelUtil.cambiarPanel(IfrmMenuClientes.PANEL_CAMBIANTE, panListProveedors);
+                PanelUtil.cambiarPanel(IfrmMenuProveedores.PANEL_CAMBIANTE, panListProveedors);
             } catch (Exception e) {
                 MsjException.msjErrorActualizar(panEditarProveedor, e.getMessage());
             }

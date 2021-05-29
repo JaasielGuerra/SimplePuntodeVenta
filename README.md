@@ -90,3 +90,6 @@ Proyecto control de inventario y venta de servicios
 - Realizar venta de servicios
 - Reporte ticket arreglado para detalle de servicio
 - Buscar servicios por descripcion
+- Modulo de usuarios completado
+- Sistema de loguin
+- Mostrar usuario y nombre empresa en Ventana principal

@@ -17,6 +17,7 @@ import com.guerra.simplepuntodeventa.modelo.dao.CuentaClienteDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.CuentaProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.EmpresaDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.HistorialAbonoProveedorDAOImpl;
+import com.guerra.simplepuntodeventa.modelo.dao.PrivilegioDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.ProveedorDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.ServicioDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.UbicacionDAOImpl;
@@ -52,6 +53,7 @@ public class DAOManager {
     private final CuentaProveedorDAOImpl cuentaProveedorDAO;
     private final HistorialAbonoProveedorDAOImpl historialAbonoProveedorDAO;
     private final ServicioDAOImpl servicioDAO;
+    private final PrivilegioDAOImpl privilegioDAO;
 
     //evitar instancias con new
     private DAOManager() {
@@ -73,6 +75,7 @@ public class DAOManager {
         cuentaProveedorDAO = new CuentaProveedorDAOImpl(emf);
         historialAbonoProveedorDAO = new HistorialAbonoProveedorDAOImpl(emf);
         servicioDAO = new ServicioDAOImpl(emf);
+        privilegioDAO = new PrivilegioDAOImpl(emf);
     }
 
     public static DAOManager getInstancia() {
@@ -152,6 +155,10 @@ public class DAOManager {
 
     public ServicioDAOImpl getServicioDAO() {
         return servicioDAO;
+    }
+
+    public PrivilegioDAOImpl getPrivilegioDAO() {
+        return privilegioDAO;
     }
 
 }
