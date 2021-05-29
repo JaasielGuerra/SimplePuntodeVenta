@@ -81,7 +81,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnEstadoCuenta">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="9b" green="57" red="1" type="rgb"/>
@@ -94,8 +94,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Estado de cuenta.&lt;/b&gt; &lt;p&gt;Reporte de estado de cuenta de un Cliente en espec&#xed;fico.&lt;/p&gt;"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnVentas">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="64" green="60" red="0" type="rgb"/>
@@ -108,8 +111,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Ventas.&lt;/b&gt; &lt;p&gt;Reporte de ventas realizadas en un rango de fecha especificado.&lt;/p&gt;"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btnCompras">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="8c" green="14" red="4a" type="rgb"/>
@@ -122,8 +128,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Compras.&lt;/b&gt; &lt;p&gt;Reporte de compras realizadas en un rango de fecha indicado.&lt;/p&gt;"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="btnCreditosPendientes">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="17" green="77" red="82" type="rgb"/>
@@ -136,8 +145,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Cr&#xe9;ditos pendientes.&lt;/b&gt; &lt;p&gt;Reporte de Clientes que tienen cr&#xe9;ditos pendientes y su respectivo saldo.&lt;/p&gt;"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
+        <Component class="javax.swing.JButton" name="btnInventarioBajo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="1c" green="1c" red="b7" type="rgb"/>
@@ -150,6 +162,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Inventario bajo.&lt;/b&gt; &lt;p&gt;Reporte de los art&#xed;culos que est&#xe1;n bajos en inventario.&lt;/p&gt;"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="btnCatalogoArticulos">
           <Properties>
@@ -168,7 +183,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton7">
+        <Component class="javax.swing.JButton" name="btnGanancias">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="5e" red="1b" type="rgb"/>
@@ -181,8 +196,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Ganancias.&lt;/b&gt; &lt;p&gt;Reporte de las ganancias obtenidas de las ventas realizadas.&lt;/p&gt;"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton8">
+        <Component class="javax.swing.JButton" name="btnMovimientos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="4f" green="e" red="88" type="rgb"/>
@@ -195,6 +213,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Movimientos.&lt;/b&gt; &lt;p&gt;Reporte de movimientos del inventario.&lt;/p&gt;"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

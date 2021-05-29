@@ -1,7 +1,12 @@
 eclipse.preferences.version=1
 encoding//articulos/rpt_articulos.jrxml=UTF-8
 encoding//clientes/comprobante_abono_cliente.jrxml=UTF-8
+encoding//clientes/rpt_creditos_pendientes.jrxml=UTF-8
+encoding//clientes/rpt_estado_cuenta.jrxml=UTF-8
+encoding//compras/rpt_compras.jrxml=UTF-8
 encoding//inventario/rpt_inventario.jrxml=UTF-8
+encoding//inventario/rpt_inventario_bajo.jrxml=UTF-8
+encoding//inventario/rpt_movimiento.jrxml=UTF-8
 encoding//proveedores/comprobante_abono_proveedor.jrxml=UTF-8
 encoding//proveedores/sub_comprobante_abono_proveedor.jrxml=UTF-8
 encoding//ticket/subrpt_ticket_detalle.jrxml=UTF-8

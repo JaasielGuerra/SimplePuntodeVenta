@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_ventas" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="772" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="9f093e1f-01b1-4df9-ab79-bbd31ae38aad">
-	<property name="com.jaspersoft.studio.data.sql.tables" value="ZW1wcmVzYSBBUyAsMTIxLDE0NCxkYjE0ODYwYy03MmNjLTQ3ZTktOWM0Zi0xY2EyZTYxYWMwZTg7"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sqlite3SPV.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="spv"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -41,25 +41,13 @@
 	</style>
 	<subDataset name="Ventas" uuid="18b952ff-2975-4fbb-85a6-5831f5837e41">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sqlite3SPV.xml"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="spv"/>
 		<parameter name="F_MIN" class="java.lang.String"/>
 		<parameter name="F_MAX" class="java.lang.String"/>
 		<parameter name="T" class="java.lang.String"/>
 		<queryString language="SQL">
-			<![CDATA[SELECT venta.fecha,
-	cliente.nombre_completo,
-	venta.tipo_venta,
-	(
-		
-		select SUM(cantidad)  from detalle_venta where detalle_venta.id_venta = venta.id_venta
-		
-	) cant_articulos,
-	venta.total
-FROM venta
-join cliente on 
-cliente.id_cliente = venta.id_cliente
-where venta.estado = 1 and venta.fecha BETWEEN   $P{F_MIN} and   $P{F_MAX}  $P!{T}
-]]>
+			<![CDATA[SELECT * FROM db_spv.reporte_ventas venta
+where venta.fecha BETWEEN   $P{F_MIN} and   $P{F_MAX}  $P!{T}]]>
 		</queryString>
 		<field name="fecha" class="java.lang.Object">
 			<property name="com.jaspersoft.studio.field.name" value="fecha"/>
@@ -88,15 +76,14 @@ where venta.estado = 1 and venta.fecha BETWEEN   $P{F_MIN} and   $P{F_MAX}  $P!{
 	</subDataset>
 	<subDataset name="Totales" uuid="93db52ce-c0ed-43c9-aa96-d20e838a5a77">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sqlite3SPV.xml"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="spv"/>
 		<parameter name="F_MIN" class="java.lang.String"/>
 		<parameter name="F_MAX" class="java.lang.String"/>
 		<parameter name="T" class="java.lang.String"/>
 		<queryString language="SQL">
 			<![CDATA[SELECT SUM(venta.total) total
 FROM venta
-where venta.estado = 1 and venta.fecha BETWEEN  $P{F_MIN} and  $P{F_MAX}  $P!{T}
-]]>
+where venta.estado = 1 and venta.fecha BETWEEN  $P{F_MIN} and  $P{F_MAX}  $P!{T}]]>
 		</queryString>
 		<field name="total" class="java.lang.Object">
 			<property name="com.jaspersoft.studio.field.name" value="total"/>
