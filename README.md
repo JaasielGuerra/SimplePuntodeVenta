@@ -1,6 +1,8 @@
 # SimplePuntodeVenta
 Proyecto control de inventario y venta de servicios
 
+![](PORTADA.png)
+
 ## Historial de cambios
 
 2021.05.12
