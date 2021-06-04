@@ -834,6 +834,26 @@ DELIMITER ;
 -- FUnciones
 -- -----------------------------------------------------
 DELIMITER $$
+CREATE FUNCTION existencia_inventario (codigo varchar(255))
+RETURNS INTEGER
+BEGIN
+RETURN (
+	SELECT a.cantidad
+	FROM articulo a
+	WHERE a.estado = 1
+	AND 
+	(
+		a.cod1 = UPPER(codigo)
+		OR a.cod2 = UPPER(codigo)
+        OR a.cod3 = UPPER(codigo)
+	)
+);
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
 $$
 CREATE FUNCTION inventario_total ()
 RETURNS integer

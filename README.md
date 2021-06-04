@@ -99,3 +99,7 @@ Proyecto control de inventario y venta de servicios
 2021.05.29
 - Modulo de reportes terminado
 - Script del esquema con datos iniciales para produccion
+
+2021.06.04
+- Validacion existencia de inventario en modulo de ventas
+- funcion mariaDB para validar existencia de inventario
