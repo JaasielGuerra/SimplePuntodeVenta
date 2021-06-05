@@ -5,6 +5,8 @@
  */
 package com.guerra.simplepuntodeventa.vista.usuarios;
 
+import com.guerra.simplepuntodeventa.recursos.utilerias.TablaUtil;
+
 /**
  *
  * @author Jaasiel
@@ -16,6 +18,7 @@ public class PanPrivilegios extends javax.swing.JPanel {
      */
     public PanPrivilegios() {
         initComponents();
+        TablaUtil.ocultarCol(tblPrivilegios, 0);
     }
   
 
@@ -38,13 +41,15 @@ public class PanPrivilegios extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
+        cbxVentas = new javax.swing.JCheckBox();
+        cbxArticulos = new javax.swing.JCheckBox();
+        cbxInventario = new javax.swing.JCheckBox();
+        cbxCompras = new javax.swing.JCheckBox();
+        cbxClientes = new javax.swing.JCheckBox();
+        cbxReportes = new javax.swing.JCheckBox();
+        cbxConfiguracion = new javax.swing.JCheckBox();
+        cbxServicio = new javax.swing.JCheckBox();
+        cbxProveedores = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
@@ -80,28 +85,34 @@ public class PanPrivilegios extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setText("PERMISOS");
 
-        jPanel4.setLayout(new java.awt.GridLayout(2, 4));
+        jPanel4.setLayout(new java.awt.GridLayout(2, 5));
 
-        jCheckBox5.setText("Ventas");
-        jPanel4.add(jCheckBox5);
+        cbxVentas.setText("Ventas");
+        jPanel4.add(cbxVentas);
 
-        jCheckBox6.setText("Artículos");
-        jPanel4.add(jCheckBox6);
+        cbxArticulos.setText("Artículos");
+        jPanel4.add(cbxArticulos);
 
-        jCheckBox7.setText("Inventario");
-        jPanel4.add(jCheckBox7);
+        cbxInventario.setText("Inventario");
+        jPanel4.add(cbxInventario);
 
-        jCheckBox8.setText("Compras");
-        jPanel4.add(jCheckBox8);
+        cbxCompras.setText("Compras");
+        jPanel4.add(cbxCompras);
 
-        jCheckBox9.setText("Clientes");
-        jPanel4.add(jCheckBox9);
+        cbxClientes.setText("Clientes");
+        jPanel4.add(cbxClientes);
 
-        jCheckBox10.setText("Reportes");
-        jPanel4.add(jCheckBox10);
+        cbxReportes.setText("Reportes");
+        jPanel4.add(cbxReportes);
 
-        jCheckBox11.setText("Configuración");
-        jPanel4.add(jCheckBox11);
+        cbxConfiguracion.setText("Configuración");
+        jPanel4.add(cbxConfiguracion);
+
+        cbxServicio.setText("Servicios");
+        jPanel4.add(cbxServicio);
+
+        cbxProveedores.setText("Proveedores");
+        jPanel4.add(cbxProveedores);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -272,14 +283,16 @@ public class PanPrivilegios extends javax.swing.JPanel {
     public javax.swing.JButton btnDesactivar;
     public javax.swing.JButton btnEditar;
     public javax.swing.JButton btnGuardar;
+    public javax.swing.JCheckBox cbxArticulos;
+    public javax.swing.JCheckBox cbxClientes;
+    public javax.swing.JCheckBox cbxCompras;
+    public javax.swing.JCheckBox cbxConfiguracion;
     public javax.swing.JComboBox<Object> cbxEstado;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
+    public javax.swing.JCheckBox cbxInventario;
+    public javax.swing.JCheckBox cbxProveedores;
+    public javax.swing.JCheckBox cbxReportes;
+    public javax.swing.JCheckBox cbxServicio;
+    public javax.swing.JCheckBox cbxVentas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

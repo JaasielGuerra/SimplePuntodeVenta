@@ -103,3 +103,5 @@ Proyecto control de inventario y venta de servicios
 2021.06.04
 - Validacion existencia de inventario en modulo de ventas
 - funcion mariaDB para validar existencia de inventario
+- Modulo de privilegios
+- Validacion de permisos para el usuario al acceder al sistema

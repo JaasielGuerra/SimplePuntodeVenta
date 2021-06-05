@@ -21,7 +21,6 @@ public class IfrmMenuUsuarios extends javax.swing.JInternalFrame {
     public IfrmMenuUsuarios() {
         initComponents();
         IfrmMenuUsuarios.PANEL_CAMBIANTE = panCentral;
-        btnPrivilegios.setVisible(false);
     }
 
     /**

@@ -266,7 +266,7 @@ public class Privilegio implements Serializable {
 
     @Override
     public String toString() {
-        return "com.guerra.spv.modelo.entidades.Privilegio[ idPrivilegio=" + idPrivilegio + " ]";
+        return this.descripcion;
     }
     
 }

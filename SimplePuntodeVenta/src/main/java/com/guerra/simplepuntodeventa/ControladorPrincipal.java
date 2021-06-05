@@ -70,7 +70,7 @@ public class ControladorPrincipal {
     }
 
     private void init() {
-        
+
         ifrmMenuVentas.hide();
         ifrmMenuArticulos.hide();
         ifrmMenuInventario.hide();
@@ -148,6 +148,16 @@ public class ControladorPrincipal {
                 + "");
         frmPrincipal.lblUsuario.setText(user.getNombre());
         frmPrincipal.setVisible(true);
+
+        frmPrincipal.btnVentas.setEnabled(user.getIdPrivilegio().getVentas() == 1);
+        frmPrincipal.btnArticulos.setEnabled(user.getIdPrivilegio().getArticulos() == 1);
+        frmPrincipal.btnInventario.setEnabled(user.getIdPrivilegio().getInventario() == 1);
+        frmPrincipal.btnCompras.setEnabled(user.getIdPrivilegio().getCompras() == 1);
+        frmPrincipal.btnClientes.setEnabled(user.getIdPrivilegio().getClientes() == 1);
+        frmPrincipal.btnReportes.setEnabled(user.getIdPrivilegio().getReportes() == 1);
+        frmPrincipal.btnConfiguracion.setEnabled(user.getIdPrivilegio().getConfiguracion() == 1);
+        frmPrincipal.btnServicios.setEnabled(user.getIdPrivilegio().getServicio() == 1);
+        frmPrincipal.btnProveedores.setEnabled(user.getIdPrivilegio().getProveedores() == 1);
     }
 
     ////////////eventos////////////////
