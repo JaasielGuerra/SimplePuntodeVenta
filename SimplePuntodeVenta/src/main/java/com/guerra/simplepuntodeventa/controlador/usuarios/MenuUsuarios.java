@@ -23,6 +23,7 @@ public class MenuUsuarios {
     //////////controlasdores/////////////////////
     private final ControladorUsuarios controladorUsuarios = new ControladorUsuarios(panCrearUsuario,
             panEditarUsuario, panListUsuarios);
+    private final ControladorPrivilegios controladorPrivilegios = new ControladorPrivilegios(panPrivilegios);
 
     public MenuUsuarios(IfrmMenuUsuarios ifrmMenuUsuarios) {
         this.ifrmMenuUsuarios = ifrmMenuUsuarios;
@@ -53,6 +54,8 @@ public class MenuUsuarios {
     }
 
     private void privilegio() {
+        controladorPrivilegios.resetFormulario();
+        controladorPrivilegios.consultarPrivilegios();
         PanelUtil.cambiarPanel(IfrmMenuUsuarios.PANEL_CAMBIANTE, panPrivilegios);
     }
 

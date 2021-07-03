@@ -17,6 +17,28 @@ public class MsjInfo {
     }
 
     /**
+     * Muestra un mensaje indicando que no hay existencia del artículo
+     *
+     * @param padre
+     * @param existencia
+     */
+    public static void msjNoExistenciaArticulo(Component padre, Integer existencia) {
+        JOptionPane.showMessageDialog(padre, "No hay existencia. [Existencia=" + existencia + "]",
+                "Sin existencia", JOptionPane.WARNING_MESSAGE);
+    }
+
+    /**
+     * Muestra un mensaje indicando que no hay suficiente stock
+     *
+     * @param padre
+     * @param existencia
+     */
+    public static void msjStockInsufuciente(Component padre, Integer existencia) {
+        JOptionPane.showMessageDialog(padre, "No hay suficiente existencia. [Existencia=" + existencia + "]",
+                "Existencia insuficiente", JOptionPane.WARNING_MESSAGE);
+    }
+
+    /**
      * Indica que una deuda no tiene saldo pendiente
      *
      * @param padre

@@ -1,5 +1,12 @@
 # SimplePuntodeVenta
+
+## Descripción
 Proyecto control de inventario y venta de servicios
+
+## Datos técnicos
+- Base de datos MariaDB versión 10.3.25
+- Java SE 8
+- EclipseLink ORM persistencia
 
 ![](PORTADA.png)
 
@@ -99,3 +106,12 @@ Proyecto control de inventario y venta de servicios
 2021.05.29
 - Modulo de reportes terminado
 - Script del esquema con datos iniciales para produccion
+
+2021.06.04
+- Validacion existencia de inventario en modulo de ventas
+- funcion mariaDB para validar existencia de inventario
+- Modulo de privilegios
+- Validacion de permisos para el usuario al acceder al sistema
+
+2021.07.03
+- Eliminando material proyecto Universidad

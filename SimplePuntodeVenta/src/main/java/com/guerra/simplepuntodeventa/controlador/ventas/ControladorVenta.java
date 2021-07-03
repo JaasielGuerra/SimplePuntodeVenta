@@ -61,6 +61,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import javax.persistence.EntityManager;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -250,8 +251,19 @@ public class ControladorVenta {
             }
         });
         controladorBusquedaServicio = new ControladorBusquedaServicio(ifrmVentas, (seleccionado) -> {
-            setArticuloServicioATabla(null, seleccionado, DETALLE_SERVICIO);
-            resetCodigoBarra();
+            spn.setValue(1);//resetear valor
+
+            int opcion = JOptionPane.showOptionDialog(ifrmVentas, spn, "¿Cantidad a agregar?",
+                    JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            if (opcion == JOptionPane.OK_OPTION) {
+
+                int cantidad = (int) spn.getValue();
+                ifrmVentas.spnCantidad.setValue(cantidad);
+
+                setArticuloServicioATabla(null, seleccionado, DETALLE_SERVICIO);
+                resetCodigoBarra();
+            }
         });
         //----------------------------------------------------------------------
         ifrmVentas.tbdDetalle.addChangeListener((e) -> {
@@ -572,6 +584,19 @@ public class ControladorVenta {
         }
 
         if (tipoDetalle == DETALLE_ARTICULO) {
+
+            String c = a.getCod1();
+
+            EntityManager em = ventaDAO.getEntityManager();
+            Integer existencia = em.createQuery("SELECT FUNCTION('existencia_inventario', :codigo) FROM Articulo a", Integer.class)
+                    .setParameter("codigo", c)
+                    .getResultList().get(0);
+
+            if (existencia < cantidad) {
+                MsjInfo.msjStockInsufuciente(ifrmVentas, existencia);
+                return;
+            }
+
             precioUnitario = a.getPrecioVenta();
             gananciaDetalle = a.getGanancia();
         }
@@ -870,10 +895,24 @@ public class ControladorVenta {
             MsjInfo.msjNoArticuloBuscado(ifrmVentas);
         } else {
 
+            String c = ifrmVentas.txtCodigo.getText();
+
+            EntityManager em = ventaDAO.getEntityManager();
+            Integer existencia = em.createQuery("SELECT FUNCTION('existencia_inventario', :codigo) FROM Articulo a", Integer.class)
+                    .setParameter("codigo", c)
+                    .getResultList().get(0);
+
+            if (existencia == null) {
+                MsjInfo.msjNoResultadoCodigo(ifrmVentas, c);
+                return;
+            }
+            if (existencia == 0) {
+                MsjInfo.msjNoExistenciaArticulo(ifrmVentas, existencia);
+                return;
+            }
+
             Articulo a = null;
             Servicio s = null;
-
-            String c = ifrmVentas.txtCodigo.getText();
 
             int tipo = ifrmVentas.cmbTipo.getSelectedIndex() + 1;
 

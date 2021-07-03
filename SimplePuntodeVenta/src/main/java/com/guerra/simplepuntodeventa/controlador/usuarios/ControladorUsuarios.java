@@ -5,7 +5,9 @@ package com.guerra.simplepuntodeventa.controlador.usuarios;
 
 import com.guerra.simplepuntodeventa.modelo.DAOManager;
 import com.guerra.simplepuntodeventa.modelo.Estado;
+import com.guerra.simplepuntodeventa.modelo.dao.PrivilegioDAOImpl;
 import com.guerra.simplepuntodeventa.modelo.dao.UsuarioDAOImpl;
+import com.guerra.simplepuntodeventa.modelo.entidades.Privilegio;
 import com.guerra.simplepuntodeventa.modelo.entidades.Usuario;
 import com.guerra.simplepuntodeventa.modelo.funciones.FuncionesUsuarios;
 import com.guerra.simplepuntodeventa.recursos.mensajes.MsjException;
@@ -36,6 +38,7 @@ public class ControladorUsuarios {
     private final PanListUsuarios panListUsuarios;
 
     private final UsuarioDAOImpl usuarioDAO = DAOManager.getInstancia().getUsuarioDAO();
+    private final PrivilegioDAOImpl privilegioDAOImpl = DAOManager.getInstancia().getPrivilegioDAO();
 
     public ControladorUsuarios(PanCrearUsuario panCrearUsuario, PanEditarUsuario panEditarUsuario,
             PanListUsuarios panListUsuarios) {
@@ -83,6 +86,8 @@ public class ControladorUsuarios {
         panEditarUsuario.txtNombre.setText("");
         panEditarUsuario.txtUser.setText("");
         panEditarUsuario.txtPass.setText("");
+        ComboBoxUtil.llenarComboDatos(panEditarUsuario.cmbRol,
+                privilegioDAOImpl.readByNameQuery("Privilegio.findByEstado", "estado", 1));
     }
 
     //////////metodos publicos/////////////
@@ -90,6 +95,8 @@ public class ControladorUsuarios {
         panCrearUsuario.txtNombre.setText("");
         panCrearUsuario.txtUser.setText("");
         panCrearUsuario.txtPass.setText("");
+        ComboBoxUtil.llenarComboDatos(panCrearUsuario.cmbRol,
+                privilegioDAOImpl.readByNameQuery("Privilegio.findByEstado", "estado", 1));
     }
 
     public void consultarUsuarios() {//listar usuarios
@@ -104,6 +111,13 @@ public class ControladorUsuarios {
             MsjValidacion.msjJTextFieldRequeridos(panCrearUsuario);
         } else {
 
+            Privilegio priv = ComboBoxUtil.getSelectedItem(panCrearUsuario.cmbRol, 0, Privilegio.class);
+
+            if (priv == null) {
+                MsjValidacion.msjJComboBoxdRequeridos(panCrearUsuario);
+                return;
+            }
+
             /////nuevo usuario
             Usuario user = new Usuario();
             user.setNombre(panCrearUsuario.txtNombre.getText());
@@ -112,7 +126,7 @@ public class ControladorUsuarios {
             user.setFechaCommit(new Date());
             user.setHoraCommit(new Date());
             user.setEstado(1);
-            user.setIdPrivilegio(DAOManager.getInstancia().getPrivilegioDAO().readOne(1));
+            user.setIdPrivilegio(priv);
 
             try {
                 usuarioDAO.create(user);
@@ -130,9 +144,12 @@ public class ControladorUsuarios {
                 panListUsuarios.tblUsuarios, 0, Usuario.class
         );
         if (usuarioEditar != null) {//validar que no sea null
+            ComboBoxUtil.llenarComboDatos(panEditarUsuario.cmbRol,
+                    privilegioDAOImpl.readByNameQuery("Privilegio.findByEstado", "estado", 1));
             panEditarUsuario.txtNombre.setText(usuarioEditar.getNombre());
             panEditarUsuario.txtUser.setText(usuarioEditar.getUser());
             panEditarUsuario.txtPass.setText(usuarioEditar.getPassword());
+            panEditarUsuario.cmbRol.setSelectedItem(usuarioEditar.getIdPrivilegio());
             PanelUtil.cambiarPanel(IfrmMenuUsuarios.PANEL_CAMBIANTE, panEditarUsuario);
         }
     }
@@ -144,15 +161,23 @@ public class ControladorUsuarios {
             MsjValidacion.msjJTextFieldRequeridos(panEditarUsuario);
         } else {
 
+            Privilegio priv = ComboBoxUtil.getSelectedItem(panEditarUsuario.cmbRol, 0, Privilegio.class);
+
+            if (priv == null) {
+                MsjValidacion.msjJComboBoxdRequeridos(panCrearUsuario);
+                return;
+            }
+
             /////editar usuario
             usuarioEditar.setNombre(panEditarUsuario.txtNombre.getText());
             usuarioEditar.setUser(panEditarUsuario.txtUser.getText());
             usuarioEditar.setPassword(panEditarUsuario.txtPass.getText());
+            usuarioEditar.setIdPrivilegio(priv);
 
             try {
                 usuarioDAO.update(usuarioEditar);
                 resetFormularioEditarUsuario();
-                MsjInfo.msjRegistroExitoso(panEditarUsuario);
+                MsjInfo.msjActualizacionExitosa(panEditarUsuario);
                 consultarUsuarios();
                 PanelUtil.cambiarPanel(IfrmMenuUsuarios.PANEL_CAMBIANTE, panListUsuarios);
             } catch (Exception e) {
