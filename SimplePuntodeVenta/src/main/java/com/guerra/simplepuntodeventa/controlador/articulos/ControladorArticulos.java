@@ -193,6 +193,7 @@ public class ControladorArticulos {
         panEditarArticulo.spnPVenta.setValue(0.00D);
         panEditarArticulo.cbxCategoria.setSelectedIndex(0);
         panEditarArticulo.cbxMarca.setSelectedIndex(0);
+        panEditarArticulo.cbxUbicacion.setSelectedIndex(0);
         articuloEditar = null;
     }
 
@@ -275,7 +276,7 @@ public class ControladorArticulos {
 
         } else if (!ValidarJComboBox.seleccionCombos(
                 new JComboBox[]{panNuevoArticulo.cbxCategoria,
-                    panNuevoArticulo.cbxMarca}, 0
+                    panNuevoArticulo.cbxMarca, panNuevoArticulo.cbxUbicacion}, 0
         )) {
 
             MsjValidacion.msjJComboBoxdRequeridos(panNuevoArticulo);
@@ -374,7 +375,7 @@ public class ControladorArticulos {
             MsjValidacion.msjJTextFieldRequeridos(panEditarArticulo);
         } else if (!ValidarJComboBox.seleccionCombos(
                 new JComboBox[]{panEditarArticulo.cbxCategoria,
-                    panEditarArticulo.cbxMarca}, 0
+                    panEditarArticulo.cbxMarca, panEditarArticulo.cbxUbicacion}, 0
         )) {
             MsjValidacion.msjJComboBoxdRequeridos(panEditarArticulo);
         } else if (!ValidarJSpinner.valorDoubleMayorN(0, panEditarArticulo.spnPCompra)
