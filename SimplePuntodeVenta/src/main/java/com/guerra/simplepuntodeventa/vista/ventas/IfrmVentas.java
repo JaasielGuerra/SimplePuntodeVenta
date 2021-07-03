@@ -18,6 +18,7 @@ public class IfrmVentas extends javax.swing.JInternalFrame {
      */
     public IfrmVentas() {
         initComponents();
+        btnPendiente.setVisible(false);
         PlaceHolderSupport.setPlaceHolder("Escriba el código del artículo/servicio y presione ENTER", txtCodigo);
     }
 

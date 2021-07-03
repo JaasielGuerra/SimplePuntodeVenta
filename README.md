@@ -116,3 +116,5 @@ Proyecto control de inventario y venta de servicios
 2021.07.03
 - Eliminando material proyecto Universidad
 - validacion combobox ubicacion modulo articulo
+- ER modificado, tablas para guardar ventas pendientes
+- Boton de poner venta pendiente ocultado
